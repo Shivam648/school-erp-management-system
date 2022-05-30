@@ -20,50 +20,8 @@
 
 <body>
     <div class="container-fluid">
-        <!-- navigation bar -->
-        <nav class="navbar navbar-expand-sm justify-content-around">
-            <a class="navbar-brand" href="./admin.php">Logo.</a>
-
-            <ul class="navbar-nav">
-                <li class="nav-item p-2">
-                    <a class="nav-link" href="./admin.php">Dashboard</a>
-                </li>
-                <li class="nav-item p-2">
-                    <a class="nav-link" href="!#">Students</a>
-                </li>
-                <li class="nav-item p-2">
-                    <a class="nav-link" href="!#">Teachers</a>
-                </li>
-                <li class="nav-item p-2">
-                    <a class="nav-link" href="!#">Subjects</a>
-                </li>
-            </ul>
-
-            <a class="btn btn-info" href="!#" download="">Download</a>
-        </nav>
-
-        <!-- UI Suggestion : Aside sidebar (Optional)-->
-        <!-- <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <a class="navbar-brand" href="./admin.php">Admin</a>
-            <div class="sidebar">
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <li class="nav-item">
-                            <a href="!#" class="nav-link">Widgets</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="!#" class="nav-link">Widgets</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="!#" class="nav-link">Widgets</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="!#" class="nav-link">Widgets</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </aside> -->
+        <!-- Header -->
+        <?php include("./includes/header.php") ?>
 
         <!-- card views -->
         <section class="content p-5 text-center align-items-center">
