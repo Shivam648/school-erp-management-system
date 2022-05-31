@@ -74,4 +74,21 @@ if (isset($_POST["add_subject"])) {
         header('Location: ../admin.php');
     }
 }
+if (isset($_POST["add_announcement"])) {
+    $name = strtolower($_POST["name"]);
+    $descr = strtolower($_POST["descr"]);
+
+
+    $find_announcement = "SELECT * FROM announcements WHERE title = '$name' ";
+    $response = mysqli_query($conn, $find_announcement) or die(mysqli_error($conn));
+    if (mysqli_num_rows($response) == 1) {
+        echo "Announcement already announced...";
+    } else {
+        $date = date('Y-m-d');
+        $add_announcement = "INSERT INTO  announcements(`title`,`descr`,`added_on`) VALUES ('$name','$descr','$date') ";
+        $response = mysqli_query($conn, $add_announcement) or die(mysqli_error($conn));
+        header('Location: ../admin.php');
+    }
+}
+
 ?>
