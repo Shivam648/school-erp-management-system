@@ -216,7 +216,7 @@
                     <div class='card account custom-shadow mt-5 p-3'>
                         <h3 class='text-center'>Create {$object}</h3>
                         <hr>
-                        <form class='card-body' method='POST' action='#!'>
+                        <form class='card-body' method='POST' action='./apis/admin-daemon.php'>
                             <div class='form-group'>
                                 <label for='name'>Announcement Title:</label>
                                 <input type='text' class='form-control' name='title' placeholder='' required>
@@ -228,7 +228,7 @@
                             </div>
                             <br>
                             <div class='text-center'>
-                                <button type='submit' name='signup' class='btn btn-outline-primary w-50'>ADD</button>
+                                <button type='submit' name='add_announcement' class='btn btn-outline-primary w-50'>ADD</button>
                             </div>
                         </form>
                     </div>
