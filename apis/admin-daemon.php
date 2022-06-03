@@ -78,7 +78,6 @@ if (isset($_POST["add_announcement"])) {
     $name = strtolower($_POST["name"]);
     $descr = strtolower($_POST["descr"]);
 
-
     $find_announcement = "SELECT * FROM announcements WHERE title = '$name' ";
     $response = mysqli_query($conn, $find_announcement) or die(mysqli_error($conn));
     if (mysqli_num_rows($response) == 1) {
