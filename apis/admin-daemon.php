@@ -13,16 +13,16 @@ if (isset($_POST["add_student"])) {
     $password = $_POST["password"];
 
 
-    $find_user = "SELECT * FROM students WHERE email = '$email' ";
+    $find_user = "SELECT * FROM users WHERE email = '$email' ";
     $response = mysqli_query($conn, $find_user) or die(mysqli_error($conn));
     if (mysqli_num_rows($response) == 1) {
-        echo "Student already registered...";
+        echo "User already registered...";
     } else {
         if ($password == NULL) {
             echo "Password cannnot be empty...,";
         } else {
             $password = sha1($password);
-            $add_student = "INSERT INTO students (`name`,`email`,`class`,`gender`,`phone`,`dob`,`address`,`password`) VALUES ('$name','$email','$class','$gender','$phone','$dob','$address','$password') ";
+            $add_student = "INSERT INTO users (`name`,`email`,`class`,`gender`,`phone`,`category`,`dob`,`address`,`password`) VALUES ('$name','$email','$class','$gender','$phone','student','$dob','$address','$password') ";
             $response = mysqli_query($conn, $add_student) or die(mysqli_error($conn));
             header('Location: ../admin.php');
         }
@@ -40,7 +40,7 @@ if (isset($_POST["add_teacher"])) {
     $password = $_POST["password"];
 
 
-    $find_user = "SELECT * FROM teachers WHERE email = '$email' ";
+    $find_user = "SELECT * FROM users WHERE email = '$email' ";
     $response = mysqli_query($conn, $find_user) or die(mysqli_error($conn));
     if (mysqli_num_rows($response) == 1) {
         echo "Teacher already registered...";
@@ -50,7 +50,7 @@ if (isset($_POST["add_teacher"])) {
         } else {
             $password = sha1($password);
             $date = date('Y-m-d');
-            $add_teacher = "INSERT INTO teachers (`name`,`email`,`subjects`,`gender`,`phone`,`designation`,`address`,`joining_date`,`password`) VALUES ('$name','$email','$code','$gender','$phone','$designation','$address','$date','$password') ";
+            $add_teacher = "INSERT INTO users (`name`,`email`,`subjects`,`gender`,`phone`,`category`,`designation`,`address`,`joining_date`,`password`) VALUES ('$name','$email','$code','$gender','$phone','teacher','$designation','$address','$date','$password') ";
             $response = mysqli_query($conn, $add_teacher) or die(mysqli_error($conn));
             header('Location: ../admin.php');
         }

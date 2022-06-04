@@ -1,6 +1,5 @@
 <?php
 include("./apis/config.php");
-$category = $_GET["category"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,11 +22,8 @@ $category = $_GET["category"];
 </head>
 
 <body>
-    <div class="container-fluid">
-        <!-- Header -->
-        <?php include("./includes/header.php") ?>
-
-        <div class='card account custom-shadow mt-5 pt-5'>
+    <div class="container-fluid p-5">
+        <div class='card account custom-shadow mt-5 pt-3'>
             <h3 class='text-center'>Login Form</h3>
             <hr>
             <form class='card-body' method='POST' action='./apis/account-daemon.php'>
@@ -41,10 +37,9 @@ $category = $_GET["category"];
                     <label for='password'>Password:</label>
                     <input type='password' class='form-control' name='password' placeholder='' required>
                 </div>
-                <input type='hidden' class='form-control' name='category' value="<?php echo $category; ?>" placeholder=''>
                 <br>
                 <div class='text-center'>
-                    <button type='submit' name='login' class='btn btn-outline-primary w-50'>ADD</button>
+                    <button type='submit' name='login' class='btn btn-outline-primary w-50'>LogIn</button>
                 </div>
             </form>
         </div>
