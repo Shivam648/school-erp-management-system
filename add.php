@@ -26,7 +26,7 @@
         <?php include("./includes/header.php") ?>
 
         <?php
-        if ($_SESSION["admin"] == true) {
+        if ($_SESSION["user_category"] == "admin") {
             $object = $_GET["object"];
 
             if ($object == "student") {
