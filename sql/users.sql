@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2022 at 11:07 AM
+-- Generation Time: Jun 06, 2022 at 07:11 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -51,8 +51,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`uid`, `name`, `email`, `password`, `category`, `phone`, `gender`, `address`, `dob`, `class`, `subjects`, `designation`, `joining_date`, `exit_date`, `active`) VALUES
 (1, 'admin', 'admin.org@gmail.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(2, 'swaraj kumar', 'swaraj@gmail.com', 'e4b40af9e152a905dacf8ff8986bfbfa1ab7600e', 'student', '8002046457', 'male', 'boring road patna', '2002-02-28', 8, NULL, NULL, NULL, NULL, 1),
-(3, 'dr sangram ray', 'sangram@gmail.com', '162d49ca8e94c2d87fe6d3c74fe4556f332b3cf1', 'teacher', '9955075265', 'male', 'west bengal, india', NULL, NULL, 'CNS', 'assistant hod', '2022-06-04', NULL, 1);
+(2, 'lorem iilum', 'lorem.org@gmail.com', 'b58e92fff5246645f772bfe7a60272f356c0151a', 'teacher', '8002046457', 'male', 'west bengal, india', NULL, NULL, 'CNS', 'assitant professor', '2022-06-06', NULL, 1),
+(3, 'happy kumar', 'happy.org@gmail.com', 'be31a86c982d3a8fabf1f00de3cc1b62239653c8', 'student', '8002046457', 'female', 'bihar, india', '2022-06-04', 2, NULL, NULL, '2022-06-06', NULL, 1);
 
 --
 -- Indexes for dumped tables
