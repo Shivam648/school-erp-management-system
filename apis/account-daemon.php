@@ -17,7 +17,11 @@ if (isset($_POST["login"])) {
             $password = sha1($password);
             if ($password == $actual_password) {
                 $_SESSION["user_category"] = $user_details["category"];
-                header('Location: ../index.php');
+                if ($_SESSION["user_category"] == "admin") {
+                    header('Location: ../dashboard.php');
+                } else {
+                    header('Location: ../index.php');
+                }
             } else {
                 echo "Password was incorrect...";
             }

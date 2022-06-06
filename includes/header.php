@@ -15,7 +15,7 @@
             echo '
                 <ul class="navbar-nav text-center">
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="./admin.php">Dashboard</a>
+                        <a class="nav-link" href="./dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item p-2">
                         <div class="dropdown" style="float:left;">
