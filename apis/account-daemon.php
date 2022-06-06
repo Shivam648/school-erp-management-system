@@ -6,7 +6,7 @@ if (isset($_POST["login"])) {
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    $find_user = "SELECT * FROM users WHERE email = '$email' ";
+    $find_user = "SELECT * FROM users WHERE email = '$email' and active = '1'";
     $response = mysqli_query($conn, $find_user) or die(mysqli_error($conn));
     if (mysqli_num_rows($response) == 1) {
         if ($password == NULL) {

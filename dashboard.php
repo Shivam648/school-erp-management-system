@@ -33,7 +33,7 @@
                         <div class="inner">
                             <h3>
                                 <?php
-                                $count_students_query = "SELECT COUNT(`category`) FROM users WHERE `category` = 'student' and `active` = '1' ";
+                                $count_students_query = "SELECT * FROM users WHERE `category` = 'student' and `active` = '1' ";
                                 $response = mysqli_query($conn, $count_students_query);
                                 echo mysqli_num_rows($response);
                                 ?>
@@ -49,7 +49,7 @@
                         <div class="inner">
                             <h3>
                                 <?php
-                                $count_teachers_query = "SELECT COUNT(`category`) FROM users WHERE `category` = 'teacher'  and `active` = '1' ";
+                                $count_teachers_query = "SELECT * FROM users WHERE `category` = 'teacher'  and `active` = '1' ";
                                 $response = mysqli_query($conn, $count_teachers_query);
                                 echo mysqli_num_rows($response);
                                 ?>
@@ -64,7 +64,11 @@
                     <div class="small-box bg-danger text-white p-3">
                         <div class="inner">
                             <h3>
-                                0
+                                <?php
+                                $count_subjects_query = "SELECT * FROM subjects WHERE `active` = '1' ";
+                                $response = mysqli_query($conn, $count_subjects_query);
+                                echo mysqli_num_rows($response);
+                                ?>
                             </h3>
                             <p>Subjects Added</p>
                         </div>
