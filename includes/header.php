@@ -15,7 +15,7 @@
             echo '
                 <ul class="navbar-nav text-center">
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="./admin.php">Dashboard</a>
+                        <a class="nav-link" href="./dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item p-2">
                         <div class="dropdown" style="float:left;">
@@ -59,9 +59,51 @@
                 </ul>
             ';
         } else if ($_SESSION["user_category"] == "student") {
-            /* add navigation for student */
+            echo '
+                <ul class="navbar-nav text-center">
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="#!">Students</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="#!">Assignment</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="#!">Attendance</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="#!">Grades</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="./profile.php">Profile</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="./logout.php">Logout</a>
+                    </li>
+                </ul>
+            ';
         } else if ($_SESSION["user_category"] == "teacher") {
-            /* add navigation for teacher */
+            echo '
+                <ul class="navbar-nav text-center">
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="#!">Teachers</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="#!">Works</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="#!">Attendance</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="#!">Grades</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="./profile.php">Profile</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="./logout.php">Logout</a>
+                    </li>
+                </ul>
+            ';
         } else {
             echo '
                 <ul class="navbar-nav">

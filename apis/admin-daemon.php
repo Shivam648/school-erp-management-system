@@ -22,9 +22,10 @@ if (isset($_POST["add_student"])) {
             echo "Password cannnot be empty...,";
         } else {
             $password = sha1($password);
-            $add_student = "INSERT INTO users (`name`,`email`,`class`,`gender`,`phone`,`category`,`dob`,`address`,`password`) VALUES ('$name','$email','$class','$gender','$phone','student','$dob','$address','$password') ";
+            $date = date('Y-m-d');
+            $add_student = "INSERT INTO users (`name`,`email`,`class`,`gender`,`phone`,`category`,`dob`,`address`,`password`,`joining_date`) VALUES ('$name','$email','$class','$gender','$phone','student','$dob','$address','$password','$date') ";
             $response = mysqli_query($conn, $add_student) or die(mysqli_error($conn));
-            header('Location: ../admin.php');
+            header('Location: ../dashboard.php');
         }
     }
 }
@@ -52,7 +53,7 @@ if (isset($_POST["add_teacher"])) {
             $date = date('Y-m-d');
             $add_teacher = "INSERT INTO users (`name`,`email`,`subjects`,`gender`,`phone`,`category`,`designation`,`address`,`joining_date`,`password`) VALUES ('$name','$email','$code','$gender','$phone','teacher','$designation','$address','$date','$password') ";
             $response = mysqli_query($conn, $add_teacher) or die(mysqli_error($conn));
-            header('Location: ../admin.php');
+            header('Location: ../dashboard.php');
         }
     }
 }
@@ -71,11 +72,12 @@ if (isset($_POST["add_subject"])) {
         $date = date('Y-m-d');
         $add_subject = "INSERT INTO subjects (`title`,`descr`,`code`,`credit`,`added_on`) VALUES ('$name','$descr','$code','$credit','$date') ";
         $response = mysqli_query($conn, $add_subject) or die(mysqli_error($conn));
-        header('Location: ../admin.php');
+        header('Location: ../dashboard.php');
     }
 }
+
 if (isset($_POST["add_announcement"])) {
-    $name = strtolower($_POST["name"]);
+    $name = strtolower($_POST["title"]);
     $descr = strtolower($_POST["descr"]);
 
     $find_announcement = "SELECT * FROM announcements WHERE title = '$name' ";
@@ -84,10 +86,9 @@ if (isset($_POST["add_announcement"])) {
         echo "Announcement already announced...";
     } else {
         $date = date('Y-m-d');
-        $add_announcement = "INSERT INTO  announcements(`title`,`descr`,`added_on`) VALUES ('$name','$descr','$date') ";
+        $add_announcement = "INSERT INTO announcements(`title`,`descr`,`added_on`) VALUES ('$name','$descr','$date') ";
         $response = mysqli_query($conn, $add_announcement) or die(mysqli_error($conn));
-        header('Location: ../admin.php');
+        header('Location: ../dashboard.php');
     }
 }
-
 ?>
