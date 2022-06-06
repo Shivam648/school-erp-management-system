@@ -24,7 +24,7 @@
     <div class="container-fluid">
         <?php include('./includes/header.php') ?>
         <?php
-        if ($_SESSION["user_category"] != "guest") {
+        if ($_SESSION["user_category"] != "guest" and $_SESSION["user_category"] != "admin") {
             $uid = $_SESSION['user_id'];
 
             $get_user_details = "SELECT * FROM users WHERE uid ='$uid' ";
