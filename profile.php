@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile | ICT Commercial</title>
+    <title>Profile | ERP</title>
     <!-- Add core styles here -->
     <link rel="stylesheet" href="./assets/css/base-styles.css">
     <!-- Latest compiled and minified CSS & JS or JQuery -->
@@ -22,12 +22,15 @@
 
 <body>
     <div class="container-fluid">
+        <!-- Header -->
         <?php include('./includes/header.php') ?>
+
+        <!-- Page accessible to end users only (student/teacher) -->
         <?php
-        if ($_SESSION["user_category"] != "guest" and $_SESSION["user_category"] != "admin") {
+        if ($_SESSION["user_category"] != "guest" && $_SESSION["user_category"] != "admin") {
             $uid = $_SESSION['user_id'];
 
-            $get_user_details = "SELECT * FROM users WHERE uid ='$uid' ";
+            $get_user_details = "SELECT * FROM users WHERE `uid` = '$uid'";
             $response = mysqli_query($conn, $get_user_details) or die(mysqli_error($conn));
             $user_details = mysqli_fetch_array($response, MYSQLI_ASSOC);
 
@@ -70,13 +73,17 @@
 
             if ($category == "student") {
                 $dob = $user_details["dob"];
-                $class = $user_details["class"];
+                $class_id = $user_details["class_id"];
+
+                // find standard using class id
+                include("./apis/get-standard-using-classID.php");
+
                 echo "
                     <div class='row'>
                         <div class='col'>
                             <div class='form-group'>
                                 <label for='class'>Class:</label>
-                                <input type='number' class='form-control' name='class' value='$class' readonly required>
+                                <input type='number' class='form-control' name='class' value='$standard' readonly required>
                             </div>
                         </div>
 
@@ -104,12 +111,36 @@
                         </div>
                     </div>
                 ";
-            }
 
-            if ($category == "teacher") {
-                $subjects = $user_details["subjects"];
+                echo "
+                            <div class='row'>
+                                <div class='col'>
+                                    <div class='form-group'>
+                                        <label for='address'>Address:</label>
+                                        <textarea type='text' class='form-control' name='address' cols='6' rows='2' required>$address</textarea>
+                                    </div>
+                                </div>
+                                <div class='col'>
+                                    <label for='password'>Password:</label>
+                                    <input type='password' class='form-control' placeholder='' name='password'>
+                                </div>
+                            </div>
+                    
+                            <br>
+                            <div class='text-center'>
+                                <button type='submit' name='update_$category' class='btn btn-outline-primary w-50'>UPDATE</button>
+                            </div>
+                        </form>
+                    </div>
+                ";
+            } else if ($category == "teacher") {
                 $designation = ucwords($user_details["designation"]);
                 $doj = $user_details["joining_date"];
+                $subject_id = $user_details["subject_id"];
+
+                // find subject code using subject id
+                include("./apis/get-code-using-subjectID.php");
+
                 echo "
                     <div class='form-group'>
                         <label for=''>Designation:</label>
@@ -120,7 +151,7 @@
                         <div class='col'>
                             <div class='form-group'>
                                 <label for=''>Subjects:</label>
-                                <input type='text' class='form-control' name='subjects' value='$subjects' readonly>
+                                <input type='text' class='form-control' name='subjects' value='$code' readonly>
                             </div>
                         </div>
 
@@ -148,29 +179,30 @@
                         </div>
                      </div>
                 ";
+                echo "
+                            <div class='row'>
+                                <div class='col'>
+                                    <div class='form-group'>
+                                        <label for='address'>Address:</label>
+                                        <textarea type='text' class='form-control' name='address' cols='6' rows='2' required>$address</textarea>
+                                    </div>
+                                </div>
+                                <div class='col'>
+                                    <label for='password'>Password:</label>
+                                    <input type='password' class='form-control' placeholder='' name='password'>
+                                </div>
+                            </div>
+                    
+                            <br>
+                            <div class='text-center'>
+                                <button type='submit' name='update_$category' class='btn btn-outline-primary w-50'>UPDATE</button>
+                            </div>
+                        </form>
+                    </div>
+                ";
+            } else {
+                include('./page-not-found.php');
             }
-
-            echo "
-                    <div class='row'>
-                    <div class='col'>
-                        <div class='form-group'>
-                            <label for='address'>Address:</label>
-                            <textarea type='text' class='form-control' name='address' cols='6' rows='2' required>$address</textarea>
-                        </div>
-                    </div>
-                    <div class='col'>
-                        <label for='password'>Password:</label>
-                        <input type='password' class='form-control' placeholder='' name='password'>
-                    </div>
-                </div>
-                
-                        <br>
-                        <div class='text-center'>
-                            <button type='submit' name='update_$category' class='btn btn-outline-primary w-50'>UPDATE</button>
-                        </div>
-                    </form>
-                </div>
-            ";
         } else {
             include('./page-not-found.php');
         }

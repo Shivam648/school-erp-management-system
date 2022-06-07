@@ -25,7 +25,9 @@
         <!-- Header -->
         <?php include("./includes/header.php") ?>
 
+        <!-- Page accessible only to admin -->
         <?php
+
         if ($_SESSION["user_category"] == "admin") {
             $object = $_GET["object"];
 
@@ -119,7 +121,7 @@
                         </form>
                     </div>
                 ";
-            } elseif ($object == "teacher") {
+            } else if ($object == "teacher") {
                 echo "
                     <div class='card account custom-shadow mt-4 p-3'>
                         <h3 class='text-center'>Create {$object} account</h3>
@@ -209,7 +211,7 @@
                         </form>
                     </div>
                 ";
-            } elseif ($object == "subject") {
+            } else if ($object == "subject") {
                 echo "
                     <div class='card account custom-shadow mt-5 p-3'>
                         <h3 class='text-center'>Create {$object}</h3>
@@ -247,7 +249,7 @@
                         </form>
                     </div>
                 ";
-            } elseif ($object == "class") {
+            } else if ($object == "class") {
                 echo "
                     <div class='card account custom-shadow mt-5 p-3'>
                         <h3 class='text-center'>Create {$object}</h3>
@@ -269,7 +271,7 @@
                     $subject_id = $value["subject_id"];
                     $code = $value["code"];
                     echo "
-                        <label class='checkbox-inline pr-2'><input type='checkbox' name='subject_ids[]' value='$subject_id'>$code</label>
+                        <label class='checkbox-inline pr-2'><input type='checkbox' name='subject_ids[]' value=$subject_id>$code</label>
                     ";
                 }
 

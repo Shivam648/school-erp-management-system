@@ -1,8 +1,8 @@
-<!-- Write all api requests for admin -->
+<!-- Write all add api requests for admin -->
 <?php
 include("config.php");
 
-// api to add a new student
+// api to add student
 if (isset($_POST["add_student"])) {
     $name = strtolower($_POST["name"]);
     $email = $_POST["email"];
@@ -31,7 +31,7 @@ if (isset($_POST["add_student"])) {
 }
 
 
-// api to add a new teacher
+// api to add teacher
 if (isset($_POST["add_teacher"])) {
     $name = strtolower($_POST["name"]);
     $email = $_POST["email"];
@@ -61,7 +61,7 @@ if (isset($_POST["add_teacher"])) {
 }
 
 
-// api to add a new subject
+// api to add subject
 if (isset($_POST["add_subject"])) {
     $name = strtolower($_POST["name"]);
     $descr = strtolower($_POST["descr"]);
@@ -81,7 +81,7 @@ if (isset($_POST["add_subject"])) {
 }
 
 
-// api to add a new announcement
+// api to add announcement
 if (isset($_POST["add_announcement"])) {
     $name = strtolower($_POST["title"]);
     $descr = strtolower($_POST["descr"]);
@@ -98,7 +98,7 @@ if (isset($_POST["add_announcement"])) {
     }
 }
 
-// api to add a new class
+// api to add class
 if (isset($_POST["add_class"])) {
     $standard = strtolower($_POST["standard"]);
     $subject_IDs = json_encode($_POST["subject_ids"]);

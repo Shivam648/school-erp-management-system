@@ -2,6 +2,7 @@
 <?php
 include("config.php");
 
+// api for logging a user
 if (isset($_POST["login"])) {
     $email = $_POST["email"];
     $password = $_POST["password"];
@@ -32,6 +33,7 @@ if (isset($_POST["login"])) {
     }
 }
 
+// api when student updates his/her profile
 if (isset($_POST["update_student"])) {
     $uid = $_SESSION["user_id"];
     $name = strtolower($_POST["name"]);
@@ -58,6 +60,7 @@ if (isset($_POST["update_student"])) {
     }
 }
 
+// api when teacher updates his/her profile
 if (isset($_POST["update_teacher"])) {
     $uid = $_SESSION["user_id"];
     $name = strtolower($_POST["name"]);

@@ -10,6 +10,7 @@
 
     <!-- Links -->
     <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+        <!-- Customized Header for different users -->
         <?php
         if ($_SESSION["user_category"] == "admin") {
             echo '
@@ -22,7 +23,7 @@
                             <button class="btn text-primary">Students</button>
                             <div class="dropdown-content" style="left:0;">
                                 <a href="./add.php?object=student">Add Student</a>
-                                <a href="#!">Manage Student</a>
+                                <a href="./view.php?object=student">Manage Student</a>
                             </div>
                         </div>
                     </li>
@@ -31,7 +32,7 @@
                             <button class="btn text-primary">Teachers</button>
                             <div class="dropdown-content" style="left:0;">
                                 <a href="./add.php?object=teacher">Add Teacher</a>
-                                <a href="#!">Manage Teacher</a>
+                                <a href="./view.php?object=teacher">Manage Teacher</a>
                             </div>
                         </div>
                     </li>
@@ -40,7 +41,7 @@
                             <button class="btn text-primary">Subjects</button>
                             <div class="dropdown-content" style="left:0;">
                                 <a href="./add.php?object=subject">Add Subject</a>
-                                <a href="#!">Manage Subject</a>
+                                <a href="./view.php?object=subject">Manage Subject</a>
                             </div>
                         </div>
                     </li>
@@ -49,7 +50,7 @@
                             <button class="btn text-primary">Classes</button>
                             <div class="dropdown-content" style="left:0;">
                                 <a href="./add.php?object=class">Add Class</a>
-                                <a href="#!">Manage Class</a>
+                                <a href="./view.php?object=class">Manage Class</a>
                             </div>
                         </div>
                     </li>
@@ -58,7 +59,7 @@
                             <button class="btn text-primary">Announcements</button>
                             <div class="dropdown-content" style="left:0;">
                                 <a href="./add.php?object=announcement">Add Announcements</a>
-                                <a href="#!">Manage Announcements</a>
+                                <a href="./view.php?object=announcement">Manage Announcements</a>
                             </div>
                         </div>
                     </li>
