@@ -24,43 +24,43 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `announcements`
+-- Table structure for table `classes`
 --
 
-CREATE TABLE `announcements` (
-  `aid` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `descr` varchar(255) NOT NULL,
-  `added_on` date NOT NULL,
+CREATE TABLE `classes` (
+  `class_id` int(11) NOT NULL,
+  `standard` varchar(255) NOT NULL,
+  `subject_ids` varchar(255) NOT NULL,
   `active` int(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='announcement information';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='subjects in each class';
 
 --
--- Dumping data for table `announcements`
+-- Dumping data for table `classes`
 --
 
-INSERT INTO `announcements` (`aid`, `title`, `descr`, `added_on`, `active`) VALUES
-(1, 'recruitment of assistant professors (3)', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. doloremque amet harum eos nobis sed. animi ipsa voluptatibus aspernatur obcaecati necessitatibus!', '2022-06-07', 1);
+INSERT INTO `classes` (`class_id`, `standard`, `subject_ids`, `active`) VALUES
+(1, '9', '[\"1\",\"3\"]', 1),
+(2, '4', '[\"2\"]', 1);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `announcements`
+-- Indexes for table `classes`
 --
-ALTER TABLE `announcements`
-  ADD PRIMARY KEY (`aid`);
+ALTER TABLE `classes`
+  ADD PRIMARY KEY (`class_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `announcements`
+-- AUTO_INCREMENT for table `classes`
 --
-ALTER TABLE `announcements`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `classes`
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

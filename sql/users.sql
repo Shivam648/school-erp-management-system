@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2022 at 07:11 AM
+-- Generation Time: Jun 07, 2022 at 06:25 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -37,8 +37,8 @@ CREATE TABLE `users` (
   `gender` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `dob` date DEFAULT NULL,
-  `class` int(2) DEFAULT NULL,
-  `subjects` varchar(255) DEFAULT NULL,
+  `class_id` int(11) DEFAULT NULL,
+  `subject_id` int(11) DEFAULT NULL,
   `designation` varchar(255) DEFAULT NULL,
   `joining_date` date DEFAULT NULL,
   `exit_date` date DEFAULT NULL,
@@ -49,10 +49,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`uid`, `name`, `email`, `password`, `category`, `phone`, `gender`, `address`, `dob`, `class`, `subjects`, `designation`, `joining_date`, `exit_date`, `active`) VALUES
+INSERT INTO `users` (`uid`, `name`, `email`, `password`, `category`, `phone`, `gender`, `address`, `dob`, `class_id`, `subject_id`, `designation`, `joining_date`, `exit_date`, `active`) VALUES
 (1, 'admin', 'admin.org@gmail.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(2, 'lorem iilum', 'lorem.org@gmail.com', 'b58e92fff5246645f772bfe7a60272f356c0151a', 'teacher', '8002046457', 'male', 'west bengal, india', NULL, NULL, 'CNS', 'assitant professor', '2022-06-06', NULL, 1),
-(3, 'happy kumar', 'happy.org@gmail.com', 'be31a86c982d3a8fabf1f00de3cc1b62239653c8', 'student', '8002046457', 'female', 'bihar, india', '2022-06-04', 2, NULL, NULL, '2022-06-06', NULL, 1);
+(2, 'swaraj kumar', 'swaraj.org@gmail.com', 'e4b40af9e152a905dacf8ff8986bfbfa1ab7600e', 'student', '8002046457', 'male', 'boring road, patna', '2022-06-07', 2, NULL, NULL, '2022-06-07', NULL, 1),
+(3, 'pratyay kuila', 'pratyay.org@gmail.com', '97026e649d3a629d10dee8cbb592a492d0de9862', 'teacher', '8002046457', 'male', 'west bengal, india', NULL, NULL, 2, 'hod', '2022-06-07', NULL, 1);
 
 --
 -- Indexes for dumped tables

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2022 at 07:10 AM
+-- Generation Time: Jun 07, 2022 at 06:25 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `subjects` (
-  `subid` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `descr` varchar(255) NOT NULL,
   `code` varchar(255) NOT NULL,
@@ -41,8 +41,10 @@ CREATE TABLE `subjects` (
 -- Dumping data for table `subjects`
 --
 
-INSERT INTO `subjects` (`subid`, `title`, `descr`, `code`, `credit`, `added_on`, `active`) VALUES
-(1, 'cryptography and network security', 'lorem ipsum dolor sit amet consectetur adipisicing elit. voluptates esse accusantium ex cumque et illo. illo porro iure vero possimus.', 'CNS', 4, '2022-06-06', 1);
+INSERT INTO `subjects` (`subject_id`, `title`, `descr`, `code`, `credit`, `added_on`, `active`) VALUES
+(1, 'cryptography and network security', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. doloremque amet harum eos nobis sed. animi ipsa voluptatibus aspernatur obcaecati necessitatibus!', 'CNS', 4, '2022-06-07', 1),
+(2, 'data structures and algorithms', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. doloremque amet harum eos nobis sed. animi ipsa voluptatibus aspernatur obcaecati necessitatibus!', 'DSA', 3, '2022-06-07', 1),
+(3, 'machine learning', 'lorem ipsum dolor, sit amet consectetur adipisicing elit. doloremque amet harum eos nobis sed. animi ipsa voluptatibus aspernatur obcaecati necessitatibus!', 'ML', 3, '2022-06-07', 1);
 
 --
 -- Indexes for dumped tables
@@ -52,7 +54,7 @@ INSERT INTO `subjects` (`subid`, `title`, `descr`, `code`, `credit`, `added_on`,
 -- Indexes for table `subjects`
 --
 ALTER TABLE `subjects`
-  ADD PRIMARY KEY (`subid`);
+  ADD PRIMARY KEY (`subject_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -62,7 +64,7 @@ ALTER TABLE `subjects`
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `subid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

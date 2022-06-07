@@ -34,7 +34,7 @@
                     <div class='card account custom-shadow mt-4 p-3'>
                         <h3 class='text-center'>Create {$object} account</h3>
                         <hr>
-                        <form class='card-body' method='POST' action='./apis/admin-daemon.php'>
+                        <form class='card-body' method='POST' action='./apis/admin-add-daemon.php'>
                             <div class='form-group'>
                                 <label for='name'>Full Name:</label>
                                 <input type='text' class='form-control' name='name' placeholder='' required>
@@ -44,15 +44,33 @@
                                 <label for='email'>Email:</label>
                                 <input type='email' class='form-control' name='email' placeholder='' required>
                             </div>
+                ";
 
-                            <div class='row'>
-                                <div class='col'>
-                                    <div class='form-group'>
-                                        <label for='class'>Class:</label>
-                                        <input type='number' class='form-control' name='class' placeholder='' required>
-                                    </div>
-                                </div>
+                echo "
+                    <div class='row'>
+                    <div class='col'>
+                        <div class='form-group'>
+                            <label for='class'>Class:</label>
+                            <select class='form-control' name='class_id' required>
+                ";
 
+                include("./apis/get-all-classes.php");
+                foreach ($classes as $key => $value) {
+                    $class_id = $value["class_id"];
+                    $standard = ucwords($value["standard"]);
+                    echo "
+                        <option value='$class_id'>$standard</option>
+                    ";
+                }
+
+
+                echo "
+                            </select>
+                        </div>
+                    </div>
+                ";
+
+                echo "
                                 <div class='col'>
                                     <div class='form-group'>
                                         <label for='gender'>Gender:</label>
@@ -106,7 +124,7 @@
                     <div class='card account custom-shadow mt-4 p-3'>
                         <h3 class='text-center'>Create {$object} account</h3>
                         <hr>
-                        <form class='card-body' method='POST' action='./apis/admin-daemon.php'>
+                        <form class='card-body' method='POST' action='./apis/admin-add-daemon.php'>
                             <div class='form-group'>
                                 <label for='name'>Full Name:</label>
                                 <input type='text' class='form-control' name='name' placeholder='' required>
@@ -116,15 +134,33 @@
                                 <label for='email'>Email:</label>
                                 <input type='email' class='form-control' name='email' placeholder='' required>
                             </div>
+                ";
 
-                            <div class='row'>
-                                <div class='col'>
-                                    <div class='form-group'>
-                                        <label for='subject'>Subject:</label>
-                                        <input type='text' class='form-control' name='code' placeholder='' required>
-                                    </div>
-                                </div>
+                echo "
+                    <div class='row'>
+                        <div class='col'>
+                            <div class='form-group'>
+                                <label for=''>Subject:</label>
+                                <select class='form-control' name='subject_id' required>
+                ";
 
+                include("./apis/get-all-subjects.php");
+                foreach ($subjects as $key => $value) {
+                    $subject_id = $value["subject_id"];
+                    $code = $value["code"];
+                    echo "
+                        <option value='$subject_id'>$code</option>
+                    ";
+                }
+
+
+                echo "
+                            </select>
+                        </div>
+                    </div>
+                ";
+
+                echo "
                                 <div class='col'>
                                     <div class='form-group'>
                                         <label for='gender'>Gender:</label>
@@ -178,7 +214,7 @@
                     <div class='card account custom-shadow mt-5 p-3'>
                         <h3 class='text-center'>Create {$object}</h3>
                         <hr>
-                        <form class='card-body' method='POST' action='./apis/admin-daemon.php'>
+                        <form class='card-body' method='POST' action='./apis/admin-add-daemon.php'>
                             <div class='form-group'>
                                 <label for='name'>Subject Name:</label>
                                 <input type='text' class='form-control' name='name' placeholder='' required>
@@ -211,12 +247,47 @@
                         </form>
                     </div>
                 ";
+            } elseif ($object == "class") {
+                echo "
+                    <div class='card account custom-shadow mt-5 p-3'>
+                        <h3 class='text-center'>Create {$object}</h3>
+                        <hr>
+                        <form class='card-body' method='POST' action='./apis/admin-add-daemon.php'>
+                            <div class='form-group'>
+                                <label for='standard'>Standard:</label>
+                                <input type='text' class='form-control' name='standard' placeholder='' required>
+                            </div>
+                ";
+
+                echo "
+                    <div class='form-group'>
+                    <label for=''>Subjects:</label> <br>
+                ";
+
+                include("./apis/get-all-subjects.php");
+                foreach ($subjects as $key => $value) {
+                    $subject_id = $value["subject_id"];
+                    $code = $value["code"];
+                    echo "
+                        <label class='checkbox-inline pr-2'><input type='checkbox' name='subject_ids[]' value='$subject_id'>$code</label>
+                    ";
+                }
+
+                echo "</div>";
+                echo "
+                            <br>
+                            <div class='text-center'>
+                                <button type='submit' name='add_class' class='btn btn-outline-primary w-50'>ADD</button>
+                            </div>
+                        </form>
+                    </div>
+                ";
             } else if ($object == "announcement") {
                 echo "
                     <div class='card account custom-shadow mt-5 p-3'>
                         <h3 class='text-center'>Create {$object}</h3>
                         <hr>
-                        <form class='card-body' method='POST' action='./apis/admin-daemon.php'>
+                        <form class='card-body' method='POST' action='./apis/admin-add-daemon.php'>
                             <div class='form-group'>
                                 <label for='name'>Announcement Title:</label>
                                 <input type='text' class='form-control' name='title' placeholder='' required>

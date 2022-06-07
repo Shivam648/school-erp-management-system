@@ -28,10 +28,10 @@
                     </li>
                     <li class="nav-item p-2">
                         <div class="dropdown" style="float:left;">
-                            <button class="btn text-primary">Faculties</button>
+                            <button class="btn text-primary">Teachers</button>
                             <div class="dropdown-content" style="left:0;">
-                                <a href="./add.php?object=teacher">Add Faculty</a>
-                                <a href="#!">Manage Faculty</a>
+                                <a href="./add.php?object=teacher">Add Teacher</a>
+                                <a href="#!">Manage Teacher</a>
                             </div>
                         </div>
                     </li>
@@ -41,6 +41,15 @@
                             <div class="dropdown-content" style="left:0;">
                                 <a href="./add.php?object=subject">Add Subject</a>
                                 <a href="#!">Manage Subject</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item p-2">
+                        <div class="dropdown" style="float:left;">
+                            <button class="btn text-primary">Classes</button>
+                            <div class="dropdown-content" style="left:0;">
+                                <a href="./add.php?object=class">Add Class</a>
+                                <a href="#!">Manage Class</a>
                             </div>
                         </div>
                     </li>

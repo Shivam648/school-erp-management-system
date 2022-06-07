@@ -33,8 +33,7 @@
                         <div class="inner">
                             <h3>
                                 <?php
-                                $count_students_query = "SELECT * FROM users WHERE `category` = 'student' and `active` = '1' ";
-                                $response = mysqli_query($conn, $count_students_query);
+                                include("./apis/get-all-students.php");
                                 echo mysqli_num_rows($response);
                                 ?>
                             </h3>
@@ -49,8 +48,7 @@
                         <div class="inner">
                             <h3>
                                 <?php
-                                $count_teachers_query = "SELECT * FROM users WHERE `category` = 'teacher'  and `active` = '1' ";
-                                $response = mysqli_query($conn, $count_teachers_query);
+                                include("./apis/get-all-teachers.php");
                                 echo mysqli_num_rows($response);
                                 ?>
                             </h3>
@@ -65,8 +63,7 @@
                         <div class="inner">
                             <h3>
                                 <?php
-                                $count_subjects_query = "SELECT * FROM subjects WHERE `active` = '1' ";
-                                $response = mysqli_query($conn, $count_subjects_query);
+                                include("./apis/get-all-subjects.php");
                                 echo mysqli_num_rows($response);
                                 ?>
                             </h3>
@@ -81,12 +78,26 @@
                         <div class="inner">
                             <h3>
                                 <?php
-                                $count_announcements_query = "SELECT * FROM announcements WHERE active = '1' ";
-                                $response = mysqli_query($conn, $count_announcements_query);
+                                include("./apis/get-all-announcements.php");
                                 echo mysqli_num_rows($response);
                                 ?>
                             </h3>
                             <p>Active Announcements</p>
+                        </div>
+                        <a href="#!" class="btn text-white">More info</a>
+                    </div>
+                </div>
+
+                <div class="w-100 p-2">
+                    <div class="small-box bg-dark text-white p-3">
+                        <div class="inner">
+                            <h3>
+                                <?php
+                                include("./apis/get-all-classes.php");
+                                echo mysqli_num_rows($response);
+                                ?>
+                            </h3>
+                            <p>Active Classes</p>
                         </div>
                         <a href="#!" class="btn text-white">More info</a>
                     </div>
