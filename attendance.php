@@ -89,35 +89,57 @@
                     // get subject ids using class id
                     include("./apis/get-subjectIDs-using-classID.php");
 
-                    // get subject codes using subject ids
-                    include("./apis/get-codes-using-subjectIDs.php");
-
-                    echo "
-                        <div class='form-group'>
-                            <label for=''>Subjects:</label>
-                            <select class='form-control' name='subject_id'>
-                    ";
-                    for ($i = 0; $i < sizeof($codes); $i++) {
+                    // filter subject id to which access is given
+                    $teacher_id = $_SESSION["user_id"];
+                    $iters = sizeof($subject_ids);
+                    $filtered = array();
+                    for ($i = 0; $i < $iters; $i++) {
                         $subject_id = $subject_ids[$i];
-                        $subject_code = $codes[$i];
+                        $find = "SELECT * FROM subjects WHERE `subject_id` = '$subject_id' AND `teacher_id` = '$teacher_id'";
+                        $response = mysqli_query($conn, $find) or die(mysqli_error($conn));
+                        if (mysqli_num_rows($response) == 1) {
+                            array_push($filtered, $subject_id);
+                        }
+                    }
+                    $subject_ids = $filtered;
+
+                    if (sizeof($subject_ids) == 0) {
+                        echo "
+                            <div class='text-center mt-4'>
+                                <h3>No subjects assigned to you.</h3>
+                            </div>
+                        ";
+                    } else {
+                        // get subject codes using subject ids
+                        include("./apis/get-codes-using-subjectIDs.php");
 
                         echo "
-                            <option value='$subject_id'>$subject_code</option>
+                            <div class='form-group'>
+                                <label for=''>Subjects assigned to you:</label>
+                                <select class='form-control' name='subject_id'>
+                        ";
+                        for ($i = 0; $i < sizeof($codes); $i++) {
+                            $subject_id = $subject_ids[$i];
+                            $subject_code = $codes[$i];
+
+                            echo "
+                                <option value='$subject_id'>$subject_code</option>
+                            ";
+                        }
+
+                        echo "
+                                </select>
+                            </div>
+                        ";
+
+                        echo "
+                                    <div class='text-center'>
+                                        <button type='submit' name='search_students' class='btn btn-outline-primary w-50'>Search Students</button>
+                                    </div>
+                                </form>
+                            </div>
                         ";
                     }
-
-                    echo "
-                            </select>
-                        </div>
-                    ";
-
-                    echo "
-                                <div class='text-center'>
-                                    <button type='submit' name='search_students' class='btn btn-outline-primary w-50'>Search Students</button>
-                                </div>
-                            </form>
-                        </div>
-                    ";
                 } else {
                     $class_id = $_POST["class_id"];
                     $subject_id = $_POST["subject_id"];
