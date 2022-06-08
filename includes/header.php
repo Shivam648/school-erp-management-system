@@ -95,13 +95,7 @@
             echo '
                 <ul class="navbar-nav text-center">
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="#!">Works</a>
-                    </li>
-                    <li class="nav-item p-2">
                         <a class="nav-link" href="./attendance.php">Attendance</a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="nav-link" href="#!">Grades</a>
                     </li>
                     <li class="nav-item p-2">
                         <a class="nav-link" href="./profile.php">Profile</a>

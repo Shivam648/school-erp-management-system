@@ -26,6 +26,7 @@ if (isset($_POST["login"])) {
         if ($password == $actual_password) {
             $_SESSION["user_category"] = $category;
             $_SESSION["user_email"] = $user_details["email"];
+            $_SESSION["uid"] = $user_details["teacher_id"];
             if ($_SESSION["user_category"] == "admin") {
                 header('Location: ../dashboard.php');
             } else {

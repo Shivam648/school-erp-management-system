@@ -1,4 +1,4 @@
-<!-- API to find subject code using subject ID -->
+<!-- API to find a subject code using subject ID -->
 <?php
 include("./apis/config.php");
 $find_subject = "SELECT * FROM subjects WHERE `subject_id` = '$subject_id'";

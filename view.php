@@ -246,14 +246,8 @@
                         $standard = ucwords($value["standard"]);
                         $subject_ids = json_decode($value["subject_ids"]);
 
-                        $codes = array();
-                        for ($i = 0; $i < sizeof($subject_ids); $i++) {
-                            $subject_id = $subject_ids[$i];
-
-                            // find subject code using subject id
-                            include("./apis/get-code-using-subjectID.php");
-                            array_push($codes, $code);
-                        }
+                        // get subject codes using subject ids
+                        include("./apis/get-codes-using-subjectIDs.php");
                         $codes = json_encode($codes);
 
                         echo "
