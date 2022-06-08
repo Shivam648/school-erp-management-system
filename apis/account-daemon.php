@@ -39,9 +39,9 @@ if (isset($_POST["login"])) {
     }
 }
 
-// api when student updates his/her profile
+// api when student updates his/her profile : verified
 if (isset($_POST["update_student"])) {
-    $uid = $_SESSION["user_id"];
+    $email = $_SESSION["user_email"];
     $name = strtolower($_POST["name"]);
     $gender = strtolower($_POST["gender"]);
     $phone = $_POST["phone"];
@@ -50,14 +50,14 @@ if (isset($_POST["update_student"])) {
     $password = $_POST["password"];
 
 
-    $find_user = "SELECT * FROM users WHERE `uid` = '$uid' ";
-    $response = mysqli_query($conn, $find_user) or die(mysqli_error($conn));
+    $find_student = "SELECT * FROM students WHERE `email` = '$email' ";
+    $response = mysqli_query($conn, $find_student) or die(mysqli_error($conn));
     if (mysqli_num_rows($response) == 1) {
         if ($password == NULL) {
-            $update_student = "UPDATE users SET `name` = '$name', `gender` = '$gender', `phone` = '$phone', `dob` = '$dob', `address` = '$address' WHERE `uid` = '$uid'";
+            $update_student = "UPDATE students SET `name` = '$name', `gender` = '$gender', `phone` = '$phone', `dob` = '$dob', `address` = '$address' WHERE `email` = '$email'";
         } else {
             $password = sha1($password);
-            $update_student = "UPDATE users SET `name` = '$name', `gender` = '$gender', `phone` = '$phone', `dob` = '$dob', `address` = '$address', `password` = '$password' WHERE `uid` = '$uid'";
+            $update_student = "UPDATE students SET `name` = '$name', `gender` = '$gender', `phone` = '$phone', `dob` = '$dob', `address` = '$address', `password` = '$password' WHERE `email` = '$email'";
         }
         $response = mysqli_query($conn, $update_student) or die(mysqli_error($conn));
         header('Location: ../logout.php');
@@ -66,9 +66,9 @@ if (isset($_POST["update_student"])) {
     }
 }
 
-// api when teacher updates his/her profile
+// api when teacher updates his/her profile : verified
 if (isset($_POST["update_teacher"])) {
-    $uid = $_SESSION["user_id"];
+    $email = $_SESSION["user_email"];
     $name = strtolower($_POST["name"]);
     $gender = strtolower($_POST["gender"]);
     $phone = $_POST["phone"];
@@ -76,14 +76,14 @@ if (isset($_POST["update_teacher"])) {
     $password = $_POST["password"];
 
 
-    $find_user = "SELECT * FROM users WHERE `uid` = '$uid' ";
-    $response = mysqli_query($conn, $find_user) or die(mysqli_error($conn));
+    $find_teacher = "SELECT * FROM teachers WHERE `email` = '$email' ";
+    $response = mysqli_query($conn, $find_teacher) or die(mysqli_error($conn));
     if (mysqli_num_rows($response) == 1) {
         if ($password == NULL) {
-            $update_student = "UPDATE users SET `name` = '$name', `gender` = '$gender', `phone` = '$phone', `address` = '$address' WHERE `uid` = '$uid'";
+            $update_student = "UPDATE teachers SET `name` = '$name', `gender` = '$gender', `phone` = '$phone', `address` = '$address' WHERE `email` = '$email'";
         } else {
             $password = sha1($password);
-            $update_student = "UPDATE users SET `name` = '$name', `gender` = '$gender', `phone` = '$phone', `address` = '$address', `password` = '$password' WHERE `uid` = '$uid'";
+            $update_student = "UPDATE teachers SET `name` = '$name', `gender` = '$gender', `phone` = '$phone', `address` = '$address', `password` = '$password' WHERE `email` = '$email'";
         }
         $response = mysqli_query($conn, $update_student) or die(mysqli_error($conn));
         header('Location: ../logout.php');

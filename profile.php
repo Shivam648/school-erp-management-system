@@ -28,50 +28,50 @@
         <!-- Page accessible to end users only (student/teacher) -->
         <?php
         if ($_SESSION["user_category"] != "guest" && $_SESSION["user_category"] != "admin") {
-            $uid = $_SESSION['user_id'];
+            $user_email = $_SESSION['user_email'];
 
-            $get_user_details = "SELECT * FROM users WHERE `uid` = '$uid'";
-            $response = mysqli_query($conn, $get_user_details) or die(mysqli_error($conn));
-            $user_details = mysqli_fetch_array($response, MYSQLI_ASSOC);
+            if ($_SESSION["user_category"] == "student") {
+                $get_user_details = "SELECT * FROM students WHERE `email` = '$user_email'";
+                $response = mysqli_query($conn, $get_user_details) or die(mysqli_error($conn));
+                $user_details = mysqli_fetch_array($response, MYSQLI_ASSOC);
 
-            $name = ucwords($user_details["name"]);
-            $email = $user_details["email"];
-            $category = $user_details["category"];
-            $phone = $user_details["phone"];
-            $address = ucwords($user_details["address"]);
-            $gender_dropdown = "<select class='form-control' name='gender' required>";
-            if ($user_details["gender"] == "male") {
-                $gender_dropdown .= "<option value='male' selected>Male</option>";
-                $gender_dropdown .= "<option value='female'>Female</option>";
-                $gender_dropdown .= "<option value='other'>Other</option>";
-            } else if ($user_details["gender"] == "female") {
-                $gender_dropdown .= "<option value='male'>Male</option>";
-                $gender_dropdown .= "<option value='female' selected>Female</option>";
-                $gender_dropdown .= "<option value='other'>Other</option>";
-            } else {
-                $gender_dropdown .= "<option value='male'>Male</option>";
-                $gender_dropdown .= "<option value='female'>Female</option>";
-                $gender_dropdown .= "<option value='other' selected>Other</option>";
-            }
-            $gender_dropdown .= "</select>";
+                $name = ucwords($user_details["name"]);
+                $email = $user_details["email"];
+                $phone = $user_details["phone"];
+                $address = ucwords($user_details["address"]);
 
-            echo "
-                <div class='card account custom-shadow mt-4 p-3'>
-                    <h3 class='text-center'>Edit Profile</h3> 
-                    <hr>
-                    <form class='card-body' method='POST' action='./apis/account-daemon.php'>
-                        <div class='form-group'>
-                            <label for='name'>Name:</label>
-                            <input type='text' class='form-control' name='name' value='$name' required>
-                        </div>
+                $gender_dropdown = "<select class='form-control' name='gender' required>";
+                if ($user_details["gender"] == "male") {
+                    $gender_dropdown .= "<option value='male' selected>Male</option>";
+                    $gender_dropdown .= "<option value='female'>Female</option>";
+                    $gender_dropdown .= "<option value='other'>Other</option>";
+                } else if ($user_details["gender"] == "female") {
+                    $gender_dropdown .= "<option value='male'>Male</option>";
+                    $gender_dropdown .= "<option value='female' selected>Female</option>";
+                    $gender_dropdown .= "<option value='other'>Other</option>";
+                } else {
+                    $gender_dropdown .= "<option value='male'>Male</option>";
+                    $gender_dropdown .= "<option value='female'>Female</option>";
+                    $gender_dropdown .= "<option value='other' selected>Other</option>";
+                }
+                $gender_dropdown .= "</select>";
 
-                        <div class='form-group'>
-                            <label for='email'>Email:</label>
-                            <input type='email' class='form-control' name='email' value='$email' readonly required>
-                        </div>
-            ";
+                echo "
+                    <div class='card account custom-shadow mt-4 p-3'>
+                        <h3 class='text-center'>Edit Profile</h3> 
+                        <hr>
+                        <form class='card-body' method='POST' action='./apis/account-daemon.php'>
+                            <div class='form-group'>
+                                <label for='name'>Name:</label>
+                                <input type='text' class='form-control' name='name' value='$name' required>
+                            </div>
+    
+                            <div class='form-group'>
+                                <label for='email'>Email:</label>
+                                <input type='email' class='form-control' name='email' value='$email' readonly required>
+                            </div>
+                ";
 
-            if ($category == "student") {
                 $dob = $user_details["dob"];
                 $class_id = $user_details["class_id"];
 
@@ -83,7 +83,7 @@
                         <div class='col'>
                             <div class='form-group'>
                                 <label for='class'>Class:</label>
-                                <input type='number' class='form-control' name='class' value='$standard' readonly required>
+                                <input type='text' class='form-control' name='class' value='$standard' readonly required>
                             </div>
                         </div>
 
@@ -128,37 +128,68 @@
                     
                             <br>
                             <div class='text-center'>
-                                <button type='submit' name='update_$category' class='btn btn-outline-primary w-50'>UPDATE</button>
+                                <button type='submit' name='update_student' class='btn btn-outline-primary w-50'>UPDATE</button>
                             </div>
                         </form>
                     </div>
                 ";
-            } else if ($category == "teacher") {
-                $designation = ucwords($user_details["designation"]);
-                $doj = $user_details["joining_date"];
-                $subject_id = $user_details["subject_id"];
+            } else if ($_SESSION["user_category"] == "teacher") {
+                $get_user_details = "SELECT * FROM teachers WHERE `email` = '$user_email'";
+                $response = mysqli_query($conn, $get_user_details) or die(mysqli_error($conn));
+                $user_details = mysqli_fetch_array($response, MYSQLI_ASSOC);
 
-                // find subject code using subject id
-                include("./apis/get-code-using-subjectID.php");
+                $name = ucwords($user_details["name"]);
+                $email = $user_details["email"];
+                $phone = $user_details["phone"];
+                $address = ucwords($user_details["address"]);
+
+                $gender_dropdown = "<select class='form-control' name='gender' required>";
+                if ($user_details["gender"] == "male") {
+                    $gender_dropdown .= "<option value='male' selected>Male</option>";
+                    $gender_dropdown .= "<option value='female'>Female</option>";
+                    $gender_dropdown .= "<option value='other'>Other</option>";
+                } else if ($user_details["gender"] == "female") {
+                    $gender_dropdown .= "<option value='male'>Male</option>";
+                    $gender_dropdown .= "<option value='female' selected>Female</option>";
+                    $gender_dropdown .= "<option value='other'>Other</option>";
+                } else {
+                    $gender_dropdown .= "<option value='male'>Male</option>";
+                    $gender_dropdown .= "<option value='female'>Female</option>";
+                    $gender_dropdown .= "<option value='other' selected>Other</option>";
+                }
+                $gender_dropdown .= "</select>";
 
                 echo "
-                    <div class='form-group'>
-                        <label for=''>Designation:</label>
-                        <input type='text' class='form-control' name='designation' value='$designation' readonly required>
-                    </div>
-
-                    <div class='row'>
-                        <div class='col'>
+                    <div class='card account custom-shadow mt-4 p-3'>
+                        <h3 class='text-center'>Edit Profile</h3> 
+                        <hr>
+                        <form class='card-body' method='POST' action='./apis/account-daemon.php'>
                             <div class='form-group'>
-                                <label for=''>Subjects:</label>
-                                <input type='text' class='form-control' name='subjects' value='$code' readonly>
+                                <label for='name'>Name:</label>
+                                <input type='text' class='form-control' name='name' value='$name' required>
                             </div>
-                        </div>
+    
+                            <div class='form-group'>
+                                <label for='email'>Email:</label>
+                                <input type='email' class='form-control' name='email' value='$email' readonly required>
+                            </div>
+                ";
 
+                $designation = ucwords($user_details["designation"]);
+                $doj = $user_details["doj"];
+
+                echo "
+                    <div class='row'>
                         <div class='col'>
                             <div class='form-group'>
                                 <label for='gender'>Gender:</label>
                                 $gender_dropdown
+                            </div>
+                        </div>
+                        <div class='col'>
+                            <div class='form-group'>
+                                <label for=''>Designation:</label>
+                                <input type='text' class='form-control' name='designation' value='$designation' readonly required>
                             </div>
                         </div>
                     </div>
@@ -179,6 +210,7 @@
                         </div>
                      </div>
                 ";
+
                 echo "
                             <div class='row'>
                                 <div class='col'>
@@ -188,14 +220,14 @@
                                     </div>
                                 </div>
                                 <div class='col'>
-                                    <label for='password'>Password:</label>
+                                    <label for='password'>New Password:</label>
                                     <input type='password' class='form-control' placeholder='' name='password'>
                                 </div>
                             </div>
                     
                             <br>
                             <div class='text-center'>
-                                <button type='submit' name='update_$category' class='btn btn-outline-primary w-50'>UPDATE</button>
+                                <button type='submit' name='update_teacher' class='btn btn-outline-primary w-50'>UPDATE</button>
                             </div>
                         </form>
                     </div>
