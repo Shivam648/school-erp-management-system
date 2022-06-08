@@ -1,3 +1,4 @@
+<!-- Dashbord page (accessible only to admin) -->
 <?php include("./apis/config.php") ?>
 <!DOCTYPE html>
 <html lang="en">

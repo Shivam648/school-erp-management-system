@@ -1,3 +1,4 @@
+<!-- API to return all active subjects : verified -->
 <?php
 include("config.php");
 $find_subjects = "SELECT * FROM subjects WHERE `active` = '1' ORDER BY `subject_id`";

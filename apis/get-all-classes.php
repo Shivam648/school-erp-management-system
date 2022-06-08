@@ -1,3 +1,4 @@
+<!-- API to return all active classes : verified -->
 <?php
 include("config.php");
 $find_classes = "SELECT * FROM classes WHERE `active` = '1' ORDER BY `class_id`";

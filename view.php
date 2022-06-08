@@ -70,9 +70,9 @@
 
                     if (isset($_POST["search_student"])) {
                         $class_id = $_POST["class_id"];
-                        $count_students_query = "SELECT * FROM users WHERE `category` = 'student' and `class_id` = '$class_id' and `active` = '1' ORDER BY `uid`";
-                        $response = mysqli_query($conn, $count_students_query);
-                        $students = mysqli_fetch_all($response, MYSQLI_ASSOC);
+
+                        // get all students of a class
+                        include("./apis/get-class-students.php");
 
                         if (mysqli_num_rows($response) > 0) {
                             echo "
@@ -95,7 +95,7 @@
                             ";
 
                             foreach ($students as $key => $value) {
-                                $uid = $value["uid"];
+                                $student_id = $value["student_id"];
                                 $name = ucwords($value["name"]);
                                 $email = $value["email"];
                                 $class_id = $value["class_id"];
@@ -103,14 +103,14 @@
                                 $gender = $value["gender"];
                                 $address = ucwords($value["address"]);
                                 $dob = $value["dob"];
-                                $doj = $value["joining_date"];
+                                $doj = $value["doj"];
 
                                 // find standard using class id
                                 include("./apis/get-standard-using-classID.php");
 
                                 echo "
                                     <tr>
-                                        <td>$uid</td>
+                                        <td>$student_id</td>
                                         <td>$name</td>
                                         <td>$email</td>
                                         <td>$standard</td>
@@ -139,7 +139,6 @@
                                         <th>Reg. No.</th>
                                         <th>Name</th>
                                         <th>Email</th>
-                                        <th>Subject</th>
                                         <th>Designation</th>
                                         <th>Phone</th>
                                         <th>Gender</th>
@@ -152,25 +151,20 @@
 
                     include("./apis/get-all-teachers.php");
                     foreach ($teachers as $key => $value) {
-                        $uid = $value["uid"];
+                        $teacher_id = $value["teacher_id"];
                         $name = ucwords($value["name"]);
                         $email = $value["email"];
-                        $subject_id = $value["subject_id"];
                         $designation = ucwords($value["designation"]);
                         $phone = $value["phone"];
                         $gender = $value["gender"];
                         $address = ucwords($value["address"]);
-                        $doj = $value["joining_date"];
-
-                        // find subject code using subject id
-                        include("./apis/get-code-using-subjectID.php");
+                        $doj = $value["doj"];
 
                         echo "
                             <tr>
-                                <td>$uid</td>
+                                <td>$teacher_id</td>
                                 <td>$name</td>
                                 <td>$email</td>
-                                <td>$code</td>
                                 <td>$designation</td>
                                 <td>$phone</td>
                                 <td>$gender</td>
@@ -195,6 +189,7 @@
                                         <th>Descr</th>
                                         <th>Code</th>
                                         <th>Credit</th>
+                                        <th>Teacher</th>
                                         <th>Added On</th>
                                     </tr>
                                 </thead>
@@ -208,7 +203,11 @@
                         $descr = ucwords($value["descr"]);
                         $code = $value["code"];
                         $credit = $value["credit"];
+                        $teacher_id = $value["teacher_id"];
                         $added_on = $value["added_on"];
+
+                        // get teacher name using teacher id
+                        include("./apis/get-teacher-name-using-teacherID.php");
 
                         echo "
                             <tr>
@@ -217,6 +216,7 @@
                                 <td>$descr</td>
                                 <td>$code</td>
                                 <td>$credit</td>
+                                <td>$teacher_name</td>
                                 <td>$added_on</td>
                             </tr>
                         ";

@@ -1,3 +1,4 @@
+<!-- Login page for all users -->
 <?php
 include("./apis/config.php");
 ?>
@@ -36,6 +37,12 @@ include("./apis/config.php");
                 <div class='form-group'>
                     <label for='password'>Password:</label>
                     <input type='password' class='form-control' name='password' placeholder='' required>
+                </div>
+
+                <div class="text-center">
+                    <label class="radio-inline pr-2"><input type="radio" name="category" value="student" checked>Student</label>
+                    <label class="radio-inline pr-2"><input type="radio" name="category" value="teacher">Teacher</label>
+                    <label class="radio-inline pr-2"><input type="radio" name="category" value="admin">Admin</label>
                 </div>
                 <br>
                 <div class='text-center'>

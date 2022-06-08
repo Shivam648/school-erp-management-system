@@ -1,4 +1,4 @@
-<!-- Profile Page -->
+<!-- Add Page -->
 <?php include("./apis/config.php"); ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -50,10 +50,10 @@
 
                 echo "
                     <div class='row'>
-                    <div class='col'>
-                        <div class='form-group'>
-                            <label for='class'>Class:</label>
-                            <select class='form-control' name='class_id' required>
+                        <div class='col'>
+                            <div class='form-group'>
+                                <label for='class'>Class:</label>
+                                <select class='form-control' name='class_id' required>
                 ";
 
                 include("./apis/get-all-classes.php");
@@ -138,31 +138,7 @@
                             </div>
                 ";
 
-                echo "
-                    <div class='row'>
-                        <div class='col'>
-                            <div class='form-group'>
-                                <label for=''>Subject:</label>
-                                <select class='form-control' name='subject_id' required>
-                ";
-
-                include("./apis/get-all-subjects.php");
-                foreach ($subjects as $key => $value) {
-                    $subject_id = $value["subject_id"];
-                    $code = $value["code"];
-                    echo "
-                        <option value='$subject_id'>$code</option>
-                    ";
-                }
-
-
-                echo "
-                            </select>
-                        </div>
-                    </div>
-                ";
-
-                echo "
+                echo "      <div class='row'>
                                 <div class='col'>
                                     <div class='form-group'>
                                         <label for='gender'>Gender:</label>
@@ -189,7 +165,6 @@
                                         <input type='designation' class='form-control' name='designation' placeholder='' required>
                                     </div>
                                 </div>
-
                             </div>
 
                             <div class='row'>
@@ -242,6 +217,30 @@
                                     </div>
                                 </div>
                             </div>
+                ";
+
+                echo "
+                    <div class='form-group'>
+                        <label for=''>Assign Teacher:</label>
+                        <select class='form-control' name='teacher_id' required>
+                ";
+
+                include("./apis/get-all-teachers.php");
+                foreach ($teachers as $key => $value) {
+                    $teacher_id = $value["teacher_id"];
+                    $name = ucwords($value["name"]);
+                    echo "
+                        <option value='$teacher_id'>$name</option>
+                    ";
+                }
+
+
+                echo "
+                        </select>
+                    </div>
+                ";
+
+                echo "
                             <br>
                             <div class='text-center'>
                                 <button type='submit' name='add_subject' class='btn btn-outline-primary w-50'>ADD</button>
@@ -263,7 +262,7 @@
 
                 echo "
                     <div class='form-group'>
-                    <label for=''>Subjects:</label> <br>
+                    <label for=''>Add Subjects:</label> <br>
                 ";
 
                 include("./apis/get-all-subjects.php");

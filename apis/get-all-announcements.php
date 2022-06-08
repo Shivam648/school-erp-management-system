@@ -1,3 +1,4 @@
+<!-- API to return all active announcements : verified -->
 <?php
 include("config.php");
 $find_announcements = "SELECT * FROM announcements WHERE `active` = '1' ORDER BY `aid`";
