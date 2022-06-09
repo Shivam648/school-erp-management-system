@@ -10,8 +10,19 @@
 
     <!-- Links -->
     <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
-        <!-- Customized Header for different users -->
+        <!-- Customized Headers for different users -->
         <?php
+
+        if ($_SESSION["user_category"] == "guest") {
+            echo '
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" href="./login.php">Login</a>
+                    </li>
+                </ul>
+            ';
+        }
+
         if ($_SESSION["user_category"] == "admin") {
             echo '
                 <ul class="navbar-nav text-center">
@@ -68,7 +79,9 @@
                     </li>
                 </ul>
             ';
-        } else if ($_SESSION["user_category"] == "student") {
+        }
+
+        if ($_SESSION["user_category"] == "student") {
             echo '
                 <ul class="navbar-nav text-center">
                     <li class="nav-item p-2">
@@ -91,7 +104,9 @@
                     </li>
                 </ul>
             ';
-        } else if ($_SESSION["user_category"] == "teacher") {
+        }
+
+        if ($_SESSION["user_category"] == "teacher") {
             echo '
                 <ul class="navbar-nav text-center">
                     <li class="nav-item p-2">
@@ -102,14 +117,6 @@
                     </li>
                     <li class="nav-item p-2">
                         <a class="nav-link" href="./logout.php">Logout</a>
-                    </li>
-                </ul>
-            ';
-        } else {
-            echo '
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link text-primary" href="./login.php">Login</a>
                     </li>
                 </ul>
             ';

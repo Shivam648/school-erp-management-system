@@ -13,20 +13,16 @@ if (isset($_POST["add_student"])) {
     $address = strtolower($_POST["address"]);
     $password = $_POST["password"];
 
-    $find_user = "SELECT * FROM students WHERE email = '$email' ";
+    $find_user = "SELECT * FROM students WHERE email = '$email' AND `active` = '1'";
     $response = mysqli_query($conn, $find_user) or die(mysqli_error($conn));
     if (mysqli_num_rows($response) == 1) {
         echo "Student already registered...";
     } else {
-        if ($password == NULL) {
-            echo "Password cannnot be empty...,";
-        } else {
-            $password = sha1($password);
-            $date = date('Y-m-d');
-            $add_student = "INSERT INTO students (`name`,`email`,`class_id`,`gender`,`phone`,`dob`,`address`,`password`,`doj`,`active`) VALUES ('$name','$email','$class_id','$gender','$phone','$dob','$address','$password','$date','1') ";
-            $response = mysqli_query($conn, $add_student) or die(mysqli_error($conn));
-            header('Location: ../dashboard.php');
-        }
+        $password = sha1($password);
+        $date = date('Y-m-d');
+        $add_student = "INSERT INTO students (`name`,`email`,`class_id`,`gender`,`phone`,`dob`,`address`,`password`,`doj`,`active`) VALUES ('$name','$email','$class_id','$gender','$phone','$dob','$address','$password','$date','1') ";
+        $response = mysqli_query($conn, $add_student) or die(mysqli_error($conn));
+        header('Location: ../dashboard.php');
     }
 }
 
@@ -42,7 +38,7 @@ if (isset($_POST["add_teacher"])) {
     $password = $_POST["password"];
 
 
-    $find_user = "SELECT * FROM teachers WHERE email = '$email' ";
+    $find_user = "SELECT * FROM teachers WHERE `email` = '$email' AND `active` = '1'";
     $response = mysqli_query($conn, $find_user) or die(mysqli_error($conn));
     if (mysqli_num_rows($response) == 1) {
         echo "Teacher already registered...";
@@ -64,7 +60,7 @@ if (isset($_POST["add_subject"])) {
     $credit = $_POST["credit"];
     $teacher_id = $_POST["teacher_id"];
 
-    $find_subject = "SELECT * FROM subjects WHERE code = '$code' ";
+    $find_subject = "SELECT * FROM subjects WHERE code = '$code' AND `active` = '1'";
     $response = mysqli_query($conn, $find_subject) or die(mysqli_error($conn));
     if (mysqli_num_rows($response) == 1) {
         echo "Subject already registered...";
@@ -82,7 +78,7 @@ if (isset($_POST["add_announcement"])) {
     $name = strtolower($_POST["title"]);
     $descr = strtolower($_POST["descr"]);
 
-    $find_announcement = "SELECT * FROM announcements WHERE title = '$name' ";
+    $find_announcement = "SELECT * FROM announcements WHERE title = '$name' AND `active` = '1'";
     $response = mysqli_query($conn, $find_announcement) or die(mysqli_error($conn));
     if (mysqli_num_rows($response) == 1) {
         echo "Announcement already announced...";
@@ -104,7 +100,7 @@ if (isset($_POST["add_class"])) {
     if (mysqli_num_rows($response) == 1) {
         echo "Class already added...";
     } else {
-        $add_class = "INSERT INTO classes (`standard`,`subject_ids`) VALUES ('$standard', '$subject_IDs') ";
+        $add_class = "INSERT INTO classes (`standard`,`subject_ids`,`active`) VALUES ('$standard', '$subject_IDs','1') ";
         $response = mysqli_query($conn, $add_class) or die(mysqli_error($conn));
         header('Location: ../dashboard.php');
     }

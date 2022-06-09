@@ -22,13 +22,10 @@
 
 <body>
     <div class="container-fluid">
-        <!-- Header -->
-        <?php include("./includes/header.php") ?>
-
         <!-- Page accessible only to admin -->
         <?php
-
         if ($_SESSION["user_category"] == "admin") {
+            include("./includes/header.php");
             $object = $_GET["object"];
 
             if ($object == "student") {
@@ -38,13 +35,13 @@
                         <hr>
                         <form class='card-body' method='POST' action='./apis/admin-add-daemon.php'>
                             <div class='form-group'>
-                                <label for='name'>Full Name:</label>
-                                <input type='text' class='form-control' name='name' placeholder='' required>
+                                <label>Full Name:</label>
+                                <input type='text' class='form-control' name='name' required>
                             </div>
 
                             <div class='form-group'>
-                                <label for='email'>Email:</label>
-                                <input type='email' class='form-control' name='email' placeholder='' required>
+                                <label>Email:</label>
+                                <input type='email' class='form-control' name='email' required>
                             </div>
                 ";
 
@@ -52,10 +49,11 @@
                     <div class='row'>
                         <div class='col'>
                             <div class='form-group'>
-                                <label for='class'>Class:</label>
+                                <label>Class:</label>
                                 <select class='form-control' name='class_id' required>
                 ";
 
+                // assign a class to the student
                 include("./apis/get-all-classes.php");
                 foreach ($classes as $key => $value) {
                     $class_id = $value["class_id"];
@@ -75,7 +73,7 @@
                 echo "
                                 <div class='col'>
                                     <div class='form-group'>
-                                        <label for='gender'>Gender:</label>
+                                        <label>Gender:</label>
                                         <select class='form-control' name='gender' required>
                                             <option value='male'>Male</option>
                                             <option value='female'>Female</option>
@@ -88,14 +86,14 @@
                             <div class='row'>
                                 <div class='col'>
                                     <div class='form-group'>
-                                        <label for='phone'>Phone:</label>
-                                        <input type='number' class='form-control' name='phone' placeholder='' id='' required>
+                                        <label>Phone:</label>
+                                        <input type='number' class='form-control' name='phone' required>
                                     </div>
                                 </div>
 
                                 <div class='col'>
                                     <div class='form-group'>
-                                        <label for='dob'>D.O.B:</label>
+                                        <label>D.O.B:</label>
                                         <input type='date' class='form-control' name='dob'>
                                     </div>
                                 </div>
@@ -105,13 +103,13 @@
                             <div class='row'>
                                 <div class='col'>
                                     <div class='form-group'>
-                                        <label for='address'>Address:</label>
-                                        <textarea type='text' class='form-control' name='address' cols='6' rows='2' placeholder='' required></textarea>
+                                        <label>Address:</label>
+                                        <textarea type='text' class='form-control' name='address' cols='6' rows='2' required></textarea>
                                     </div>
                                 </div>
                                 <div class='col'>
-                                    <label for='password'>Password:</label>
-                                    <input type='password' class='form-control' placeholder='' name='password' required>
+                                    <label>Password:</label>
+                                    <input type='password' class='form-control'name='password' required>
                                 </div>
                             </div>
                             <br>
@@ -121,27 +119,29 @@
                         </form>
                     </div>
                 ";
-            } else if ($object == "teacher") {
+            }
+
+            if ($object == "teacher") {
                 echo "
                     <div class='card account custom-shadow mt-4 p-3'>
                         <h3 class='text-center'>Create {$object} account</h3>
                         <hr>
                         <form class='card-body' method='POST' action='./apis/admin-add-daemon.php'>
                             <div class='form-group'>
-                                <label for='name'>Full Name:</label>
-                                <input type='text' class='form-control' name='name' placeholder='' required>
+                                <label>Full Name:</label>
+                                <input type='text' class='form-control' name='name' required>
                             </div>
 
                             <div class='form-group'>
-                                <label for='email'>Email:</label>
-                                <input type='email' class='form-control' name='email' placeholder='' required>
+                                <label>Email:</label>
+                                <input type='email' class='form-control' name='email' required>
                             </div>
                 ";
 
                 echo "      <div class='row'>
                                 <div class='col'>
                                     <div class='form-group'>
-                                        <label for='gender'>Gender:</label>
+                                        <label>Gender:</label>
                                         <select class='form-control' name='gender' required>
                                             <option value='male'>Male</option>
                                             <option value='female'>Female</option>
@@ -154,15 +154,15 @@
                             <div class='row'>
                                 <div class='col'>
                                     <div class='form-group'>
-                                        <label for='phone'>Phone:</label>
-                                        <input type='number' class='form-control' name='phone' placeholder='' id='' required>
+                                        <label>Phone:</label>
+                                        <input type='number' class='form-control' name='phone' required>
                                     </div>
                                 </div>
 
                                 <div class='col'>
                                     <div class='form-group'>
-                                        <label for='designation'>Designation:</label>
-                                        <input type='designation' class='form-control' name='designation' placeholder='' required>
+                                        <label>Designation:</label>
+                                        <input type='designation' class='form-control' name='designation' required>
                                     </div>
                                 </div>
                             </div>
@@ -170,13 +170,13 @@
                             <div class='row'>
                                 <div class='col'>
                                     <div class='form-group'>
-                                        <label for='address'>Address:</label>
-                                        <textarea type='text' class='form-control' name='address' cols='6' rows='2' placeholder='' required></textarea>
+                                        <label>Address:</label>
+                                        <textarea type='text' class='form-control' name='address' cols='6' rows='2' required></textarea>
                                     </div>
                                 </div>
                                 <div class='col'>
-                                    <label for='password'>Password:</label>
-                                    <input type='password' class='form-control' placeholder='' name='password' required>
+                                    <label>Password:</label>
+                                    <input type='password' class='form-control' name='password' required>
                                 </div>
                             </div>
                             <br>
@@ -186,34 +186,36 @@
                         </form>
                     </div>
                 ";
-            } else if ($object == "subject") {
+            }
+
+            if ($object == "subject") {
                 echo "
                     <div class='card account custom-shadow mt-5 p-3'>
                         <h3 class='text-center'>Create {$object}</h3>
                         <hr>
                         <form class='card-body' method='POST' action='./apis/admin-add-daemon.php'>
                             <div class='form-group'>
-                                <label for='name'>Subject Name:</label>
-                                <input type='text' class='form-control' name='name' placeholder='' required>
+                                <label>Subject Name:</label>
+                                <input type='text' class='form-control' name='name' required>
                             </div>
 
                             <div class='form-group'>
-                                <label for='descr'>Description:</label>
-                                <textarea type='text' class='form-control' name='descr' cols='6' rows='2' placeholder='' required></textarea>
+                                <label>Description:</label>
+                                <textarea type='text' class='form-control' name='descr' cols='6' rows='2' required></textarea>
                             </div>
 
                             <div class='row'>
                                 <div class='col'>
                                     <div class='form-group'>
-                                        <label for='code'>Code:</label>
-                                        <input type='text' class='form-control' name='code' placeholder='' required>
+                                        <label>Code:</label>
+                                        <input type='text' class='form-control' name='code' required>
                                     </div>
                                 </div>
 
                                 <div class='col'>
                                     <div class='form-group'>
-                                        <label for='credit'>Credit:</label>
-                                        <input type='number' class='form-control' name='credit' placeholder='' required>
+                                        <label>Credit:</label>
+                                        <input type='number' class='form-control' name='credit' required>
                                     </div>
                                 </div>
                             </div>
@@ -221,7 +223,7 @@
 
                 echo "
                     <div class='form-group'>
-                        <label for=''>Assign Teacher:</label>
+                        <label>Assign Teacher:</label>
                         <select class='form-control' name='teacher_id' required>
                 ";
 
@@ -248,23 +250,26 @@
                         </form>
                     </div>
                 ";
-            } else if ($object == "class") {
+            }
+
+            if ($object == "class") {
                 echo "
                     <div class='card account custom-shadow mt-5 p-3'>
                         <h3 class='text-center'>Create {$object}</h3>
                         <hr>
                         <form class='card-body' method='POST' action='./apis/admin-add-daemon.php'>
                             <div class='form-group'>
-                                <label for='standard'>Standard:</label>
-                                <input type='text' class='form-control' name='standard' placeholder='' required>
+                                <label>Standard:</label>
+                                <input type='text' class='form-control' name='standard' required>
                             </div>
                 ";
 
                 echo "
                     <div class='form-group'>
-                    <label for=''>Add Subjects:</label> <br>
+                    <label>Add Subjects:</label> <br>
                 ";
 
+                // add subjects to be taught within the class
                 include("./apis/get-all-subjects.php");
                 foreach ($subjects as $key => $value) {
                     $subject_id = $value["subject_id"];
@@ -283,20 +288,22 @@
                         </form>
                     </div>
                 ";
-            } else if ($object == "announcement") {
+            }
+
+            if ($object == "announcement") {
                 echo "
                     <div class='card account custom-shadow mt-5 p-3'>
                         <h3 class='text-center'>Create {$object}</h3>
                         <hr>
                         <form class='card-body' method='POST' action='./apis/admin-add-daemon.php'>
                             <div class='form-group'>
-                                <label for='name'>Announcement Title:</label>
-                                <input type='text' class='form-control' name='title' placeholder='' required>
+                                <label>Announcement Title:</label>
+                                <input type='text' class='form-control' name='title' required>
                             </div>
 
                             <div class='form-group'>
-                                <label for='descr'>Description:</label>
-                                <textarea type='text' class='form-control' name='descr' cols='6' rows='2' placeholder='' required></textarea>
+                                <label>Description:</label>
+                                <textarea type='text' class='form-control' name='descr' cols='6' rows='2' required></textarea>
                             </div>
                             <br>
                             <div class='text-center'>
@@ -305,11 +312,9 @@
                         </form>
                     </div>
                 ";
-            } else {
-                include("./includes/page-not-found.php");
             }
         } else {
-            include("./includes/page-not-found.php");
+            include("page-not-found.php");
         }
         ?>
     </div>

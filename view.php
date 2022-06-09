@@ -22,44 +22,45 @@
 
 <body>
     <div class="container-fluid">
-        <!-- Header -->
-        <?php include("./includes/header.php") ?>
+        <!-- Page accessible only to admin -->
+        <?php
+        if ($_SESSION["user_category"] == "admin") {
+            include("./includes/header.php");
+            $object = $_GET["object"];
 
-        <section class="content align-items-center">
-            <!-- Page accessible only to admin -->
-            <?php
-            if ($_SESSION["user_category"] == "admin") {
-                $object = $_GET["object"];
+            echo '
+                <section class="content align-items-center">
+            ';
 
-                if ($object == "student") {
-                    echo "
+            if ($object == "student") {
+                echo "
                         <div class='card account custom-shadow mt-4 p-1'>
                             <h3 class='text-center'>View {$object}</h3>
                             <hr>
                             <form class='card-body' method='POST' action='#!'>
                     ";
 
-                    echo "
+                echo "
                         <div class='form-group'>
                             <label for=''>Standard:</label>
                             <select class='form-control' name='class_id'>
                     ";
 
-                    include("./apis/get-all-classes.php");
-                    foreach ($classes as $key => $value) {
-                        $class_id = $value["class_id"];
-                        $standard = ucwords($value["standard"]);
-                        echo "
+                include("./apis/get-all-classes.php");
+                foreach ($classes as $key => $value) {
+                    $class_id = $value["class_id"];
+                    $standard = ucwords($value["standard"]);
+                    echo "
                             <option value='$class_id'>$standard</option>
                         ";
-                    }
+                }
 
-                    echo "
+                echo "
                             </select>
                         </div>
                     ";
 
-                    echo "
+                echo "
                                 <br>
                                 <div class='text-center'>
                                     <button type='submit' name='search_student' class='btn btn-outline-primary w-50'>SEARCH</button>
@@ -68,14 +69,14 @@
                         </div>
                     ";
 
-                    if (isset($_POST["search_student"])) {
-                        $class_id = $_POST["class_id"];
+                if (isset($_POST["search_student"])) {
+                    $class_id = $_POST["class_id"];
 
-                        // get all students of a class
-                        include("./apis/get-class-students.php");
+                    // get all students of a class
+                    include("./apis/get-class-students.php");
 
-                        if (mysqli_num_rows($response) > 0) {
-                            echo "
+                    if (mysqli_num_rows($response) > 0) {
+                        echo "
                                 <div class='table-responsive mt-3'>
                                     <table class='table table-striped'>
                                         <thead>
@@ -94,21 +95,21 @@
                                         <tbody>
                             ";
 
-                            foreach ($students as $key => $value) {
-                                $student_id = $value["student_id"];
-                                $name = ucwords($value["name"]);
-                                $email = $value["email"];
-                                $class_id = $value["class_id"];
-                                $phone = $value["phone"];
-                                $gender = $value["gender"];
-                                $address = ucwords($value["address"]);
-                                $dob = $value["dob"];
-                                $doj = $value["doj"];
+                        foreach ($students as $key => $value) {
+                            $student_id = $value["student_id"];
+                            $name = ucwords($value["name"]);
+                            $email = $value["email"];
+                            $class_id = $value["class_id"];
+                            $phone = $value["phone"];
+                            $gender = $value["gender"];
+                            $address = ucwords($value["address"]);
+                            $dob = $value["dob"];
+                            $doj = $value["doj"];
 
-                                // find standard using class id
-                                include("./apis/get-standard-using-classID.php");
+                            // find standard using class id
+                            include("./apis/get-standard-using-classID.php");
 
-                                echo "
+                            echo "
                                     <tr>
                                         <td>$student_id</td>
                                         <td>$name</td>
@@ -121,17 +122,19 @@
                                         <td>$doj</td>
                                     </tr>
                                 ";
-                            }
+                        }
 
 
-                            echo "      </tbody>
+                        echo "      </tbody>
                                     </table>
                                 </div>
                             ";
-                        }
                     }
-                } else if ($object == "teacher") {
-                    echo "
+                }
+            }
+
+            if ($object == "teacher") {
+                echo "
                         <div class='table-responsive mt-3'>
                             <table class='table table-striped'>
                                 <thead>
@@ -149,18 +152,18 @@
                                 <tbody>
                     ";
 
-                    include("./apis/get-all-teachers.php");
-                    foreach ($teachers as $key => $value) {
-                        $teacher_id = $value["teacher_id"];
-                        $name = ucwords($value["name"]);
-                        $email = $value["email"];
-                        $designation = ucwords($value["designation"]);
-                        $phone = $value["phone"];
-                        $gender = $value["gender"];
-                        $address = ucwords($value["address"]);
-                        $doj = $value["doj"];
+                include("./apis/get-all-teachers.php");
+                foreach ($teachers as $key => $value) {
+                    $teacher_id = $value["teacher_id"];
+                    $name = ucwords($value["name"]);
+                    $email = $value["email"];
+                    $designation = ucwords($value["designation"]);
+                    $phone = $value["phone"];
+                    $gender = $value["gender"];
+                    $address = ucwords($value["address"]);
+                    $doj = $value["doj"];
 
-                        echo "
+                    echo "
                             <tr>
                                 <td>$teacher_id</td>
                                 <td>$name</td>
@@ -172,14 +175,16 @@
                                 <td>$doj</td>
                             </tr>
                         ";
-                    }
+                }
 
-                    echo "  </tbody>
+                echo "  </tbody>
                         </table>
                     </div>
                     ";
-                } else if ($object == "subject") {
-                    echo "
+            }
+
+            if ($object == "subject") {
+                echo "
                         <div class='table-responsive mt-3'>
                             <table class='table table-striped'>
                                 <thead>
@@ -196,20 +201,20 @@
                                 <tbody>
                     ";
 
-                    include("./apis/get-all-subjects.php");
-                    foreach ($subjects as $key => $value) {
-                        $subject_id = $value["subject_id"];
-                        $title = ucwords($value["title"]);
-                        $descr = ucwords($value["descr"]);
-                        $code = $value["code"];
-                        $credit = $value["credit"];
-                        $teacher_id = $value["teacher_id"];
-                        $added_on = $value["added_on"];
+                include("./apis/get-all-subjects.php");
+                foreach ($subjects as $key => $value) {
+                    $subject_id = $value["subject_id"];
+                    $title = ucwords($value["title"]);
+                    $descr = ucwords($value["descr"]);
+                    $code = $value["code"];
+                    $credit = $value["credit"];
+                    $teacher_id = $value["teacher_id"];
+                    $added_on = $value["added_on"];
 
-                        // get teacher name using teacher id
-                        include("./apis/get-teacher-name-using-teacherID.php");
+                    // get teacher name using teacher id
+                    include("./apis/get-teacher-name-using-teacherID.php");
 
-                        echo "
+                    echo "
                             <tr>
                                 <td>$subject_id</td>
                                 <td>$title</td>
@@ -220,14 +225,16 @@
                                 <td>$added_on</td>
                             </tr>
                         ";
-                    }
+                }
 
-                    echo "      </tbody>
+                echo "      </tbody>
                             </table>
                         </div>
                     ";
-                } else if ($object == "class") {
-                    echo "
+            }
+
+            if ($object == "class") {
+                echo "
                         <div class='table-responsive mt-3'>
                             <table class='table table-striped'>
                                 <thead>
@@ -240,31 +247,33 @@
                                 <tbody>
                     ";
 
-                    include("./apis/get-all-classes.php");
-                    foreach ($classes as $key => $value) {
-                        $class_id = $value["class_id"];
-                        $standard = ucwords($value["standard"]);
-                        $subject_ids = json_decode($value["subject_ids"]);
+                include("./apis/get-all-classes.php");
+                foreach ($classes as $key => $value) {
+                    $class_id = $value["class_id"];
+                    $standard = ucwords($value["standard"]);
+                    $subject_ids = json_decode($value["subject_ids"]);
 
-                        // get subject codes using subject ids
-                        include("./apis/get-codes-using-subjectIDs.php");
-                        $codes = json_encode($codes);
+                    // get subject codes using subject ids
+                    include("./apis/get-codes-using-subjectIDs.php");
+                    $codes = json_encode($codes);
 
-                        echo "
+                    echo "
                             <tr>
                                 <td>$class_id</td>
                                 <td>$standard</td>
                                 <td>$codes</td>
                             </tr>
                         ";
-                    }
+                }
 
-                    echo "      </tbody>
+                echo "      </tbody>
                             </table>
                         </div>
                     ";
-                } else if ($object == "announcement") {
-                    echo "
+            }
+
+            if ($object == "announcement") {
+                echo "
                         <div class='table-responsive mt-3'>
                             <table class='table table-striped'>
                                 <thead>
@@ -279,15 +288,15 @@
                                 <tbody>
                     ";
 
-                    include("./apis//get-all-announcements.php");
-                    foreach ($announcements as $key => $value) {
-                        $aid = $value["aid"];
-                        $title = ucwords($value["title"]);
-                        $descr = ucwords($value["descr"]);
-                        $added_on = $value["added_on"];
-                        $active = $value["active"];
+                include("./apis//get-all-announcements.php");
+                foreach ($announcements as $key => $value) {
+                    $aid = $value["aid"];
+                    $title = ucwords($value["title"]);
+                    $descr = ucwords($value["descr"]);
+                    $added_on = $value["added_on"];
+                    $active = $value["active"];
 
-                        echo "
+                    echo "
                             <tr>
                                 <td>$aid</td>
                                 <td>$title</td>
@@ -296,20 +305,21 @@
                                 <td>$active</td>
                             </tr>
                         ";
-                    }
+                }
 
-                    echo "      </tbody>
+                echo "      </tbody>
                             </table>
                         </div>
                     ";
-                } else {
-                    include("./page-not-found.php");
-                }
-            } else {
-                include("./page-not-found.php");
             }
-            ?>
-        </section>
+
+            echo '
+                </section>
+            ';
+        } else {
+            include("./page-not-found.php");
+        }
+        ?>
     </div>
 </body>
 

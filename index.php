@@ -28,7 +28,7 @@
 		<?php include("./includes/header.php") ?>
 
 		<div class="row content">
-			<!-- Login section -->
+			<!-- Ads section -->
 			<div class="col-sm-2 sidenav">
 				<div class="well">
 					<p>ADS</p>

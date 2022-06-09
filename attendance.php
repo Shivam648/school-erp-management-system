@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage | Admin</title>
+    <title>Attendance | Teacher</title>
     <!-- Add core styles here -->
     <link rel="stylesheet" href="./assets/css/base-styles.css">
     <!-- Latest compiled and minified CSS & JS or JQuery -->
@@ -22,34 +22,113 @@
 
 <body>
     <div class="container-fluid">
-        <!-- Header -->
-        <?php include("./includes/header.php") ?>
+        <!-- Page accessible only to teacher -->
+        <?php
+        if ($_SESSION["user_category"] == "teacher") {
+            include("./includes/header.php");
 
-        <section class="content align-items-center">
-            <!-- Page accessible only to teacher -->
-            <?php
-            if ($_SESSION["user_category"] == "teacher") {
+            echo '
+                <section class="content align-items-center">
+            ';
 
-                if (!isset($_POST["class_id"])) {
+            if (!isset($_POST["class_id"])) {
+                echo "
+                    <div class='card account custom-shadow mt-4 p-1'>
+                        <h3 class='text-center'>Update Atendance</h3>
+                        <hr>
+                        <form class='card-body' method='POST' action='#!'>
+                ";
+
+                echo "
+                    <div class='form-group'>
+                        <label>Standard:</label>
+                        <select class='form-control' name='class_id'>
+                ";
+
+                // select a standard
+                include("./apis/get-all-classes.php");
+                foreach ($classes as $key => $value) {
+                    $class_id = $value["class_id"];
+                    $standard = ucwords($value["standard"]);
                     echo "
+                        <option value='$class_id'>$standard</option>
+                    ";
+                }
+
+                echo "
+                        </select>
+                    </div>
+                ";
+
+                echo "
+                            <br>
+                            <div class='text-center'>
+                                <button type='submit' name='search_subjects' class='btn btn-outline-primary w-50'>Search Subjects</button>
+                            </div>
+                        </form>
+                    </div>
+                ";
+            }
+
+            if (isset($_POST["class_id"]) && !isset($_POST["subject_id"])) {
+                $class_id = $_POST["class_id"];
+
+                echo "
                         <div class='card account custom-shadow mt-4 p-1'>
                             <h3 class='text-center'>Update Atendance</h3>
                             <hr>
                             <form class='card-body' method='POST' action='#!'>
                     ";
 
-                    echo "
+                // get standard using class id
+                include("./apis/get-standard-using-classID.php");
+                echo "
                         <div class='form-group'>
-                            <label for=''>Standard:</label>
-                            <select class='form-control' name='class_id'>
+                            <label>Standard:</label>
+                            <input type='text' class='form-control' name='standard' value='$standard' readonly required>
+                            <input type='number' class='form-control' name='class_id' value='$class_id' readonly hidden>
+                        </div>
                     ";
 
-                    include("./apis/get-all-classes.php");
-                    foreach ($classes as $key => $value) {
-                        $class_id = $value["class_id"];
-                        $standard = ucwords($value["standard"]);
+                // get subject ids using class id
+                include("./apis/get-subjectIDs-using-classID.php");
+
+                // filter subject ids to which access is given
+                $teacher_id = $_SESSION["user_id"];
+                $iters = sizeof($subject_ids);
+                $filtered = array();
+                for ($i = 0; $i < $iters; $i++) {
+                    $subject_id = $subject_ids[$i];
+                    $find = "SELECT * FROM subjects WHERE `subject_id` = '$subject_id' AND `teacher_id` = '$teacher_id'";
+                    $response = mysqli_query($conn, $find) or die(mysqli_error($conn));
+                    if (mysqli_num_rows($response) == 1) {
+                        array_push($filtered, $subject_id);
+                    }
+                }
+                $subject_ids = $filtered;
+
+                if (sizeof($subject_ids) == 0) {
+                    echo "
+                            <div class='text-center mt-4'>
+                                <h3>No subjects assigned to you.</h3>
+                            </div>
+                        ";
+                } else {
+                    // get subject codes using subject ids
+                    include("./apis/get-codes-using-subjectIDs.php");
+
+                    echo "
+                        <div class='form-group'>
+                            <label>Subjects assigned to you:</label>
+                            <select class='form-control' name='subject_id'>
+                    ";
+
+                    for ($i = 0; $i < sizeof($codes); $i++) {
+                        $subject_id = $subject_ids[$i];
+                        $subject_code = $codes[$i];
+
                         echo "
-                            <option value='$class_id'>$standard</option>
+                            <option value='$subject_id'>$subject_code</option>
                         ";
                     }
 
@@ -59,130 +138,58 @@
                     ";
 
                     echo "
-                                <br>
-                                <div class='text-center'>
-                                    <button type='submit' name='search_subjects' class='btn btn-outline-primary w-50'>Search Subjects</button>
-                                </div>
+                            <div class='text-center'>
+                                <button type='submit' name='search_students' class='btn btn-outline-primary w-50'>Search Students</button>
+                            </div>
                             </form>
                         </div>
                     ";
-                } else if (!isset($_POST["subject_id"])) {
-                    $class_id = $_POST["class_id"];
+                }
+            }
 
-                    echo "
-                        <div class='card account custom-shadow mt-4 p-1'>
-                            <h3 class='text-center'>Update Atendance</h3>
-                            <hr>
-                            <form class='card-body' method='POST' action='#!'>
-                    ";
+            if (isset($_POST["class_id"]) && isset($_POST["subject_id"])) {
+                $class_id = $_POST["class_id"];
+                $subject_id = $_POST["subject_id"];
 
-                    // get standard using class id
-                    include("./apis/get-standard-using-classID.php");
-                    echo "
-                        <div class='form-group'>
-                            <label for=''>Standard:</label>
-                            <input type='text' class='form-control' name='standard' value='$standard' readonly required>
-                            <input type='number' class='form-control' name='class_id' value='$class_id' readonly hidden>
+                echo "
+                    <div class='card account custom-shadow mt-4 p-1'>
+                        <h3 class='text-center'>Update Atendance</h3>
+                        <hr>
+                        <form class='card-body' method='POST' action='#!'>
+                ";
+
+                // get standard using class id
+                include("./apis/get-standard-using-classID.php");
+                echo "
+                    <div class='form-group'>
+                        <label>Standard:</label>
+                        <input type='text' class='form-control' name='standard' value='$standard' readonly required>
+                    </div>
+                ";
+
+                // get code using subject id
+                include("./apis/get-code-using-subjectID.php");
+
+                echo "
+                    <div class='form-group'>
+                        <label>Subject:</label>
+                        <input type='text' class='form-control' name='code' value='$code' readonly required>
+                    </div>
+                ";
+
+                echo "
+                        <div class='text-center'>
+                            <button type='submit' name='search_students' class='btn btn-outline-primary w-50' disabled>Search Students</button>
                         </div>
-                    ";
+                    </form>
+                </div>
+                ";
 
-                    // get subject ids using class id
-                    include("./apis/get-subjectIDs-using-classID.php");
+                // get all students of a class using class id
+                include("./apis/get-class-students.php");
 
-                    // filter subject id to which access is given
-                    $teacher_id = $_SESSION["user_id"];
-                    $iters = sizeof($subject_ids);
-                    $filtered = array();
-                    for ($i = 0; $i < $iters; $i++) {
-                        $subject_id = $subject_ids[$i];
-                        $find = "SELECT * FROM subjects WHERE `subject_id` = '$subject_id' AND `teacher_id` = '$teacher_id'";
-                        $response = mysqli_query($conn, $find) or die(mysqli_error($conn));
-                        if (mysqli_num_rows($response) == 1) {
-                            array_push($filtered, $subject_id);
-                        }
-                    }
-                    $subject_ids = $filtered;
-
-                    if (sizeof($subject_ids) == 0) {
-                        echo "
-                            <div class='text-center mt-4'>
-                                <h3>No subjects assigned to you.</h3>
-                            </div>
-                        ";
-                    } else {
-                        // get subject codes using subject ids
-                        include("./apis/get-codes-using-subjectIDs.php");
-
-                        echo "
-                            <div class='form-group'>
-                                <label for=''>Subjects assigned to you:</label>
-                                <select class='form-control' name='subject_id'>
-                        ";
-                        for ($i = 0; $i < sizeof($codes); $i++) {
-                            $subject_id = $subject_ids[$i];
-                            $subject_code = $codes[$i];
-
-                            echo "
-                                <option value='$subject_id'>$subject_code</option>
-                            ";
-                        }
-
-                        echo "
-                                </select>
-                            </div>
-                        ";
-
-                        echo "
-                                    <div class='text-center'>
-                                        <button type='submit' name='search_students' class='btn btn-outline-primary w-50'>Search Students</button>
-                                    </div>
-                                </form>
-                            </div>
-                        ";
-                    }
-                } else {
-                    $class_id = $_POST["class_id"];
-                    $subject_id = $_POST["subject_id"];
-
+                if (sizeof($students) > 0) {
                     echo "
-                        <div class='card account custom-shadow mt-4 p-1'>
-                            <h3 class='text-center'>Update Atendance</h3>
-                            <hr>
-                            <form class='card-body' method='POST' action='#!'>
-                    ";
-
-                    // get standard using class id
-                    include("./apis/get-standard-using-classID.php");
-                    echo "
-                        <div class='form-group'>
-                            <label for=''>Standard:</label>
-                            <input type='text' class='form-control' name='standard' value='$standard' readonly required>
-                        </div>
-                    ";
-
-                    // get code using subject id
-                    include("./apis/get-code-using-subjectID.php");
-
-                    echo "
-                        <div class='form-group'>
-                            <label for=''>Subject:</label>
-                            <input type='text' class='form-control' name='code' value='$code' readonly required>
-                        </div>
-                    ";
-
-                    echo "
-                                <div class='text-center'>
-                                    <button type='submit' name='search_students' class='btn btn-outline-primary w-50' disabled>Search Students</button>
-                                </div>
-                            </form>
-                        </div>
-                    ";
-
-                    // get all students of a class using class id
-                    include("./apis/get-class-students.php");
-
-                    if (sizeof($students) > 0) {
-                        echo "
                             <form class='card-body' method='POST' action='./apis/update-attendance.php'>
                                 <input type='number' class='form-control' name='class_id' value='$class_id' hidden>
                                 <input type='number' class='form-control' name='subject_id' value='$subject_id' hidden>
@@ -202,15 +209,15 @@
                                         <tbody>
                         ";
 
-                        foreach ($students as $key => $value) {
-                            $student_id = $value["student_id"];
-                            $name = ucwords($value["name"]);
-                            $email = $value["email"];
-                            $phone = $value["phone"];
-                            $address = ucwords($value["address"]);
-                            $doj = $value["doj"];
+                    foreach ($students as $key => $value) {
+                        $student_id = $value["student_id"];
+                        $name = ucwords($value["name"]);
+                        $email = $value["email"];
+                        $phone = $value["phone"];
+                        $address = ucwords($value["address"]);
+                        $doj = $value["doj"];
 
-                            echo "
+                        echo "
                                 <tr>
                                     <td>$student_id</td>
                                     <td>$name</td>
@@ -224,9 +231,9 @@
                                     </td>
                                 </tr>
                             ";
-                        }
+                    }
 
-                        echo "          </tbody>
+                    echo "          </tbody>
                                     </table>
                                 </div>
                                 <div class='text-center mt-5'>
@@ -234,19 +241,22 @@
                                 </div>
                             </form>
                         ";
-                    } else {
-                        echo "
+                } else {
+                    echo "
                             <div class='text-center mt-4'>
                                 <h3>No students registered yet.</h3>
                             </div>
                         ";
-                    }
                 }
-            } else {
-                include("./page-not-found.php");
             }
-            ?>
-        </section>
+
+            echo '
+                </section>
+            ';
+        } else {
+            include("page-not-found.php");
+        }
+        ?>
     </div>
 </body>
 

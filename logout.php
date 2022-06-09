@@ -1,3 +1,4 @@
+<!-- destroy session, session variables and close connection with the database -->
 <?php
 include('./apis/config.php');
 session_unset();

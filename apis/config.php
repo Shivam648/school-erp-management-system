@@ -1,3 +1,4 @@
+<!-- Establish connection with the database & initialize session -->
 <?php
 $conn = mysqli_connect("localhost", "root", "", "school_erp_management_db") or die(mysqli_connect_error());
 if ($conn) {

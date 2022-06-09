@@ -30,13 +30,13 @@ include("./apis/config.php");
             <form class='card-body' method='POST' action='./apis/account-daemon.php'>
 
                 <div class='form-group'>
-                    <label for='email'>Email:</label>
-                    <input type='email' class='form-control' name='email' placeholder='' required>
+                    <label>Email:</label>
+                    <input type='email' class='form-control' name='email' required>
                 </div>
 
                 <div class='form-group'>
-                    <label for='password'>Password:</label>
-                    <input type='password' class='form-control' name='password' placeholder='' required>
+                    <label>Password:</label>
+                    <input type='password' class='form-control' name='password' required>
                 </div>
 
                 <div class="text-center">
