@@ -85,16 +85,7 @@
             echo '
                 <ul class="navbar-nav text-center">
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="#!">Students</a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="nav-link" href="#!">Assignment</a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="nav-link" href="#!">Attendance</a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="nav-link" href="#!">Grades</a>
+                        <a class="nav-link" href="./view_attendance.php">Attendance</a>
                     </li>
                     <li class="nav-item p-2">
                         <a class="nav-link" href="./profile.php">Profile</a>
