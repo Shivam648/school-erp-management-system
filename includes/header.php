@@ -101,6 +101,9 @@
             echo '
                 <ul class="navbar-nav text-center">
                     <li class="nav-item p-2">
+                        <a class="nav-link" href="./grade.php">Grade</a>
+                    </li>
+                    <li class="nav-item p-2">
                         <a class="nav-link" href="./attendance.php">Attendance</a>
                     </li>
                     <li class="nav-item p-2">
