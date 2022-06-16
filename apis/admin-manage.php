@@ -22,7 +22,7 @@ if (isset($_POST["add_student"])) {
         $date = date('Y-m-d');
         $add_student = "INSERT INTO students (`name`,`email`,`class_id`,`gender`,`phone`,`dob`,`address`,`password`,`doj`,`active`) VALUES ('$name','$email','$class_id','$gender','$phone','$dob','$address','$password','$date','1') ";
         $response = mysqli_query($conn, $add_student) or die(mysqli_error($conn));
-        header('Location: ../dashboard.php');
+        header('Location: ../admin.php');
     }
 }
 
@@ -47,7 +47,7 @@ if (isset($_POST["add_teacher"])) {
         $date = date('Y-m-d');
         $add_teacher = "INSERT INTO teachers (`name`,`email`,`gender`,`phone`,`designation`,`address`,`doj`,`password`,`active`) VALUES ('$name','$email','$gender','$phone','$designation','$address','$date','$password','1') ";
         $response = mysqli_query($conn, $add_teacher) or die(mysqli_error($conn));
-        header('Location: ../dashboard.php');
+        header('Location: ../admin.php');
     }
 }
 
@@ -68,7 +68,7 @@ if (isset($_POST["add_subject"])) {
         $date = date('Y-m-d');
         $add_subject = "INSERT INTO subjects (`title`,`descr`,`code`,`credit`,`teacher_id`,`added_on`,`active`) VALUES ('$name','$descr','$code','$credit','$teacher_id','$date','1') ";
         $response = mysqli_query($conn, $add_subject) or die(mysqli_error($conn));
-        header('Location: ../dashboard.php');
+        header('Location: ../admin.php');
     }
 }
 
@@ -86,7 +86,7 @@ if (isset($_POST["add_announcement"])) {
         $date = date('Y-m-d');
         $add_announcement = "INSERT INTO announcements(`title`,`descr`,`added_on`,`active`) VALUES ('$name','$descr','$date','1') ";
         $response = mysqli_query($conn, $add_announcement) or die(mysqli_error($conn));
-        header('Location: ../dashboard.php');
+        header('Location: ../admin.php');
     }
 }
 
@@ -102,7 +102,7 @@ if (isset($_POST["add_class"])) {
     } else {
         $add_class = "INSERT INTO classes (`standard`,`subject_ids`,`active`) VALUES ('$standard', '$subject_IDs','1') ";
         $response = mysqli_query($conn, $add_class) or die(mysqli_error($conn));
-        header('Location: ../dashboard.php');
+        header('Location: ../admin.php');
     }
 }
 ?>

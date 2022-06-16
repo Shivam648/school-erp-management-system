@@ -27,17 +27,17 @@
             include("./includes/header.php");
 
             echo '
-                    <section class="content text-center align-items-center">
-                        <div class="d-flex justify-content-around flex-column flex-md-row">
-                ';
+                <section class="content text-center align-items-center">
+                    <div class="d-flex justify-content-around flex-column flex-md-row">
+            ';
 
             echo '
-                            <div class="w-100 p-2">
-                                <div class="small-box bg-info text-white p-3">
-                                    <div class="inner">
-                ';
+                <div class="w-100 p-2">
+                    <div class="small-box bg-info text-white p-3">
+                        <div class="inner">
+            ';
 
-            include("./apis/get-all-students.php");
+            include("./get-data/students.php");
             $num_students = mysqli_num_rows($response);
             echo "<h3> $num_students </h3>";
 
@@ -54,7 +54,7 @@
                                     <div class="inner">
                 ';
 
-            include("./apis/get-all-teachers.php");
+            include("./get-data/teachers.php");
             $num_teachers = mysqli_num_rows($response);
             echo "<h3> $num_teachers </h3>";
 
@@ -71,7 +71,7 @@
                                     <div class="inner">
                 ';
 
-            include("./apis/get-all-subjects.php");
+            include("./get-data/subjects.php");
             $num_subjects = mysqli_num_rows($response);
             echo "<h3> $num_subjects </h3>";
 
@@ -88,7 +88,7 @@
                                     <div class="inner">
                 ';
 
-            include("./apis/get-all-announcements.php");
+            include("./get-data/announcements.php");
             $active_announcements = mysqli_num_rows($response);
             echo "<h3> $active_announcements </h3>";
 
@@ -105,7 +105,7 @@
                                     <div class="inner">
                 ';
 
-            include("./apis/get-all-classes.php");
+            include("./get-data/classes.php");
             $num_classes = mysqli_num_rows($response);
             echo "<h3> $num_classes </h3>";
 

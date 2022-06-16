@@ -46,7 +46,7 @@
                 ";
 
                 // select a standard
-                include("./apis/get-all-classes.php");
+                include("./get-data/classes.php");
                 foreach ($classes as $key => $value) {
                     $class_id = $value["class_id"];
                     $standard = ucwords($value["standard"]);
@@ -81,7 +81,7 @@
                     ";
 
                 // get standard using class id
-                include("./apis/get-standard-using-classID.php");
+                include("./get-data/standard-classID.php");
                 echo "
                         <div class='form-group'>
                             <label>Standard:</label>
@@ -91,7 +91,7 @@
                     ";
 
                 // get subject ids using class id
-                include("./apis/get-subjectIDs-using-classID.php");
+                include("./get-data/subjects-classID.php");
 
                 // filter subject ids to which access is given
                 $teacher_id = $_SESSION["user_id"];
@@ -115,7 +115,7 @@
                         ";
                 } else {
                     // get subject codes using subject ids
-                    include("./apis/get-codes-using-subjectIDs.php");
+                    include("./get-data/codes-subjectIDs.php");
 
                     echo "
                         <div class='form-group'>
@@ -159,7 +159,7 @@
                 ";
 
                 // get standard using class id
-                include("./apis/get-standard-using-classID.php");
+                include("./get-data/standard-classID.php");
                 echo "
                     <div class='form-group'>
                         <label>Standard:</label>
@@ -168,7 +168,7 @@
                 ";
 
                 // get code using subject id
-                include("./apis/get-code-using-subjectID.php");
+                include("./get-data/code-subjectID.php");
 
                 echo "
                     <div class='form-group'>
@@ -186,7 +186,7 @@
                 ";
 
                 // get all students of a class using class id
-                include("./apis/get-class-students.php");
+                include("./get-data/students-classID.php");
 
                 if (sizeof($students) > 0) {
                     echo "

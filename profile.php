@@ -60,7 +60,7 @@
                     <div class='card account custom-shadow mt-4 p-3'>
                         <h3 class='text-center'>Edit Profile</h3> 
                         <hr>
-                        <form class='card-body' method='POST' action='./apis/account-daemon.php'>
+                        <form class='card-body' method='POST' action='./apis/account-manage.php'>
                             <div class='form-group'>
                                 <label for='name'>Name:</label>
                                 <input type='text' class='form-control' name='name' value='$name' required>
@@ -76,7 +76,7 @@
                 $class_id = $user_details["class_id"];
 
                 // find standard using class id
-                include("./apis/get-standard-using-classID.php");
+                include("./get-data/standard-classID.php");
 
                 echo "
                     <div class='row'>
@@ -163,7 +163,7 @@
                     <div class='card account custom-shadow mt-4 p-3'>
                         <h3 class='text-center'>Edit Profile</h3> 
                         <hr>
-                        <form class='card-body' method='POST' action='./apis/account-daemon.php'>
+                        <form class='card-body' method='POST' action='./apis/account-manage.php'>
                             <div class='form-group'>
                                 <label for='name'>Name:</label>
                                 <input type='text' class='form-control' name='name' value='$name' required>

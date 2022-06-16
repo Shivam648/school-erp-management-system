@@ -33,7 +33,7 @@
                     <div class='card account custom-shadow mt-4 p-3'>
                         <h3 class='text-center'>Create {$object} account</h3>
                         <hr>
-                        <form class='card-body' method='POST' action='./apis/admin-add-daemon.php'>
+                        <form class='card-body' method='POST' action='./apis/admin-manage.php'>
                             <div class='form-group'>
                                 <label>Full Name:</label>
                                 <input type='text' class='form-control' name='name' required>
@@ -54,7 +54,7 @@
                 ";
 
                 // assign a class to the student
-                include("./apis/get-all-classes.php");
+                include("./get-data/classes.php");
                 foreach ($classes as $key => $value) {
                     $class_id = $value["class_id"];
                     $standard = ucwords($value["standard"]);
@@ -126,7 +126,7 @@
                     <div class='card account custom-shadow mt-4 p-3'>
                         <h3 class='text-center'>Create {$object} account</h3>
                         <hr>
-                        <form class='card-body' method='POST' action='./apis/admin-add-daemon.php'>
+                        <form class='card-body' method='POST' action='./apis/admin-manage.php'>
                             <div class='form-group'>
                                 <label>Full Name:</label>
                                 <input type='text' class='form-control' name='name' required>
@@ -193,7 +193,7 @@
                     <div class='card account custom-shadow mt-5 p-3'>
                         <h3 class='text-center'>Create {$object}</h3>
                         <hr>
-                        <form class='card-body' method='POST' action='./apis/admin-add-daemon.php'>
+                        <form class='card-body' method='POST' action='./apis/admin-manage.php'>
                             <div class='form-group'>
                                 <label>Subject Name:</label>
                                 <input type='text' class='form-control' name='name' required>
@@ -227,7 +227,7 @@
                         <select class='form-control' name='teacher_id' required>
                 ";
 
-                include("./apis/get-all-teachers.php");
+                include("./get-data/teachers.php");
                 foreach ($teachers as $key => $value) {
                     $teacher_id = $value["teacher_id"];
                     $name = ucwords($value["name"]);
@@ -257,7 +257,7 @@
                     <div class='card account custom-shadow mt-5 p-3'>
                         <h3 class='text-center'>Create {$object}</h3>
                         <hr>
-                        <form class='card-body' method='POST' action='./apis/admin-add-daemon.php'>
+                        <form class='card-body' method='POST' action='./apis/admin-manage.php'>
                             <div class='form-group'>
                                 <label>Standard:</label>
                                 <input type='text' class='form-control' name='standard' required>
@@ -270,7 +270,7 @@
                 ";
 
                 // add subjects to be taught within the class
-                include("./apis/get-all-subjects.php");
+                include("./get-data/subjects.php");
                 foreach ($subjects as $key => $value) {
                     $subject_id = $value["subject_id"];
                     $code = $value["code"];
@@ -295,7 +295,7 @@
                     <div class='card account custom-shadow mt-5 p-3'>
                         <h3 class='text-center'>Create {$object}</h3>
                         <hr>
-                        <form class='card-body' method='POST' action='./apis/admin-add-daemon.php'>
+                        <form class='card-body' method='POST' action='./apis/admin-manage.php'>
                             <div class='form-group'>
                                 <label>Announcement Title:</label>
                                 <input type='text' class='form-control' name='title' required>
@@ -319,5 +319,6 @@
         ?>
     </div>
 </body>
+
 
 </html>

@@ -46,7 +46,7 @@
                             <select class='form-control' name='class_id'>
                     ";
 
-                include("./apis/get-all-classes.php");
+                include("./get-data/classes.php");
                 foreach ($classes as $key => $value) {
                     $class_id = $value["class_id"];
                     $standard = ucwords($value["standard"]);
@@ -73,7 +73,7 @@
                     $class_id = $_POST["class_id"];
 
                     // get all students of a class
-                    include("./apis/get-class-students.php");
+                    include("./get-data/students-classID.php");
 
                     if (mysqli_num_rows($response) > 0) {
                         echo "
@@ -107,7 +107,7 @@
                             $doj = $value["doj"];
 
                             // find standard using class id
-                            include("./apis/get-standard-using-classID.php");
+                            include("./get-data/standard-classID.php");
 
                             echo "
                                     <tr>
@@ -152,7 +152,7 @@
                                 <tbody>
                     ";
 
-                include("./apis/get-all-teachers.php");
+                include("./get-data/teachers.php");
                 foreach ($teachers as $key => $value) {
                     $teacher_id = $value["teacher_id"];
                     $name = ucwords($value["name"]);
@@ -201,7 +201,7 @@
                                 <tbody>
                     ";
 
-                include("./apis/get-all-subjects.php");
+                include("./get-data/subjects.php");
                 foreach ($subjects as $key => $value) {
                     $subject_id = $value["subject_id"];
                     $title = ucwords($value["title"]);
@@ -212,7 +212,7 @@
                     $added_on = $value["added_on"];
 
                     // get teacher name using teacher id
-                    include("./apis/get-teacher-name-using-teacherID.php");
+                    include("./get-data/teacher-teacherID.php");
 
                     echo "
                             <tr>
@@ -247,14 +247,14 @@
                                 <tbody>
                     ";
 
-                include("./apis/get-all-classes.php");
+                include("./get-data/classes.php");
                 foreach ($classes as $key => $value) {
                     $class_id = $value["class_id"];
                     $standard = ucwords($value["standard"]);
                     $subject_ids = json_decode($value["subject_ids"]);
 
                     // get subject codes using subject ids
-                    include("./apis/get-codes-using-subjectIDs.php");
+                    include("./get-data/codes-subjectIDs.php");
                     $codes = json_encode($codes);
 
                     echo "
@@ -288,7 +288,7 @@
                                 <tbody>
                     ";
 
-                include("./apis//get-all-announcements.php");
+                include("./get-data/announcements.php");
                 foreach ($announcements as $key => $value) {
                     $aid = $value["aid"];
                     $title = ucwords($value["title"]);

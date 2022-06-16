@@ -33,7 +33,7 @@ if (isset($_POST["login"])) {
             }
 
             if ($_SESSION["user_category"] == "admin") {
-                header('Location: ../dashboard.php');
+                header('Location: ../admin.php');
             } else {
                 header('Location: ../index.php');
             }

@@ -27,14 +27,14 @@
             echo '
                 <ul class="navbar-nav text-center">
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="./dashboard.php">Dashboard</a>
+                        <a class="nav-link" href="./admin.php">Dashboard</a>
                     </li>
                     <li class="nav-item p-2">
                         <div class="dropdown" style="float:left;">
                             <button class="btn text-primary">Students</button>
                             <div class="dropdown-content" style="left:0;">
-                                <a href="./add.php?object=student">Add Student</a>
-                                <a href="./view.php?object=student">Manage Student</a>
+                                <a href="./register-info.php?object=student">Add Student</a>
+                                <a href="./registered-datasets.php?object=student">Manage Student</a>
                             </div>
                         </div>
                     </li>
@@ -42,8 +42,8 @@
                         <div class="dropdown" style="float:left;">
                             <button class="btn text-primary">Teachers</button>
                             <div class="dropdown-content" style="left:0;">
-                                <a href="./add.php?object=teacher">Add Teacher</a>
-                                <a href="./view.php?object=teacher">Manage Teacher</a>
+                                <a href="./register-info.php?object=teacher">Add Teacher</a>
+                                <a href="./registered-datasets.php?object=teacher">Manage Teacher</a>
                             </div>
                         </div>
                     </li>
@@ -51,8 +51,8 @@
                         <div class="dropdown" style="float:left;">
                             <button class="btn text-primary">Subjects</button>
                             <div class="dropdown-content" style="left:0;">
-                                <a href="./add.php?object=subject">Add Subject</a>
-                                <a href="./view.php?object=subject">Manage Subject</a>
+                                <a href="./register-info.php?object=subject">Add Subject</a>
+                                <a href="./registered-datasets.php?object=subject">Manage Subject</a>
                             </div>
                         </div>
                     </li>
@@ -60,8 +60,8 @@
                         <div class="dropdown" style="float:left;">
                             <button class="btn text-primary">Classes</button>
                             <div class="dropdown-content" style="left:0;">
-                                <a href="./add.php?object=class">Add Class</a>
-                                <a href="./view.php?object=class">Manage Class</a>
+                                <a href="./register-info.php?object=class">Add Class</a>
+                                <a href="./registered-datasets.php?object=class">Manage Class</a>
                             </div>
                         </div>
                     </li>
@@ -69,8 +69,8 @@
                         <div class="dropdown" style="float:left;">
                             <button class="btn text-primary">Announcements</button>
                             <div class="dropdown-content" style="left:0;">
-                                <a href="./add.php?object=announcement">Add Announcements</a>
-                                <a href="./view.php?object=announcement">Manage Announcements</a>
+                                <a href="./register-info.php?object=announcement">Add Announcements</a>
+                                <a href="./registered-datasets.php?object=announcement">Manage Announcements</a>
                             </div>
                         </div>
                     </li>
@@ -85,7 +85,7 @@
             echo '
                 <ul class="navbar-nav text-center">
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="./view_attendance.php">Attendance</a>
+                        <a class="nav-link" href="./academics-creds.php">Attendance</a>
                     </li>
                     <li class="nav-item p-2">
                         <a class="nav-link" href="./profile.php">Profile</a>
@@ -101,10 +101,10 @@
             echo '
                 <ul class="navbar-nav text-center">
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="./grade.php">Grade</a>
+                        <a class="nav-link" href="./update-grade.php">Grade</a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="./attendance.php">Attendance</a>
+                        <a class="nav-link" href="./update-attendance.php">Attendance</a>
                     </li>
                     <li class="nav-item p-2">
                         <a class="nav-link" href="./profile.php">Profile</a>

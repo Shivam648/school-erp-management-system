@@ -27,7 +27,7 @@ include("./apis/config.php");
         <div class='card account custom-shadow mt-5 pt-3'>
             <h3 class='text-center'>Login Form</h3>
             <hr>
-            <form class='card-body' method='POST' action='./apis/account-daemon.php'>
+            <form class='card-body' method='POST' action='./apis/account-manage.php'>
 
                 <div class='form-group'>
                     <label>Email:</label>
