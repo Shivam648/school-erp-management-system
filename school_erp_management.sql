@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2022 at 02:13 PM
+-- Generation Time: Jun 23, 2022 at 08:50 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -90,8 +90,43 @@ CREATE TABLE `miscellaneous` (
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `category` varchar(255) NOT NULL,
+  `gender` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `doj` date NOT NULL,
   `active` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='details of miscellaneous users';
+
+--
+-- Dumping data for table `miscellaneous`
+--
+
+INSERT INTO `miscellaneous` (`miscellaneous_id`, `name`, `email`, `password`, `category`, `gender`, `phone`, `address`, `doj`, `active`) VALUES
+(1, 'swaraj kumar', 'swaraj.driver@org.gmail.com', 'e4b40af9e152a905dacf8ff8986bfbfa1ab7600e', 'driver', 'male', '8002046457', 'ahiyapur', '2022-06-01', 1),
+(2, 'happy chaudhary', 'happy.driver.org@gmail.com', '3978d009748ef54ad6ef7bf851bd55491b1fe6bb', 'driver', 'male', '8002046457', 'patna', '2022-06-07', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `routes`
+--
+
+CREATE TABLE `routes` (
+  `route_id` int(11) NOT NULL,
+  `start` varchar(255) NOT NULL,
+  `finish` varchar(255) NOT NULL,
+  `fair` int(11) NOT NULL,
+  `active` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `routes`
+--
+
+INSERT INTO `routes` (`route_id`, `start`, `finish`, `fair`, `active`) VALUES
+(2, 'campus', 'bh11', 30, 1),
+(3, 'campus', 'bh14', 30, 1);
 
 -- --------------------------------------------------------
 
@@ -149,6 +184,42 @@ CREATE TABLE `teachers` (
   `active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='teachers details';
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicles`
+--
+
+CREATE TABLE `vehicles` (
+  `vehicle_id` int(11) NOT NULL,
+  `vehicle_type` varchar(255) NOT NULL,
+  `vehicle_number` varchar(255) NOT NULL,
+  `driver_id` int(11) NOT NULL,
+  `active` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `vehicles`
+--
+
+INSERT INTO `vehicles` (`vehicle_id`, `vehicle_type`, `vehicle_number`, `driver_id`, `active`) VALUES
+(2, 'car', 'bh1727', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicles_schedule`
+--
+
+CREATE TABLE `vehicles_schedule` (
+  `schedule_id` int(11) NOT NULL,
+  `vehicle_id` int(11) NOT NULL,
+  `arrival` time NOT NULL,
+  `departure` time NOT NULL,
+  `route_id` int(11) NOT NULL,
+  `active` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Indexes for dumped tables
 --
@@ -172,6 +243,12 @@ ALTER TABLE `miscellaneous`
   ADD PRIMARY KEY (`miscellaneous_id`);
 
 --
+-- Indexes for table `routes`
+--
+ALTER TABLE `routes`
+  ADD PRIMARY KEY (`route_id`);
+
+--
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
@@ -188,6 +265,18 @@ ALTER TABLE `subjects`
 --
 ALTER TABLE `teachers`
   ADD PRIMARY KEY (`teacher_id`);
+
+--
+-- Indexes for table `vehicles`
+--
+ALTER TABLE `vehicles`
+  ADD PRIMARY KEY (`vehicle_id`);
+
+--
+-- Indexes for table `vehicles_schedule`
+--
+ALTER TABLE `vehicles_schedule`
+  ADD PRIMARY KEY (`schedule_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -209,7 +298,13 @@ ALTER TABLE `classes`
 -- AUTO_INCREMENT for table `miscellaneous`
 --
 ALTER TABLE `miscellaneous`
-  MODIFY `miscellaneous_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `miscellaneous_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `routes`
+--
+ALTER TABLE `routes`
+  MODIFY `route_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `students`
@@ -228,6 +323,18 @@ ALTER TABLE `subjects`
 --
 ALTER TABLE `teachers`
   MODIFY `teacher_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `vehicles`
+--
+ALTER TABLE `vehicles`
+  MODIFY `vehicle_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `vehicles_schedule`
+--
+ALTER TABLE `vehicles_schedule`
+  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
