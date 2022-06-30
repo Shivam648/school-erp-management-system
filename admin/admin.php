@@ -1,5 +1,4 @@
-<!-- Dashbord page (accessible only to admin) -->
-<?php include("./apis/config.php") ?>
+<?php include("../config.php") ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin | Dashboard</title>
     <!-- Add core styles here -->
-    <link rel="stylesheet" href="./assets/css/base-styles.css">
+    <link rel="stylesheet" href="../assets/css/base-styles.css">
     <!-- Latest compiled and minified CSS & JS or JQuery -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -24,7 +23,7 @@
     <div class="container-fluid">
         <?php
         if ($_SESSION["user_category"] == "admin") {
-            include("./includes/header.php");
+            include("../includes/header.php");
 
             echo '
                 <section class="content text-center align-items-center">
@@ -37,7 +36,7 @@
                         <div class="inner">
             ';
 
-            include("./get-data/students.php");
+            include("../info/students.php");
             $num_students = mysqli_num_rows($response);
             echo "<h3> $num_students </h3>";
 
@@ -54,7 +53,7 @@
                                     <div class="inner">
                 ';
 
-            include("./get-data/teachers.php");
+            include("../info/teachers.php");
             $num_teachers = mysqli_num_rows($response);
             echo "<h3> $num_teachers </h3>";
 
@@ -71,7 +70,7 @@
                                     <div class="inner">
                 ';
 
-            include("./get-data/subjects.php");
+            include("../info/subjects.php");
             $num_subjects = mysqli_num_rows($response);
             echo "<h3> $num_subjects </h3>";
 
@@ -88,7 +87,7 @@
                                     <div class="inner">
                 ';
 
-            include("./get-data/announcements.php");
+            include("../info/announcements.php");
             $active_announcements = mysqli_num_rows($response);
             echo "<h3> $active_announcements </h3>";
 
@@ -105,7 +104,7 @@
                                     <div class="inner">
                 ';
 
-            include("./get-data/classes.php");
+            include("../info/classes.php");
             $num_classes = mysqli_num_rows($response);
             echo "<h3> $num_classes </h3>";
 
@@ -123,7 +122,7 @@
                     </section>
                 ';
         } else {
-            include("./page-not-found.php");
+            include("../page-not-found.php");
         }
         ?>
     </div>

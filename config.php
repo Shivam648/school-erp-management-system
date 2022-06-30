@@ -9,5 +9,5 @@ if ($conn) {
         $_SESSION["user_category"] = "guest";
     }
 } else {
-    echo "There was some problem connecting to organization's database, report here at info@org.com ...";
+    echo "There was some problem connecting to organization's database, report here at admin@org.com ...";
 }

@@ -1,5 +1,5 @@
 <!-- Add Page -->
-<?php include("./apis/config.php"); ?>
+<?php include("../config.php"); ?>
 <!DOCTYPE html>
 <html lang='en'>
 
@@ -7,9 +7,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create | Admin</title>
+    <title>Add | Create</title>
     <!-- Add core styles here -->
-    <link rel="stylesheet" href="./assets/css/base-styles.css">
+    <link rel="stylesheet" href="../assets/css/base-styles.css">
     <!-- Latest compiled and minified CSS & JS or JQuery -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -25,7 +25,7 @@
         <!-- Page accessible only to admin -->
         <?php
         if ($_SESSION["user_category"] == "admin") {
-            include("./includes/header.php");
+            include("../includes/header.php");
             $object = $_GET["object"];
 
             if ($object == "student") {
@@ -33,7 +33,7 @@
                     <div class='card account custom-shadow mt-4 p-3'>
                         <h3 class='text-center'>Create {$object} account</h3>
                         <hr>
-                        <form class='card-body' method='POST' action='./apis/admin-manage.php'>
+                        <form class='card-body' method='POST' action='./admin-manage.php'>
                             <div class='form-group'>
                                 <label>Full Name:</label>
                                 <input type='text' class='form-control' name='name' required>
@@ -54,7 +54,7 @@
                 ";
 
                 // assign a class to the student
-                include("./get-data/classes.php");
+                include("../info/classes.php");
                 foreach ($classes as $key => $value) {
                     $class_id = $value["class_id"];
                     $standard = ucwords($value["standard"]);
@@ -126,7 +126,7 @@
                     <div class='card account custom-shadow mt-4 p-3'>
                         <h3 class='text-center'>Create {$object} account</h3>
                         <hr>
-                        <form class='card-body' method='POST' action='./apis/admin-manage.php'>
+                        <form class='card-body' method='POST' action='./admin-manage.php'>
                             <div class='form-group'>
                                 <label>Full Name:</label>
                                 <input type='text' class='form-control' name='name' required>
@@ -193,7 +193,7 @@
                     <div class='card account custom-shadow mt-5 p-3'>
                         <h3 class='text-center'>Create {$object}</h3>
                         <hr>
-                        <form class='card-body' method='POST' action='./apis/admin-manage.php'>
+                        <form class='card-body' method='POST' action='./admin-manage.php'>
                             <div class='form-group'>
                                 <label>Subject Name:</label>
                                 <input type='text' class='form-control' name='name' required>
@@ -227,7 +227,7 @@
                         <select class='form-control' name='teacher_id' required>
                 ";
 
-                include("./get-data/teachers.php");
+                include("../info/teachers.php");
                 foreach ($teachers as $key => $value) {
                     $teacher_id = $value["teacher_id"];
                     $name = ucwords($value["name"]);
@@ -257,7 +257,7 @@
                     <div class='card account custom-shadow mt-5 p-3'>
                         <h3 class='text-center'>Create {$object}</h3>
                         <hr>
-                        <form class='card-body' method='POST' action='./apis/admin-manage.php'>
+                        <form class='card-body' method='POST' action='./admin-manage.php'>
                             <div class='form-group'>
                                 <label>Standard:</label>
                                 <input type='text' class='form-control' name='standard' required>
@@ -270,7 +270,7 @@
                 ";
 
                 // add subjects to be taught within the class
-                include("./get-data/subjects.php");
+                include("../info/subjects.php");
                 foreach ($subjects as $key => $value) {
                     $subject_id = $value["subject_id"];
                     $code = $value["code"];
@@ -295,7 +295,7 @@
                     <div class='card account custom-shadow mt-5 p-3'>
                         <h3 class='text-center'>Create {$object}</h3>
                         <hr>
-                        <form class='card-body' method='POST' action='./apis/admin-manage.php'>
+                        <form class='card-body' method='POST' action='./admin-manage.php'>
                             <div class='form-group'>
                                 <label>Announcement Title:</label>
                                 <input type='text' class='form-control' name='title' required>
@@ -314,7 +314,7 @@
                 ";
             }
         } else {
-            include("page-not-found.php");
+            include("../page-not-found.php");
         }
         ?>
     </div>

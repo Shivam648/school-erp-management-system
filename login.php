@@ -1,6 +1,6 @@
 <!-- Login page for all users -->
 <?php
-include("./apis/config.php");
+include("./config.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +9,7 @@ include("./apis/config.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | ERP</title>
+    <title>Login | School ERP Management System</title>
     <!-- Add core styles here -->
     <link rel="stylesheet" href="./assets/css/base-styles.css">
     <!-- Latest compiled and minified CSS & JS or JQuery -->
@@ -27,7 +27,7 @@ include("./apis/config.php");
         <div class='card account custom-shadow mt-5 pt-3'>
             <h3 class='text-center'>Login Form</h3>
             <hr>
-            <form class='card-body' method='POST' action='./apis/account-manage.php'>
+            <form class='card-body' method='POST' action='account-api.php'>
 
                 <div class='form-group'>
                     <label>Email:</label>
@@ -44,9 +44,10 @@ include("./apis/config.php");
                     <label class="radio-inline pr-2"><input type="radio" name="category" value="teacher">Teacher</label>
                     <label class="radio-inline pr-2"><input type="radio" name="category" value="admin">Admin</label>
                 </div>
+                <p class="text-center">No credentials? Please contact admin for login credentials</p>
                 <br>
                 <div class='text-center'>
-                    <button type='submit' name='login' class='btn btn-outline-primary w-50'>LogIn</button>
+                    <button type='submit' name='login' class='btn btn-primary w-50'>LogIn</button>
                 </div>
             </form>
         </div>

@@ -1,5 +1,5 @@
 <?php
-include("config.php");
+include("../../config.php");
 
 // api to update attendance : verified
 if (isset($_POST["submit_attendance"])) {
@@ -32,5 +32,5 @@ if (isset($_POST["submit_attendance"])) {
             $response = mysqli_query($conn, $update) or die(mysqli_error($conn));
         }
     }
-    header('Location: ../index.php');
+    header('Location: ../../index.php');
 }

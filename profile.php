@@ -1,5 +1,5 @@
 <!-- Profile Page -->
-<?php include('./apis/config.php'); ?>
+<?php include('./config.php'); ?>
 <!DOCTYPE html>
 <html lang='en'>
 
@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile | ERP</title>
+    <title>Profile | School ERP Management System</title>
     <!-- Add core styles here -->
     <link rel="stylesheet" href="./assets/css/base-styles.css">
     <!-- Latest compiled and minified CSS & JS or JQuery -->
@@ -27,7 +27,7 @@
 
         <!-- Page accessible to end users only (student/teacher) -->
         <?php
-        if ($_SESSION["user_category"] != "guest" && $_SESSION["user_category"] != "admin") {
+        if ($_SESSION["user_category"] == "student" || $_SESSION["user_category"] == "teacher") {
             $user_email = $_SESSION['user_email'];
 
             if ($_SESSION["user_category"] == "student") {
@@ -60,7 +60,7 @@
                     <div class='card account custom-shadow mt-4 p-3'>
                         <h3 class='text-center'>Edit Profile</h3> 
                         <hr>
-                        <form class='card-body' method='POST' action='./apis/account-manage.php'>
+                        <form class='card-body' method='POST' action='account-api.php'>
                             <div class='form-group'>
                                 <label for='name'>Name:</label>
                                 <input type='text' class='form-control' name='name' value='$name' required>
@@ -76,7 +76,7 @@
                 $class_id = $user_details["class_id"];
 
                 // find standard using class id
-                include("./get-data/standard-classID.php");
+                include("./info/standard-classID.php");
 
                 echo "
                     <div class='row'>
@@ -121,7 +121,7 @@
                                     </div>
                                 </div>
                                 <div class='col'>
-                                    <label for='password'>Password:</label>
+                                    <label for='password'>New Password:</label>
                                     <input type='password' class='form-control' placeholder='' name='password'>
                                 </div>
                             </div>
@@ -133,7 +133,8 @@
                         </form>
                     </div>
                 ";
-            } else if ($_SESSION["user_category"] == "teacher") {
+            }
+            if ($_SESSION["user_category"] == "teacher") {
                 $get_user_details = "SELECT * FROM teachers WHERE `email` = '$user_email'";
                 $response = mysqli_query($conn, $get_user_details) or die(mysqli_error($conn));
                 $user_details = mysqli_fetch_array($response, MYSQLI_ASSOC);
@@ -163,7 +164,7 @@
                     <div class='card account custom-shadow mt-4 p-3'>
                         <h3 class='text-center'>Edit Profile</h3> 
                         <hr>
-                        <form class='card-body' method='POST' action='./apis/account-manage.php'>
+                        <form class='card-body' method='POST' action='./apis/account-api.php'>
                             <div class='form-group'>
                                 <label for='name'>Name:</label>
                                 <input type='text' class='form-control' name='name' value='$name' required>
@@ -232,8 +233,6 @@
                         </form>
                     </div>
                 ";
-            } else {
-                include('./page-not-found.php');
             }
         } else {
             include('./page-not-found.php');

@@ -1,5 +1,5 @@
 <!-- Interface for updating attendance (accessible only to teacher) -->
-<?php include("./apis/config.php"); ?>
+<?php include("../config.php"); ?>
 <!DOCTYPE html>
 <html lang='en'>
 
@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Attendance | Teacher</title>
     <!-- Add core styles here -->
-    <link rel="stylesheet" href="./assets/css/base-styles.css">
+    <link rel="stylesheet" href="../assets/css/base-styles.css">
     <!-- Latest compiled and minified CSS & JS or JQuery -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -25,7 +25,7 @@
         <!-- Page accessible only to teacher -->
         <?php
         if ($_SESSION["user_category"] == "teacher") {
-            include("./includes/header.php");
+            include("../includes/header.php");
 
             echo '
                 <section class="content align-items-center">
@@ -46,7 +46,7 @@
                 ";
 
                 // select a standard
-                include("./get-data/classes.php");
+                include("../info/classes.php");
                 foreach ($classes as $key => $value) {
                     $class_id = $value["class_id"];
                     $standard = ucwords($value["standard"]);
@@ -81,7 +81,7 @@
                     ";
 
                 // get standard using class id
-                include("./get-data/standard-classID.php");
+                include("../info/standard-classID.php");
                 echo "
                         <div class='form-group'>
                             <label>Standard:</label>
@@ -91,7 +91,7 @@
                     ";
 
                 // get subject ids using class id
-                include("./get-data/subjects-classID.php");
+                include("../info/subjects-classID.php");
 
                 // filter subject ids to which access is given
                 $teacher_id = $_SESSION["user_id"];
@@ -115,7 +115,7 @@
                         ";
                 } else {
                     // get subject codes using subject ids
-                    include("./get-data/codes-subjectIDs.php");
+                    include("../info/codes-subjectIDs.php");
 
                     echo "
                         <div class='form-group'>
@@ -159,7 +159,7 @@
                 ";
 
                 // get standard using class id
-                include("./get-data/standard-classID.php");
+                include("../info/standard-classID.php");
                 echo "
                     <div class='form-group'>
                         <label>Standard:</label>
@@ -168,7 +168,7 @@
                 ";
 
                 // get code using subject id
-                include("./get-data/code-subjectID.php");
+                include("../info/code-subjectID.php");
 
                 echo "
                     <div class='form-group'>
@@ -186,7 +186,7 @@
                 ";
 
                 // get all students of a class using class id
-                include("./get-data/students-classID.php");
+                include("../info/students-classID.php");
 
                 if (sizeof($students) > 0) {
                     echo "
@@ -254,7 +254,7 @@
                 </section>
             ';
         } else {
-            include("page-not-found.php");
+            include("../page-not-found.php");
         }
         ?>
     </div>

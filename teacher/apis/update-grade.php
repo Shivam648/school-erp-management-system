@@ -1,7 +1,6 @@
 <?php
-include("config.php");
+include("../../config.php");
 
-// api to update attendance : verified
 if (isset($_POST["submit_grade"])) {
     $class_id = $_POST["class_id"];
     $subject_id = $_POST["subject_id"];
@@ -26,5 +25,5 @@ if (isset($_POST["submit_grade"])) {
             $response = mysqli_query($conn, $update) or die(mysqli_error($conn));
         }
     }
-    header('Location: ../index.php');
+    header('Location: ../../index.php');
 }

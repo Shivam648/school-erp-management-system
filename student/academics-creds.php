@@ -1,5 +1,5 @@
 <!-- Interface for analyzing attendance (accessible only to students) -->
-<?php include("./apis/config.php"); ?>
+<?php include("../config.php"); ?>
 <!DOCTYPE html>
 <html lang='en'>
 
@@ -7,9 +7,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attendance | Student</title>
+    <title>Student | Academic Info</title>
     <!-- Add core styles here -->
-    <link rel="stylesheet" href="./assets/css/base-styles.css">
+    <link rel="stylesheet" href="../assets/css/base-styles.css">
     <!-- Latest compiled and minified CSS & JS or JQuery -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -25,7 +25,7 @@
         <!-- Page accessible only to students -->
         <?php
         if ($_SESSION["user_category"] == "student") {
-            include("./includes/header.php");
+            include("../includes/header.php");
 
             $student_id = $_SESSION["user_id"];
             $find_student = "SELECT * FROM students WHERE `student_id` = '$student_id' AND `active` = '1'";
@@ -34,7 +34,7 @@
             $class_id = $student["class_id"];
 
             // get standard using class id
-            include("./get-data/standard-classID.php");
+            include("../info/standard-classID.php");
 
             echo '
                 <section class="content text-center align-items-center">
@@ -42,10 +42,10 @@
             ';
 
             // get subject ids using class id
-            include("./get-data/subjects-classID.php");
+            include("../info/subjects-classID.php");
 
             // get subject codes using subject ids
-            include("./get-data/codes-subjectIDs.php");
+            include("../info/codes-subjectIDs.php");
 
             for ($i = 0; $i < sizeof($subject_ids); $i++) {
                 $subject_id = $subject_ids[$i];
@@ -66,7 +66,7 @@
                     $present = $attendance_details["present"];
 
                     // get term grades
-                    include("./get-data/term-grades.php");
+                    include("../info/term-grades.php");
 
                     echo "<p> Total classes you attended : $present </p>";
                     echo "<p> Mid Term 1 (25) : $mid_term_1 </p>";
@@ -87,7 +87,7 @@
                 </section>
             ';
         } else {
-            include("page-not-found.php");
+            include("../page-not-found.php");
         }
         ?>
     </div>

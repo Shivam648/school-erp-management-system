@@ -1,4 +1,3 @@
-<?php include("./apis/config.php") ?>
 <nav class="navbar navbar-expand-md">
     <!-- Logo -->
     <p class="text-primary"><a class="navbar-brand" href="../index.php">Logo.</a></p>
@@ -27,14 +26,17 @@
             echo '
                 <ul class="navbar-nav text-center">
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="./admin.php">Dashboard</a>
+                        <a class="nav-link" href="../admin/admin.php">Dashboard</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="#!">Transport</a>
                     </li>
                     <li class="nav-item p-2">
                         <div class="dropdown" style="float:left;">
                             <button class="btn text-primary">Students</button>
                             <div class="dropdown-content" style="left:0;">
-                                <a href="./register-info.php?object=student">Add Student</a>
-                                <a href="./registered-datasets.php?object=student">Manage Student</a>
+                                <a href="../admin/register-info.php?object=student">Add Student</a>
+                                <a href="../admin/registered-datasets.php?object=student">Manage Student</a>
                             </div>
                         </div>
                     </li>
@@ -42,8 +44,8 @@
                         <div class="dropdown" style="float:left;">
                             <button class="btn text-primary">Teachers</button>
                             <div class="dropdown-content" style="left:0;">
-                                <a href="./register-info.php?object=teacher">Add Teacher</a>
-                                <a href="./registered-datasets.php?object=teacher">Manage Teacher</a>
+                                <a href="../admin/register-info.php?object=teacher">Add Teacher</a>
+                                <a href="../admin/registered-datasets.php?object=teacher">Manage Teacher</a>
                             </div>
                         </div>
                     </li>
@@ -51,8 +53,8 @@
                         <div class="dropdown" style="float:left;">
                             <button class="btn text-primary">Subjects</button>
                             <div class="dropdown-content" style="left:0;">
-                                <a href="./register-info.php?object=subject">Add Subject</a>
-                                <a href="./registered-datasets.php?object=subject">Manage Subject</a>
+                                <a href="../admin/register-info.php?object=subject">Add Subject</a>
+                                <a href="../admin/registered-datasets.php?object=subject">Manage Subject</a>
                             </div>
                         </div>
                     </li>
@@ -60,8 +62,8 @@
                         <div class="dropdown" style="float:left;">
                             <button class="btn text-primary">Classes</button>
                             <div class="dropdown-content" style="left:0;">
-                                <a href="./register-info.php?object=class">Add Class</a>
-                                <a href="./registered-datasets.php?object=class">Manage Class</a>
+                                <a href="../admin/register-info.php?object=class">Add Class</a>
+                                <a href="../admin/registered-datasets.php?object=class">Manage Class</a>
                             </div>
                         </div>
                     </li>
@@ -69,13 +71,13 @@
                         <div class="dropdown" style="float:left;">
                             <button class="btn text-primary">Announcements</button>
                             <div class="dropdown-content" style="left:0;">
-                                <a href="./register-info.php?object=announcement">Add Announcements</a>
-                                <a href="./registered-datasets.php?object=announcement">Manage Announcements</a>
+                                <a href="../admin/register-info.php?object=announcement">Add Announcements</a>
+                                <a href="../admin/registered-datasets.php?object=announcement">Manage Announcements</a>
                             </div>
                         </div>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="nav-link text-primary" href="./logout.php">Logout</a>
+                        <a class="nav-link text-primary" href="../logout.php">Logout</a>
                     </li>
                 </ul>
             ';
@@ -85,13 +87,13 @@
             echo '
                 <ul class="navbar-nav text-center">
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="./academics-creds.php">Attendance</a>
+                        <a class="nav-link" href="../student/academics-creds.php">Academics</a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="./profile.php">Profile</a>
+                        <a class="nav-link" href="../profile.php">Profile</a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="./logout.php">Logout</a>
+                        <a class="nav-link" href="../logout.php">Logout</a>
                     </li>
                 </ul>
             ';
@@ -101,16 +103,16 @@
             echo '
                 <ul class="navbar-nav text-center">
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="./update-grade.php">Grade</a>
+                        <a class="nav-link" href="../teacher/update-grade.php">Grade</a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="./update-attendance.php">Attendance</a>
+                        <a class="nav-link" href="../teacher/update-attendance.php">Attendance</a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="./profile.php">Profile</a>
+                        <a class="nav-link" href="../profile.php">Profile</a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="./logout.php">Logout</a>
+                        <a class="nav-link" href="../logout.php">Logout</a>
                     </li>
                 </ul>
             ';

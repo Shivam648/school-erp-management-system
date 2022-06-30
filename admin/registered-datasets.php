@@ -1,5 +1,5 @@
 <!-- Interface for registered data (accessible only to admin) -->
-<?php include("./apis/config.php"); ?>
+<?php include("../config.php"); ?>
 <!DOCTYPE html>
 <html lang='en'>
 
@@ -7,9 +7,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage | Admin</title>
+    <title>Admin | Manage</title>
     <!-- Add core styles here -->
-    <link rel="stylesheet" href="./assets/css/base-styles.css">
+    <link rel="stylesheet" href="../assets/css/base-styles.css">
     <!-- Latest compiled and minified CSS & JS or JQuery -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -25,7 +25,7 @@
         <!-- Page accessible only to admin -->
         <?php
         if ($_SESSION["user_category"] == "admin") {
-            include("./includes/header.php");
+            include("../includes/header.php");
             $object = $_GET["object"];
 
             echo '
@@ -46,7 +46,7 @@
                             <select class='form-control' name='class_id'>
                     ";
 
-                include("./get-data/classes.php");
+                include("../info/classes.php");
                 foreach ($classes as $key => $value) {
                     $class_id = $value["class_id"];
                     $standard = ucwords($value["standard"]);
@@ -73,7 +73,7 @@
                     $class_id = $_POST["class_id"];
 
                     // get all students of a class
-                    include("./get-data/students-classID.php");
+                    include("../info/students-classID.php");
 
                     if (mysqli_num_rows($response) > 0) {
                         echo "
@@ -107,7 +107,7 @@
                             $doj = $value["doj"];
 
                             // find standard using class id
-                            include("./get-data/standard-classID.php");
+                            include("../info/standard-classID.php");
 
                             echo "
                                     <tr>
@@ -152,7 +152,7 @@
                                 <tbody>
                     ";
 
-                include("./get-data/teachers.php");
+                include("../info/teachers.php");
                 foreach ($teachers as $key => $value) {
                     $teacher_id = $value["teacher_id"];
                     $name = ucwords($value["name"]);
@@ -201,7 +201,7 @@
                                 <tbody>
                     ";
 
-                include("./get-data/subjects.php");
+                include("../info/subjects.php");
                 foreach ($subjects as $key => $value) {
                     $subject_id = $value["subject_id"];
                     $title = ucwords($value["title"]);
@@ -212,7 +212,7 @@
                     $added_on = $value["added_on"];
 
                     // get teacher name using teacher id
-                    include("./get-data/teacher-teacherID.php");
+                    include("../info/teacher-teacherID.php");
 
                     echo "
                             <tr>
@@ -247,14 +247,14 @@
                                 <tbody>
                     ";
 
-                include("./get-data/classes.php");
+                include("../info/classes.php");
                 foreach ($classes as $key => $value) {
                     $class_id = $value["class_id"];
                     $standard = ucwords($value["standard"]);
                     $subject_ids = json_decode($value["subject_ids"]);
 
                     // get subject codes using subject ids
-                    include("./get-data/codes-subjectIDs.php");
+                    include("../info/codes-subjectIDs.php");
                     $codes = json_encode($codes);
 
                     echo "
@@ -288,7 +288,7 @@
                                 <tbody>
                     ";
 
-                include("./get-data/announcements.php");
+                include("../info/announcements.php");
                 foreach ($announcements as $key => $value) {
                     $aid = $value["aid"];
                     $title = ucwords($value["title"]);
@@ -317,7 +317,7 @@
                 </section>
             ';
         } else {
-            include("./page-not-found.php");
+            include("../page-not-found.php");
         }
         ?>
     </div>

@@ -2,13 +2,11 @@
 <?php
 include("config.php");
 
-// api for logging a user : verified
 if (isset($_POST["login"])) {
     $email = $_POST["email"];
     $password = $_POST["password"];
     $category = $_POST["category"];
 
-    // search user details as per category selected
     if ($category == "student" || $category == "teacher") {
         $find_user = "SELECT * FROM {$category}s WHERE email = '$email' and active = '1'";
     } else {
@@ -33,19 +31,19 @@ if (isset($_POST["login"])) {
             }
 
             if ($_SESSION["user_category"] == "admin") {
-                header('Location: ../admin.php');
+                header('Location: ./admin/admin.php');
             } else {
-                header('Location: ../index.php');
+                header('Location: index.php');
             }
         } else {
-            echo "Password was incorrect, please try with a different password.";
+            echo "Password was incorrect, please try with a different password...";
         }
     } else {
-        echo "There was some problem finding your account, please talk to your account manager.";
+        echo "There was some problem finding your account, report here at admin@org.com...";
     }
 }
 
-// api when student updates his/her profile : verified
+
 if (isset($_POST["update_student"])) {
     $student_id = $_SESSION["user_id"];
     $name = strtolower($_POST["name"]);
@@ -66,13 +64,13 @@ if (isset($_POST["update_student"])) {
             $update_profile = "UPDATE students SET `name` = '$name', `gender` = '$gender', `phone` = '$phone', `dob` = '$dob', `address` = '$address', `password` = '$password' WHERE `student_id` = '$student_id' AND `active` = '1'";
         }
         $response = mysqli_query($conn, $update_profile) or die(mysqli_error($conn));
-        header('Location: ../logout.php');
+        header('Location: logout.php');
     } else {
-        echo "There was some problem finding your account, contact account manager...";
+        echo "There was some problem finding your account, report here at admin@org.com...";
     }
 }
 
-// api when teacher updates his/her profile : verified
+
 if (isset($_POST["update_teacher"])) {
     $teacher_id = $_SESSION["teacher_id"];
     $name = strtolower($_POST["name"]);
@@ -92,9 +90,9 @@ if (isset($_POST["update_teacher"])) {
             $update_profile = "UPDATE teachers SET `name` = '$name', `gender` = '$gender', `phone` = '$phone', `address` = '$address', `password` = '$password' WHERE `teacher_id` = '$teacher_id' AND `active` = '1'";
         }
         $response = mysqli_query($conn, $update_profile) or die(mysqli_error($conn));
-        header('Location: ../logout.php');
+        header('Location: logout.php');
     } else {
-        echo "There was some problem finding your account, contact account manager...";
+        echo "There was some problem finding your account, report here at admin@org.com...";
     }
 }
 ?>
