@@ -1,5 +1,5 @@
 <?php
-include("config.php");
+include("../../../config.php");
 if (isset($_POST["add_vehicle"])) {
     $vehicle_type = strtolower($_POST["type"]);
     $vehicle_number = $_POST["plate"];

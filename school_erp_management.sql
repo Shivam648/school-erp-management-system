@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2022 at 08:50 AM
+-- Generation Time: Jun 30, 2022 at 05:03 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -35,6 +35,13 @@ CREATE TABLE `announcements` (
   `active` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='announcement information';
 
+--
+-- Dumping data for table `announcements`
+--
+
+INSERT INTO `announcements` (`aid`, `title`, `descr`, `added_on`, `active`) VALUES
+(1, 'webinar on fun & science', 'lorem ipsum dolor sit, amet consectetur adipisicing elit. laborum enim beatae rerum, ullam ut tempore aut commodi exercitationem molestiae rem.', '2022-06-30', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -50,6 +57,16 @@ CREATE TABLE `attendance` (
   `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='attendance of students as per class and subjects';
 
+--
+-- Dumping data for table `attendance`
+--
+
+INSERT INTO `attendance` (`student_id`, `class_id`, `subject_id`, `present`, `absent`, `total`) VALUES
+(1, 1, 1, 3, 2, 5),
+(2, 1, 1, 1, 4, 5),
+(1, 1, 2, 1, 0, 1),
+(2, 1, 2, 0, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -62,6 +79,13 @@ CREATE TABLE `classes` (
   `subject_ids` varchar(255) NOT NULL,
   `active` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='subjects in each class';
+
+--
+-- Dumping data for table `classes`
+--
+
+INSERT INTO `classes` (`class_id`, `standard`, `subject_ids`, `active`) VALUES
+(1, 'one', '[\"2\",\"1\"]', 1);
 
 -- --------------------------------------------------------
 
@@ -78,6 +102,16 @@ CREATE TABLE `grades` (
   `end_term` int(11) NOT NULL,
   `other` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `grades`
+--
+
+INSERT INTO `grades` (`student_id`, `class_id`, `subject_id`, `mid_term_1`, `mid_term_2`, `end_term`, `other`) VALUES
+(1, 1, 1, 20, 10, 10, 5),
+(2, 1, 1, 10, 12, 20, 20),
+(1, 1, 2, 2, 4, 0, 0),
+(2, 1, 2, 4, 4, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -103,8 +137,9 @@ CREATE TABLE `miscellaneous` (
 --
 
 INSERT INTO `miscellaneous` (`miscellaneous_id`, `name`, `email`, `password`, `category`, `gender`, `phone`, `address`, `doj`, `active`) VALUES
-(1, 'swaraj kumar', 'swaraj.driver@org.gmail.com', 'e4b40af9e152a905dacf8ff8986bfbfa1ab7600e', 'driver', 'male', '8002046457', 'ahiyapur', '2022-06-01', 1),
-(2, 'happy chaudhary', 'happy.driver.org@gmail.com', '3978d009748ef54ad6ef7bf851bd55491b1fe6bb', 'driver', 'male', '8002046457', 'patna', '2022-06-07', 1);
+(1, 'admin', 'admin.org@gmail.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin', '-', '-', '-', '2022-06-30', 1),
+(3, 'amaya chaudhary', 'amaya.org@gmail.com', '570a8eee40de7053bc03b927095e4982e17683fe', 'driver', 'female', '8002046457', 'jalandhar punjab india', '2022-06-02', 1),
+(4, 'randhir mishra', 'randhir.org@gmail.com', '98592be096a141159082ad066243bbf52db51df7', 'driver', 'male', '9955075265', 'patna, bihar india', '2022-06-03', 1);
 
 -- --------------------------------------------------------
 
@@ -125,8 +160,8 @@ CREATE TABLE `routes` (
 --
 
 INSERT INTO `routes` (`route_id`, `start`, `finish`, `fair`, `active`) VALUES
-(2, 'campus', 'bh11', 30, 1),
-(3, 'campus', 'bh14', 30, 1);
+(1, 'campus', 'bh13', 45, 1),
+(3, 'campus', 'bh14', 50, 1);
 
 -- --------------------------------------------------------
 
@@ -148,6 +183,14 @@ CREATE TABLE `students` (
   `active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='student details';
 
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`student_id`, `name`, `email`, `password`, `class_id`, `phone`, `gender`, `dob`, `doj`, `address`, `active`) VALUES
+(1, 'swaraj kumar', 'swaraj.org@gmail.com', 'e4b40af9e152a905dacf8ff8986bfbfa1ab7600e', 1, '8002046457', 'male', '2002-02-28', '2022-06-30', 'patna, bihar, india', 1),
+(2, 'shivam jiaswal', 'shivam.org@gmail.com', '61f8c88f94091bd306411cfde6711254fec07bda', 1, '8002046457', 'male', '2022-06-10', '2022-06-30', 'bihar, india', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -164,6 +207,14 @@ CREATE TABLE `subjects` (
   `added_on` date NOT NULL,
   `active` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='subjects information';
+
+--
+-- Dumping data for table `subjects`
+--
+
+INSERT INTO `subjects` (`subject_id`, `title`, `descr`, `code`, `credit`, `teacher_id`, `added_on`, `active`) VALUES
+(1, 'machine learning', 'lorem ipsum dolor sit, amet consectetur adipisicing elit. laborum enim beatae rerum, ullam ut tempore aut commodi exercitationem molestiae rem.', 'ML', 4, 1, '2022-06-30', 1),
+(2, 'cloud computing', 'lorem ipsum dolor sit, amet consectetur adipisicing elit. laborum enim beatae rerum, ullam ut tempore aut commodi exercitationem molestiae rem.', 'CC', 3, 2, '2022-06-30', 1);
 
 -- --------------------------------------------------------
 
@@ -184,6 +235,14 @@ CREATE TABLE `teachers` (
   `active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='teachers details';
 
+--
+-- Dumping data for table `teachers`
+--
+
+INSERT INTO `teachers` (`teacher_id`, `name`, `email`, `password`, `designation`, `phone`, `gender`, `doj`, `address`, `active`) VALUES
+(1, 'pratyay kuila', 'pratyay.org@gmail.com', '97026e649d3a629d10dee8cbb592a492d0de9862', 'head of cse department', '8002046457', 'male', '2022-06-30', 'west bengal, india', 1),
+(2, 'anand mishara', 'anand.org@gmail.com', 'b973f774bfeab53233b4f347be114e9ca7b2d00f', 'professor', '9955075265', 'male', '2022-06-30', 'uttar pradesh, india', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -203,7 +262,8 @@ CREATE TABLE `vehicles` (
 --
 
 INSERT INTO `vehicles` (`vehicle_id`, `vehicle_type`, `vehicle_number`, `driver_id`, `active`) VALUES
-(2, 'car', 'bh1727', 1, 1);
+(2, 'car', 'BH1111', 3, 1),
+(3, 'bus', 'BH1729', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -219,6 +279,13 @@ CREATE TABLE `vehicles_schedule` (
   `route_id` int(11) NOT NULL,
   `active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `vehicles_schedule`
+--
+
+INSERT INTO `vehicles_schedule` (`schedule_id`, `vehicle_id`, `arrival`, `departure`, `route_id`, `active`) VALUES
+(2, 2, '02:32:00', '11:29:00', 1, 0);
 
 --
 -- Indexes for dumped tables
@@ -286,19 +353,19 @@ ALTER TABLE `vehicles_schedule`
 -- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `miscellaneous`
 --
 ALTER TABLE `miscellaneous`
-  MODIFY `miscellaneous_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `miscellaneous_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `routes`
@@ -310,31 +377,31 @@ ALTER TABLE `routes`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `subjects`
 --
 ALTER TABLE `subjects`
-  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `teacher_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `teacher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `vehicles`
 --
 ALTER TABLE `vehicles`
-  MODIFY `vehicle_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `vehicle_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `vehicles_schedule`
 --
 ALTER TABLE `vehicles_schedule`
-  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

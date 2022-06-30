@@ -1,4 +1,4 @@
-<?php include("apis/config.php") ?>
+<?php include("../../config.php") ?>
 <!doctype html>
 <html lang="en">
 
@@ -12,7 +12,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Drivers | Admin</title>
 		<!-- Add core styles here -->
-		<link rel="stylesheet" href="transport.css">
+		<link rel="stylesheet" href="../../assets/css/base-styles.css">
 		<!-- Latest compiled and minified CSS & JS or JQuery -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -29,21 +29,15 @@
 
 		<?php
 			if($_SESSION["user_category"] == "admin"){
+				include('./t-header.php');
+
 				$query = $_GET["query"];
-
-				include('sidebar.php');
-				echo "
-					<div id='content'>
-						<span style='font-size:30px; cursor:pointer' onclick=openNav()>&#9776;</span>
-					</div>
-				";
-
 				if($query == "add"){
 					echo "
 						<div class='card account custom-shadow mt-4 p-3'>
 							<h3 class='text-center'>Create Driver</h3>
 							<hr>
-							<form class='card-body' method='POST' action='apis/add-driver.php'>
+							<form class='card-body' method='POST' action='./apis/add-driver.php'>
 								<div class='form-group'>
 									<label>Full Name:</label>
 									<input type='text' class='form-control' name='name' required>
@@ -122,7 +116,7 @@
                     ";
 
 					// drivers
-					include("apis/drivers.php");
+					include("./apis/drivers.php");
 
                     foreach ($drivers as $key => $value) {
                         $driver_id = $value["miscellaneous_id"];
@@ -147,7 +141,7 @@
                                     <td>$doj</td>
                                     <td>$status</td>
 									<td>
-										<a href='apis/delete-driver.php?driver_id=$driver_id' class='text-danger pr-2'>Delete</a>
+										<a href='./apis/delete-driver.php?driver_id=$driver_id' class='text-danger pr-2'>Delete</a>
 										<a href='drivers.php?query=update&driver_id=$driver_id' class='text-primary'>Update</a>
 									</td>
                                 </tr>
@@ -164,7 +158,7 @@
 					$driver_id = $_GET["driver_id"];
 
 					// fetch driver details using driver id
-					include("apis/driver.php");
+					include("./apis/driver.php");
 
 					$driver_id = $driver["miscellaneous_id"];
 					$name = ucwords($driver["name"]);
@@ -269,7 +263,7 @@
 					";
 				}
 			}else{
-				include("page-not-found.php");
+				include("../../page-not-found.php");
 			}
 		?>
     </div>

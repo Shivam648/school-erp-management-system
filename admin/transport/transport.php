@@ -1,4 +1,4 @@
-<?php include("apis/config.php") ?>
+<?php include("../../config.php") ?>
 <!doctype html>
 <html lang="en">
 
@@ -10,9 +10,9 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Transport | ERP</title>
+		<title>Transport | Admin</title>
 		<!-- Add core styles here -->
-		<link rel="stylesheet" href="transport.css">
+		<link rel="stylesheet" href="../../assets/css/base-styles.css">
 		<!-- Latest compiled and minified CSS & JS or JQuery -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -29,13 +29,8 @@
 
 		<?php
 			if($_SESSION["user_category"] == "admin"){
-				include('sidebar.php');
-
-				echo "
-					<div id='content'>
-						<span style='font-size:30px; cursor:pointer' onclick=openNav()>&#9776;</span>
-					</div>
-				";
+				include('./t-header.php');
+				echo "<h4 class='text-center mt-5'>This is transport page</h4>";
 			}else{
 				include("page-not-found.php");
 			}

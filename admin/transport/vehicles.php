@@ -1,4 +1,4 @@
-<?php include("apis/config.php") ?>
+<?php include("../../config.php") ?>
 <!doctype html>
 <html lang="en">
 
@@ -12,7 +12,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Routes | Admin</title>
 		<!-- Add core styles here -->
-		<link rel="stylesheet" href="transport.css">
+		<link rel="stylesheet" href="../../assets/css/base-styles.css">
 		<!-- Latest compiled and minified CSS & JS or JQuery -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -29,21 +29,15 @@
 
 		<?php
 			if($_SESSION["user_category"] == "admin"){
+				include('./t-header.php');
+
 				$query = $_GET["query"];
-
-				include('sidebar.php');
-				echo "
-					<div id='content'>
-						<span style='font-size:30px; cursor:pointer' onclick=openNav()>&#9776;</span>
-					</div>
-				";
-
 				if($query == "add"){
 					echo "
 						<div class='card account custom-shadow mt-4 p-3'>
 							<h3 class='text-center'>Add Vehicle</h3>
 							<hr>
-							<form class='card-body' method='POST' action='apis/add-vehicle.php'>
+							<form class='card-body' method='POST' action='./apis/add-vehicle.php'>
 								<div class='form-group'>
 									<label>Vehicle Type:</label>
 									<input type='text' class='form-control' name='type' required>
@@ -95,7 +89,7 @@
                     ";
 
 					// drivers
-					include("apis/vehicles.php");
+					include("./apis/vehicles.php");
 
                     foreach ($vehicles as $key => $value) {
                         $vehicle_id = $value["vehicle_id"];
@@ -116,7 +110,7 @@
                                     <td>$name</td>
                                     <td>$status</td>
 									<td>
-										<a href='apis/delete-vehicle.php?vehicle_id=$vehicle_id' class='text-danger pr-2'>Delete</a>
+										<a href='./apis/delete-vehicle.php?vehicle_id=$vehicle_id' class='text-danger pr-2'>Delete</a>
 										<a href='vehicles.php?query=update&vehicle_id=$vehicle_id' class='text-primary'>Update</a>
 									</td>
                                 </tr>
@@ -133,7 +127,7 @@
 					$vehicle_id = $_GET["vehicle_id"];
 
 					// fetch driver details using driver id
-					include("apis/vehicle.php");
+					include("./apis/vehicle.php");
 
 					$vehicle_id = $vehicle["vehicle_id"];
 					$vehicle_type = ucwords($vehicle["vehicle_type"]);
@@ -168,7 +162,7 @@
 						<div class='card account custom-shadow mt-4 p-3'>
 							<h3 class='text-center'>Update Driver</h3>
 							<hr>
-							<form class='card-body' method='POST' action='apis/update-vehicle.php'>
+							<form class='card-body' method='POST' action='./apis/update-vehicle.php'>
 								<div class='form-group'>
 									<label>Vehicle Type:</label>
 									<input type='text' class='form-control' name='type' value='$vehicle_type' required>
@@ -204,7 +198,7 @@
 					";
 				}
 			}else{
-				include("page-not-found.php");
+				include("../../page-not-found.php");
 			}
 		?>
     </div>

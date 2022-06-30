@@ -1,5 +1,5 @@
 <?php
-include("config.php");
+include("../../../config.php");
 if (isset($_POST["add_schedule"])) {
     $vehicle_id = $_POST["vehicle_id"];
     $arrival = $_POST["arrival"];

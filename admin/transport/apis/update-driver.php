@@ -1,5 +1,5 @@
 <?php
-include("config.php");
+include("../../../config.php");
 if (isset($_POST["update_driver"])) {
     $name = strtolower($_POST["name"]);
     $email = $_POST["email"];
@@ -11,7 +11,7 @@ if (isset($_POST["update_driver"])) {
     $password = $_POST["password"];
 
 
-    $find_driver = "SELECT * FROM miscellaneous WHERE email = '$email'";
+    $find_driver = "SELECT * FROM miscellaneous WHERE email = '$email' AND `category` = 'driver'";
     $response = mysqli_query($conn, $find_driver) or die(mysqli_error($conn));
     if (mysqli_num_rows($response) == 1) {
         if ($password == NULL) {

@@ -1,5 +1,5 @@
 <?php
-include("config.php");
+include("../../../config.php");
 if (isset($_POST["add_driver"])) {
     $name = strtolower($_POST["name"]);
     $email = $_POST["email"];
@@ -9,7 +9,7 @@ if (isset($_POST["add_driver"])) {
     $address = strtolower($_POST["address"]);
     $password = $_POST["password"];
 
-    $find_driver = "SELECT * FROM miscellaneous WHERE email = '$email' AND `active` = '1'";
+    $find_driver = "SELECT * FROM miscellaneous WHERE email = '$email' AND `category` = 'driver' AND `active` = '1'";
     $response = mysqli_query($conn, $find_driver) or die(mysqli_error($conn));
     if (mysqli_num_rows($response) == 1) {
         echo "Driver already registered...";

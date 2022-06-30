@@ -1,4 +1,4 @@
-<?php include("apis/config.php") ?>
+<?php include("../../config.php") ?>
 <!doctype html>
 <html lang="en">
 
@@ -12,7 +12,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Schedules | Admin</title>
 		<!-- Add core styles here -->
-		<link rel="stylesheet" href="transport.css">
+		<link rel="stylesheet" href="../../assets/css/base-styles.css">
 		<!-- Latest compiled and minified CSS & JS or JQuery -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -28,15 +28,9 @@
     <div class="container-fluid">
 		<?php
 			if($_SESSION["user_category"] == "admin"){
+				include('./t-header.php');
+
 				$query = $_GET["query"];
-
-				include('sidebar.php');
-				echo "
-					<div id='content'>
-						<span style='font-size:30px; cursor:pointer' onclick=openNav()>&#9776;</span>
-					</div>
-				";
-
 				if($query == "add"){
 					include("./apis/vehicles.php");
 
@@ -52,7 +46,7 @@
 						<div class='card account custom-shadow mt-4 p-3'>
 							<h3 class='text-center'>Create Schedule</h3>
 							<hr>
-							<form class='card-body' method='POST' action='apis/add-schedule.php'>
+							<form class='card-body' method='POST' action='./apis/add-schedule.php'>
 								<div class='form-group'>
 									<label>Select Vehicle:</label>
 									$vehicles_dropdown
@@ -118,7 +112,7 @@
                                 <tbody>
                     ";
 
-					include("apis/schedules.php");
+					include("./apis/schedules.php");
 
                     foreach ($schedules as $key => $value) {
                         $schedule_id = $value["schedule_id"];
@@ -165,7 +159,7 @@
 					$schedule_id = $_GET["schedule_id"];
 
 					// fetch driver details using driver id
-					include("apis/schedule.php");
+					include("./apis/schedule.php");
 
 					$schedule_id = $schedule["schedule_id"];
 					$arrival = $schedule["arrival"];
@@ -188,6 +182,8 @@
 						$vehicle_id = $vehicle["vehicle_id"];
 						$vehicle_number = ucwords($vehicle["vehicle_number"]);
 						if($vehicle_id == $selected_vehicle_id){
+							$vehicles_dropdown .= "<option value='$vehicle_id' selected>$vehicle_number</option>";
+						}else{
 							$vehicles_dropdown .= "<option value='$vehicle_id'>$vehicle_number</option>";
 						}
 					}
@@ -197,7 +193,7 @@
 						<div class='card account custom-shadow mt-4 p-3'>
 							<h3 class='text-center'>Update Schedule</h3>
 							<hr>
-							<form class='card-body' method='POST' action='apis/update-schedule.php'>
+							<form class='card-body' method='POST' action='./apis/update-schedule.php'>
 								<input type='hidden' class='form-control' name='schedule_id' value='$schedule_id' >
 								<div class='form-group'>
 									<label>Select Vehicle:</label>

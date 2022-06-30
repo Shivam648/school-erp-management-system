@@ -1,5 +1,5 @@
 <?php
-include("config.php");
+include("../../../config.php");
 if (isset($_POST["add_route"])) {
     $start = strtolower($_POST["start"]);
     $finish = strtolower($_POST["finish"]);

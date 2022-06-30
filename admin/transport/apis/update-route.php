@@ -1,5 +1,5 @@
 <?php
-include("config.php");
+include("../../../config.php");
 if (isset($_POST["update_route"])) {
     $route_id = $_POST["route_id"];
     $start = strtolower($_POST["start"]);

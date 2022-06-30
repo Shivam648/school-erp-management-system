@@ -29,7 +29,7 @@
                         <a class="nav-link" href="../admin/admin.php">Dashboard</a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="#!">Transport</a>
+                        <a class="nav-link" href="../admin/transport/transport.php">Transport</a>
                     </li>
                     <li class="nav-item p-2">
                         <div class="dropdown" style="float:left;">

@@ -1,4 +1,4 @@
-<?php include("apis/config.php") ?>
+<?php include("../../config.php") ?>
 <!doctype html>
 <html lang="en">
 
@@ -12,7 +12,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Routes | Admin</title>
 		<!-- Add core styles here -->
-		<link rel="stylesheet" href="transport.css">
+		<link rel="stylesheet" href="../../assets/css/base-styles.css">
 		<!-- Latest compiled and minified CSS & JS or JQuery -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -29,21 +29,15 @@
 
 		<?php
 			if($_SESSION["user_category"] == "admin"){
+				include('./t-header.php');
 				$query = $_GET["query"];
-
-				include('sidebar.php');
-				echo "
-					<div id='content'>
-						<span style='font-size:30px; cursor:pointer' onclick=openNav()>&#9776;</span>
-					</div>
-				";
 
 				if($query == "add"){
 					echo "
 						<div class='card account custom-shadow mt-4 p-3'>
 							<h3 class='text-center'>Create Route</h3>
 							<hr>
-							<form class='card-body' method='POST' action='apis/add-route.php'>
+							<form class='card-body' method='POST' action='./apis/add-route.php'>
 								<div class='form-group'>
 									<label>Start:</label>
 									<input type='text' class='form-control' name='start' required>
@@ -83,7 +77,7 @@
                     ";
 
 					// drivers
-					include("apis/routes.php");
+					include("./apis/routes.php");
 
                     foreach ($routes as $key => $value) {
                         $route_id = $value["route_id"];
@@ -100,7 +94,7 @@
                                     <td>$fair</td>
                                     <td>$status</td>
 									<td>
-										<a href='apis/delete-route.php?route_id=$route_id' class='text-danger pr-2'>Delete</a>
+										<a href='./apis/delete-route.php?route_id=$route_id' class='text-danger pr-2'>Delete</a>
 										<a href='routes.php?query=update&route_id=$route_id' class='text-primary'>Update</a>
 									</td>
                                 </tr>
