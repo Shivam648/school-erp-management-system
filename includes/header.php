@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md">
     <!-- Logo -->
-    <p class="text-primary"><a class="navbar-brand" href="../index.php">Logo.</a></p>
+    <p class="text-primary"><a class="navbar-brand" href="../index.php">Yantromitra.</a></p>
 
     <!-- Toggler/collapsibe Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
