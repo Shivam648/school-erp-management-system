@@ -10,17 +10,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Home | ERP</title>
-        <!-- Add core styles here -->
-        <link rel="stylesheet" href="./assets/css/base-styles.css">
+        <title>Home | ERP Model</title>
         <!-- Latest compiled and minified CSS & JS or JQuery -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="./assets/css/base-styles.css">
+        <?php include("./core-styles-scripts.html") ?>
     </head>
 
 <body>
@@ -90,7 +83,7 @@
         </div>
         <br>
 
-        <div class="service-container">
+        <div class="service-container" id="our-services">
             <h1>Our Services</h1>
             <div class="services">
                 <div class="service">
@@ -118,42 +111,18 @@
         </div>
 
 
-        <div class="row p-3">
+        <div class="row p-3" id="about-us">
             <div class="col-sx-1"></div>
             <div class="col-xs-10 content pl-4">
                 <p style="text-align: justify;"><i>“A computer would deserve to be called intelligent if it could deceive a human into believing that it was
                         human.” ~ Alan Turing</i></p>
-                <p style="text-align: justify;">The Department of Computer Science and Engineering (CSE) at National Institute of Technology Sikkim
-                    has been functioning since the inception of the Institute in the year 2010. The Department provides an
-                    outstanding teaching environment complemented by excellence in research.</p>
-                <p style="text-align: justify;">The Department offers four years B. Tech degree, two years M. Tech degree and Ph. D in Computer
-                    Science and Engineering. The Department has a comprehensive curriculum on topics related to all aspects
-                    of Computer Science with special emphasis on applicability that is provided using latest techniques of
-                    engineering. The course structure is up-to-date and includes courses on state-of-the-art curriculum to equip
-                    the students and teachers with the latest developments in the field. The Department aspires to develop
-                    interdisciplinary and multidisciplinary projects based on the expertise of faculty members.</p>
-                <p style="text-align: justify;">The major areas of on-going research in the Department include Artificial Intelligence, Machine
-                    Learning, Cryptography, Network Security, Parallel-Distributed and High-Performance Computing,
-                    Algorithms, Cloud Computing, Wireless and Sensor Networks, etc. The department and the Institute
-                    collectively focus on building research groups and leverage the research activities in Sikkim in particular,
-                    and North-East region in general using a coordinated effort of various other organizations working in the
-                    field of community development using science and technology. The Department has state-of-the-art
-                    infrastructure supported by high-speed Ethernet and wireless network.</p>
-                <p style="text-align: justify;">The faculty and students often collaborate on projects, working side-by-side with researchers from other
-                    departments across the campus, colleges of North-East region in India and with institutes abroad. In
-                    addition to the available excellent environment and quality research opportunities in the Department, there
-                    is also a real sense of community and teamwork. The Department enjoys a rich culture of research through
-                    various projects under schemes such as Visvesvaraya Ph. D scheme, Research grants from DeitY and DST,
-                    National Mission on Himalayan Studies, specific developmental projects for North-East region, etc. The
-                    Department also contributes towards community developments through Unnat Bharat Abhiyan and
-                    scientific lifestyle development of local community (as per the scheme of the Department of Atomic
-                    Energy).</p>
-                <p style="text-align: justify;">The Department aims to become worthy in imparting high-quality knowledge and develop research attitude
-                    in Computer Science and Engineering domains as well as inter-disciplinary research with a purpose to
-                    serve humanity. These serviceable attitudes can be developed by imparting knowledge in cutting edge
-                    technologies keeping step with prevalent industrial standards, while at the same time instill societal
-                    responsibilities steeped in ethics for all professional activities.</p>
-                <p><b>Dr. Pratyay Kuila<br>Head of Computer Science & Engineering Department<br>e-mail: cse_hod@nitsikkim.ac.in</b></p>
+                <p style="text-align: justify;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non ab mollitia voluptas deleniti dolorum ipsum distinctio quis deserunt, tempore voluptatum. Labore enim molestias impedit, deleniti quaerat maiores deserunt cum iure.</p>
+                <p style="text-align: justify;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non ab mollitia voluptas deleniti dolorum ipsum distinctio quis deserunt, tempore voluptatum. Labore enim molestias impedit, deleniti quaerat maiores deserunt cum iure.</p>
+                <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus iste sequi ea in, nam impedit quis reiciendis sed perspiciatis animi fuga voluptate minima cupiditate nisi voluptatem ut culpa accusantium! Sequi in quae fugiat tempore. Deserunt, ut adipisci ipsum quidem ipsam sed ab voluptates, animi dignissimos tempora saepe veniam mollitia corporis?</p>
+                <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus iste sequi ea in, nam impedit quis reiciendis sed perspiciatis animi fuga voluptate minima cupiditate nisi voluptatem ut culpa accusantium! Sequi in quae fugiat tempore. Deserunt, ut adipisci ipsum quidem ipsam sed ab voluptates, animi dignissimos tempora saepe veniam mollitia corporis?</p>
+                <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus iste sequi ea in, nam impedit quis reiciendis sed perspiciatis animi fuga voluptate minima cupiditate nisi voluptatem ut culpa accusantium! Sequi in quae fugiat tempore. Deserunt, ut adipisci ipsum quidem ipsam sed ab voluptates, animi dignissimos tempora saepe veniam mollitia corporis?</p>
+                <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, maiores rem magnam sint quibusdam fugit labore quod error, ipsa beatae atque minus consequatur. Ipsam pariatur recusandae vero suscipit totam, sapiente impedit ut ex necessitatibus harum labore debitis non dolores nobis nulla tempora exercitationem minus, illo distinctio? Vitae suscipit expedita quas?</p>
+                <p><b>Mr. Swaraj Kumar Chaudhary<br>Head of Organization<br>swarajkumarchaudhary1729@gmail.com</b></p>
 
                 </b>
             </div>

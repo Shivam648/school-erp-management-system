@@ -13,6 +13,6 @@ if (isset($_POST["add_schedule"])) {
     } else {
         $add_schedule = "INSERT INTO vehicles_schedule (`vehicle_id`,`arrival`,`departure`,`route_id`,`active`) VALUES ('$vehicle_id','$arrival','$departure','$route_id','1') ";
         $response = mysqli_query($conn, $add_schedule) or die(mysqli_error($conn));
-        header('Location: ../transport.php');
+        header('Location: ../../../admin/transport/schedules.php?query=manage');
     }
 }

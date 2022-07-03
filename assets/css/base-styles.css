@@ -111,6 +111,6 @@ html, body{
     flex: 1;
 }
 
-#footer  ul{
+ul{
     list-style-type: none;
 }

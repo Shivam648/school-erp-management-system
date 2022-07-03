@@ -12,6 +12,6 @@ if (isset($_POST["add_route"])) {
     } else {
         $add_route = "INSERT INTO routes (`start`,`finish`,`fair`,`active`) VALUES ('$start','$finish','$fair','1') ";
         $response = mysqli_query($conn, $add_route) or die(mysqli_error($conn));
-        header('Location: ../transport.php');
+        header('Location: ../../../admin/transport/routes.php?query=manage');
     }
 }

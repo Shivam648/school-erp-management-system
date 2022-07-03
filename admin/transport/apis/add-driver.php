@@ -17,6 +17,6 @@ if (isset($_POST["add_driver"])) {
         $password = sha1($password);
         $add_driver = "INSERT INTO miscellaneous (`name`,`email`,`gender`,`phone`,`category`,`address`,`password`,`doj`,`active`) VALUES ('$name','$email','$gender','$phone','driver','$address','$password','$doj','1') ";
         $response = mysqli_query($conn, $add_driver) or die(mysqli_error($conn));
-        header('Location: ../transport.php');
+        header('Location: ../../../admin/transport/drivers.php?query=manage');
     }
 }

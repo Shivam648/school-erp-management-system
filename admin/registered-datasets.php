@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | Manage</title>
+    <title>Manage | Admin</title>
     <!-- Add core styles here -->
     <link rel="stylesheet" href="../assets/css/base-styles.css">
     <!-- Latest compiled and minified CSS & JS or JQuery -->
@@ -74,6 +74,7 @@
 
                     // get all students of a class
                     include("../info/students-classID.php");
+                    echo "<h2 class='text-center'>List of students</h2>";
 
                     if (mysqli_num_rows($response) > 0) {
                         echo "
@@ -134,6 +135,7 @@
             }
 
             if ($object == "teacher") {
+                echo "<h2 class='text-center'>List of teachers</h2>";
                 echo "
                         <div class='table-responsive mt-3'>
                             <table class='table table-striped'>
@@ -184,6 +186,7 @@
             }
 
             if ($object == "subject") {
+                echo "<h2 class='text-center'>List of subjects</h2>";
                 echo "
                         <div class='table-responsive mt-3'>
                             <table class='table table-striped'>
@@ -234,6 +237,7 @@
             }
 
             if ($object == "class") {
+                echo "<h2 class='text-center'>List of classes</h2>";
                 echo "
                         <div class='table-responsive mt-3'>
                             <table class='table table-striped'>
@@ -273,6 +277,7 @@
             }
 
             if ($object == "announcement") {
+                echo "<h2 class='text-center'>List of announcements</h2>";
                 echo "
                         <div class='table-responsive mt-3'>
                             <table class='table table-striped'>

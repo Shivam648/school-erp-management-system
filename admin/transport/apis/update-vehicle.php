@@ -12,7 +12,7 @@ if (isset($_POST["update_vehicle"])) {
     if (mysqli_num_rows($response) == 1) {
         $update_vehicle = "UPDATE vehicles SET `vehicle_type` = '$vehicle_type', `vehicle_number` = '$vehicle_number', `driver_id` = '$driver_id', `active` = '$status' WHERE `vehicle_id` = '$vehicle_id'";
         $response = mysqli_query($conn, $update_vehicle) or die(mysqli_error($conn));
-        header('Location: ../transport.php');
+        header('Location: ../../../admin/transport/schedules.php?query=manage');
     } else {
         echo "There was some problem finding the vehicle, contact admin...";
     }

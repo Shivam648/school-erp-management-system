@@ -10,5 +10,5 @@ if (isset($_POST["update_route"])) {
 
     $update_route = "UPDATE routes SET `start` = '$start', `finish` = '$finish', `fair` = '$fair', `active` = '$status' WHERE `route_id` = '$route_id'";
     $response = mysqli_query($conn, $update_route) or die(mysqli_error($conn));
-    header('Location: ../transport.php');
+    header('Location: ../../../admin/transport/routes.php?query=manage');
 }

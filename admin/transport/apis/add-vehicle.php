@@ -12,6 +12,6 @@ if (isset($_POST["add_vehicle"])) {
     } else {
         $add_vehicle = "INSERT INTO vehicles (`vehicle_type`,`vehicle_number`,`driver_id`,`active`) VALUES ('$vehicle_type','$vehicle_number','$driver_id','1') ";
         $response = mysqli_query($conn, $add_vehicle) or die(mysqli_error($conn));
-        header('Location: ../transport.php');
+        header('Location: ../../../admin/transport/vehicles.php?query=manage');
     }
 }

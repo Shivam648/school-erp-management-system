@@ -9,45 +9,40 @@ include("./config.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | School ERP Management System</title>
-    <!-- Add core styles here -->
-    <link rel="stylesheet" href="./assets/css/base-styles.css">
+    <title>Login | ERP Model</title>
     <!-- Latest compiled and minified CSS & JS or JQuery -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/base-styles.css">
+    <?php include("./core-styles-scripts.html") ?>
 </head>
 
 <body>
     <div class="container-fluid p-5">
         <div class='card account custom-shadow mt-5 pt-3'>
             <h3 class='text-center'>Login Form</h3>
+            <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, eligendi!</p>
             <hr>
             <form class='card-body' method='POST' action='account-api.php'>
-
+                <div class='form-group'>
+                    <label>Category:</label>
+                    <select class='form-control' name='category' required>
+                        <option value='student' selected>student</option>
+                        <option value='teacher'>teacher</option>
+                        <option value='driver'>driver</option>
+                        <option value='accountant'>accountant</option>
+                        <option value='admin'>admin</option>
+                    </select>
+                </div>
                 <div class='form-group'>
                     <label>Email:</label>
                     <input type='email' class='form-control' name='email' required>
                 </div>
-
                 <div class='form-group'>
                     <label>Password:</label>
                     <input type='password' class='form-control' name='password' required>
                 </div>
-
-                <div class="text-center">
-                    <label class="radio-inline pr-2"><input type="radio" name="category" value="student" checked>Student</label>
-                    <label class="radio-inline pr-2"><input type="radio" name="category" value="teacher">Teacher</label>
-                    <label class="radio-inline pr-2"><input type="radio" name="category" value="admin">Admin</label>
-                </div>
-                <p class="text-center">No credentials? Please contact admin for login credentials</p>
                 <br>
                 <div class='text-center'>
-                    <button type='submit' name='login' class='btn btn-primary w-50'>LogIn</button>
+                    <button type='submit' name='login' class='btn btn-primary w-50'>SIGN IN</button>
                 </div>
             </form>
         </div>

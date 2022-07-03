@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md">
     <!-- Logo -->
-    <p class="text-primary"><a class="navbar-brand" href="../index.php">Yantromitra.</a></p>
+    <p class="text-primary"><a class="navbar-brand" href="../index.php">ERP Model.</a></p>
 
     <!-- Toggler/collapsibe Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -16,6 +16,12 @@
             echo '
                 <ul class="navbar-nav">
                     <li class="nav-item">
+                        <a class="nav-link text-primary" href="#our-services">Our Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" href="#about-us">About Us</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link text-primary" href="./login.php">Login</a>
                     </li>
                 </ul>
@@ -29,7 +35,7 @@
                         <a class="nav-link" href="../admin/admin.php">Dashboard</a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="../admin/transport/transport.php">Transport</a>
+                        <a class="nav-link" href="../admin/transport/schedules.php?query=manage">Transport</a>
                     </li>
                     <li class="nav-item p-2">
                         <div class="dropdown" style="float:left;">
@@ -113,6 +119,35 @@
                     </li>
                     <li class="nav-item p-2">
                         <a class="nav-link" href="../logout.php">Logout</a>
+                    </li>
+                </ul>
+            ';
+        }
+
+        if ($_SESSION["user_category"] == "driver") {
+            echo '
+                <ul class="navbar-nav text-center">
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="../driver/index.php">Dashboard</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link text-primary" href="../logout.php">Logout</a>
+                    </li>
+                </ul>
+            ';
+        }
+
+        if ($_SESSION["user_category"] == "accountant") {
+            echo '
+                <ul class="navbar-nav text-center">
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="../accountant/index.php">Dashboard</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link" href="#!">Fees, Payments & Receipts</a>
+                    </li>
+                    <li class="nav-item p-2">
+                        <a class="nav-link text-primary" href="../logout.php">Logout</a>
                     </li>
                 </ul>
             ';

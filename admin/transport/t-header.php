@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md">
     <!-- Logo -->
-    <p class="text-primary"><a class="navbar-brand" href="../../index.php">Logo.</a></p>
+    <p class="text-primary"><a class="navbar-brand" href="../../index.php">ERP Model.</a></p>
 
     <!-- Toggler/collapsibe Button -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -13,9 +13,6 @@
         <ul class="navbar-nav text-center">
             <li class="nav-item p-2">
                 <a class="nav-link" href="../../admin/admin.php">Dashboard</a>
-            </li>
-            <li class="nav-item p-2">
-                <a class="nav-link" href="../../admin/transport/transport.php">Transport</a>
             </li>
             <li class="nav-item p-2">
                 <div class="dropdown" style="float:left;">

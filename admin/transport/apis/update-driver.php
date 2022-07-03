@@ -21,7 +21,7 @@ if (isset($_POST["update_driver"])) {
             $update_profile = "UPDATE miscellaneous SET `name` = '$name', `gender` = '$gender', `phone` = '$phone', `dob` = '$dob', `address` = '$address', `password` = '$password', `active` = '$status' WHERE `email` = '$email'";
         }
         $response = mysqli_query($conn, $update_profile) or die(mysqli_error($conn));
-        header('Location: ../transport.php');
+        header('Location: ../../../admin/transport/drivers.php?query=manage');
     } else {
         echo "There was some problem finding your account, contact account manager...";
     }
