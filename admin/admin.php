@@ -69,12 +69,12 @@
                     <li><a href="./students.php?query=manage">Manage Student</a></li>
                     <li><a href="./teachers.php?query=add">Add Teacher</a></li>
                     <li><a href="./teachers.php?query=manage">Manage Teacher</a></li>
+                    <li><a href="./announcements.php?query=add">Add Announcements</a></li>
+                    <li><a href="./announcements.php?query=manage">Manage Announcements</a></li>
                     <li><a href="./register-info.php?object=subject">Add Subject</a></li>
                     <li><a href="./registered-datasets.php?object=subject">Manage Subject</a></li>
                     <li><a href="./register-info.php?object=class">Add Class</a></li>
                     <li><a href="./registered-datasets.php?object=class">Manage Class</a></li>
-                    <li><a href="./register-info.php?object=announcement">Add Annoucements</a></li>
-                    <li><a href="./registered-datasets.php?object=announcement">Manage Annoucements</a></li>
                 </ul><br>
             </div>
             <br>
