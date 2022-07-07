@@ -67,8 +67,8 @@
                     <li><a href="./transport/schedules.php?query=manage">Transport</a></li>
                     <li><a href="./students.php?query=add">Add Student</a></li>
                     <li><a href="./students.php?query=manage">Manage Student</a></li>
-                    <li><a href="./register-info.php?object=teacher">Add Teacher</a></li>
-                    <li><a href="./registered-datasets.php?object=teacher">Manage Teacher</a></li>
+                    <li><a href="./teachers.php?query=add">Add Teacher</a></li>
+                    <li><a href="./teachers.php?query=manage">Manage Teacher</a></li>
                     <li><a href="./register-info.php?object=subject">Add Subject</a></li>
                     <li><a href="./registered-datasets.php?object=subject">Manage Subject</a></li>
                     <li><a href="./register-info.php?object=class">Add Class</a></li>
@@ -154,24 +154,6 @@
                     <div class="col-sm-3">
                         <div class="well">
                             <h4>Transport Schedules</h4>
-                            <p>2</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="well">
-                            <h4>Teacher Applicants</h4>
-                            <p>2</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="well">
-                            <h4>Student Applicants</h4>
-                            <p>2</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="well">
-                            <h4>Driver Applicants</h4>
                             <p>2</p>
                         </div>
                     </div>
