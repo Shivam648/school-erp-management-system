@@ -3,122 +3,183 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard | Admin</title>
-    <!-- Latest compiled and minified CSS & JS or JQuery -->
-    <link rel="stylesheet" href="../assets/css/base-styles.css">
-    <?php include("../core-styles-scripts.html") ?>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .row.content {
+            height: 100vh
+        }
+
+        .sidenav {
+            background-color: #f1f1f1;
+            height: 100%;
+        }
+
+        @media screen and (max-width: 767px) {
+            .row.content {
+                height: auto;
+            }
+        }
+    </style>
 </head>
 
 <body>
+
+    <nav class="navbar navbar-inverse visible-xs">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../index.php">ERP Model</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="./admin.php">Dashboard</a></li>
+                    <li><a href="./transport/schedules.php?query=manage">Transport</a></li>
+                    <li><a href="./register-info.php?object=student">Add Student</a></li>
+                    <li><a href="./registered-datasets.php?object=student">Manage Student</a></li>
+                    <li><a href="./register-info.php?object=teacher">Add Teacher</a></li>
+                    <li><a href="./registered-datasets.php?object=teacher">Manage Teacher</a></li>
+                    <li><a href="./register-info.php?object=subject">Add Subject</a></li>
+                    <li><a href="./registered-datasets.php?object=subject">Manage Subject</a></li>
+                    <li><a href="./register-info.php?object=class">Add Class</a></li>
+                    <li><a href="./registered-datasets.php?object=class">Manage Class</a></li>
+                    <li><a href="./register-info.php?object=announcement">Add Annoucements</a></li>
+                    <li><a href="./registered-datasets.php?object=announcement">Manage Annoucements</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <div class="container-fluid">
-        <?php
-        if ($_SESSION["user_category"] == "admin") {
-            include("../includes/header.php");
+        <div class="row content">
+            <div class="col-sm-2 sidenav hidden-xs">
+                <h4>ERP Model.</h4>
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="./admin.php">Dashboard</a></li>
+                    <li><a href="./transport/schedules.php?query=manage">Transport</a></li>
+                    <li><a href="./students.php?query=add">Add Student</a></li>
+                    <li><a href="./students.php?query=manage">Manage Student</a></li>
+                    <li><a href="./register-info.php?object=teacher">Add Teacher</a></li>
+                    <li><a href="./registered-datasets.php?object=teacher">Manage Teacher</a></li>
+                    <li><a href="./register-info.php?object=subject">Add Subject</a></li>
+                    <li><a href="./registered-datasets.php?object=subject">Manage Subject</a></li>
+                    <li><a href="./register-info.php?object=class">Add Class</a></li>
+                    <li><a href="./registered-datasets.php?object=class">Manage Class</a></li>
+                    <li><a href="./register-info.php?object=announcement">Add Annoucements</a></li>
+                    <li><a href="./registered-datasets.php?object=announcement">Manage Annoucements</a></li>
+                </ul><br>
+            </div>
+            <br>
 
-            echo '
-                <section class="content text-center align-items-center">
-                    <div class="d-flex justify-content-around flex-column flex-md-row">
-            ';
-
-            echo '
-                <div class="w-100 p-2">
-                    <div class="small-box bg-info text-white p-3">
-                        <div class="inner">
-            ';
-
-            include("../info/students.php");
-            $num_students = mysqli_num_rows($response);
-            echo "<h3> $num_students </h3>";
-
-            echo '
-                                <p>Students Enrolled</p>
-                            </div>
-                            <a href="#!" class="btn text-white">More info</a>
+            <div class="col-sm-10">
+                <div class="well">
+                    <h4>Dashboard</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, laudantium. Hic suscipit modi, molestiae a veniam tenetur officiis nostrum. Doloribus praesentium dolorum culpa corporis qui quas magnam corrupti enim fugiat.</p>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="well">
+                            <h4>Ongoing Academic Year</h4>
+                            <p>01-06-22 to 01-06-23</p>
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore, eaque!</p>
                         </div>
                     </div>
-                ';
-            echo '
-                            <div class="w-100 p-2">
-                                <div class="small-box bg-success text-white p-3">
-                                    <div class="inner">
-                ';
-
-            include("../info/teachers.php");
-            $num_teachers = mysqli_num_rows($response);
-            echo "<h3> $num_teachers </h3>";
-
-            echo '
-                                <p>Teachers Registrations</p>
-                            </div>
-                            <a href="#!" class="btn text-white">More info</a>
+                    <div class="col-sm-6">
+                        <div class="well">
+                            <h4>Ongoing Financial Year</h4>
+                            <p>01-06-22 to 01-06-23</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate, sequi!</p>
                         </div>
                     </div>
-                ';
-            echo '
-                            <div class="w-100 p-2">
-                                <div class="small-box bg-danger text-white p-3">
-                                    <div class="inner">
-                ';
-
-            include("../info/subjects.php");
-            $num_subjects = mysqli_num_rows($response);
-            echo "<h3> $num_subjects </h3>";
-
-            echo '
-                                <p>Subjects Added</p>
-                            </div>
-                            <a href="#!" class="btn text-white">More info</a>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <h4>Registered Students</h4>
+                            <?php
+                            include("../info/students.php");
+                            $num_students = mysqli_num_rows($response);
+                            echo "<p>$num_students</p>"
+                            ?>
                         </div>
                     </div>
-                ';
-            echo '
-                            <div class="w-100 p-2">
-                                <div class="small-box bg-secondary text-white p-3">
-                                    <div class="inner">
-                ';
-
-            include("../info/announcements.php");
-            $active_announcements = mysqli_num_rows($response);
-            echo "<h3> $active_announcements </h3>";
-
-            echo '
-                                <p>Active Announcements</p>
-                            </div>
-                            <a href="#!" class="btn text-white">More info</a>
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <h4>Registered Teachers</h4>
+                            <?php
+                            include("../info/teachers.php");
+                            $num_teachers = mysqli_num_rows($response);
+                            echo "<p>$num_teachers</p>"
+                            ?>
                         </div>
                     </div>
-                ';
-            echo '
-                            <div class="w-100 p-2">
-                                <div class="small-box bg-dark text-white p-3">
-                                    <div class="inner">
-                ';
-
-            include("../info/classes.php");
-            $num_classes = mysqli_num_rows($response);
-            echo "<h3> $num_classes </h3>";
-
-            echo '
-                                <p>Active Classes</p>
-                            </div>
-                            <a href="#!" class="btn text-white">More info</a>
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <h4>Registered Drivers</h4>
+                            <?php
+                            include("./transport/apis/drivers.php");
+                            $num_drivers = mysqli_num_rows($response);
+                            echo "<p>$num_drivers</p>"
+                            ?>
                         </div>
                     </div>
-                ';
-
-
-            echo '
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <h4>Ongoing Sessions</h4>
+                            <?php
+                            include("../info/classes.php");
+                            $num_classes = mysqli_num_rows($response);
+                            echo "<p>$num_classes</p>"
+                            ?>
                         </div>
-                    </section>
-                ';
-        } else {
-            include("../page-not-found.php");
-        }
-        ?>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <h4>Active Announcements</h4>
+                            <?php
+                            include("../info/announcements.php");
+                            $num_announcements = mysqli_num_rows($response);
+                            echo "<p>$num_announcements</p>"
+                            ?>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <h4>Transport Schedules</h4>
+                            <p>2</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <h4>Teacher Applicants</h4>
+                            <p>2</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <h4>Student Applicants</h4>
+                            <p>2</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <h4>Driver Applicants</h4>
+                            <p>2</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 </body>
 
 </html>

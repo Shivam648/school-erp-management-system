@@ -32,7 +32,7 @@
             echo '
                 <ul class="navbar-nav text-center">
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="../admin/admin.php">Dashboard</a>
+                        <a class="nav-link" href="../admin/admin2.php">Dashboard</a>
                     </li>
                     <li class="nav-item p-2">
                         <a class="nav-link" href="../admin/transport/schedules.php?query=manage">Transport</a>

@@ -25,7 +25,6 @@
         <!-- Page accessible only to admin -->
         <?php
         if ($_SESSION["user_category"] == "admin") {
-            include("../includes/header.php");
             $object = $_GET["object"];
 
             echo '
