@@ -133,11 +133,11 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="well">
-                            <h4>Active Drivers</h4>
+                            <h4>Ongoing Subjects</h4>
                             <?php
-                            include("./transport/apis/drivers.php");
-                            $num_drivers = mysqli_num_rows($response);
-                            echo "<p>$num_drivers</p>"
+                            include("../info/subjects.php");
+                            $num_classes = mysqli_num_rows($response);
+                            echo "<p>$num_classes</p>"
                             ?>
                         </div>
                     </div>
@@ -148,6 +148,16 @@
                             include("../info/classes.php");
                             $num_classes = mysqli_num_rows($response);
                             echo "<p>$num_classes</p>"
+                            ?>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <h4>Active Drivers</h4>
+                            <?php
+                            include("./transport/apis/drivers.php");
+                            $num_drivers = mysqli_num_rows($response);
+                            echo "<p>$num_drivers</p>"
                             ?>
                         </div>
                     </div>

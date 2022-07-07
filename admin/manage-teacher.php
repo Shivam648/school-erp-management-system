@@ -11,7 +11,7 @@ if (isset($_POST["add_teacher"])) {
     $address = strtolower($_POST["address"]);
     $password = $_POST["password"];
 
-    $find_teacher = "SELECT * FROM teachers WHERE email = '$email' AND active = 1";
+    $find_teacher = "SELECT * FROM teachers WHERE email = '$email'";
     $response = mysqli_query($conn, $find_teacher) or die(mysqli_error($conn));
     if (mysqli_num_rows($response) == 1) {
         echo "Teacher already registered...";

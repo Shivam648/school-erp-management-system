@@ -117,7 +117,6 @@
                 $students_query = "SELECT 
                     students.student_id, students.name, students.email, students.phone, students.gender, students.dob, students.address, classes.standard 
                     FROM students JOIN classes ON students.class_id = classes.class_id WHERE students.active = 1 AND classes.active = 1
-                    GROUP BY classes.class_id ASC
                 ";
                 $response = mysqli_query($conn, $students_query);
                 $students_details = mysqli_fetch_all($response, MYSQLI_ASSOC);

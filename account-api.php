@@ -20,7 +20,11 @@ if (isset($_POST["login"])) {
         if ($user_details["password"] == sha1($password)) {
             $_SESSION["user_email"] = $user_details["email"];
             $_SESSION["user_category"] = $category;
-            header('Location: index.php');
+            if($_SESSION["user_category"] == "admin"){
+                header('Location: ./admin/admin.php');
+            }else{
+                header('Location: index.php');
+            }
         } else {
             echo "Password was incorrect, please try with a different password...";
         }

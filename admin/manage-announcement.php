@@ -6,7 +6,7 @@ if (isset($_POST["add_announcement"])) {
     $descr = strtolower($_POST["descr"]);
     $resource = $_POST["resource"];
 
-    $find_announcement = "SELECT * FROM announcements WHERE title = '$title' AND active = 1";
+    $find_announcement = "SELECT * FROM announcements WHERE title = '$title'";
     $response = mysqli_query($conn, $find_announcement) or die(mysqli_error($conn));
     if (mysqli_num_rows($response) == 1) {
         echo "Announcement already announced...";
@@ -24,7 +24,7 @@ if (isset($_POST["update_announcement"])) {
     $active = $_POST["active"];
     $resource = $_POST["resource"];
 
-    $find_announcement = "SELECT * FROM announcements WHERE title = '$title'";
+    $find_announcement = "SELECT * FROM announcements WHERE announcement_id = '$announcement_id'";
     $response = mysqli_query($conn, $find_announcement) or die(mysqli_error($conn));
     if (mysqli_num_rows($response) == 1) {
         $update_announcement = "UPDATE 
