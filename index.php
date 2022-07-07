@@ -30,25 +30,7 @@
                 </ul>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="./assets/vendor/slideshow-img-1.jpg" alt="Los Angeles">
-                        <div class="carousel-caption">
-                            <h3>Los Angeles</h3>
-                            <p>We had such a great time in LA!</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="./assets/vendor/slideshow-img-2.jpg" alt="Chicago">
-                        <div class="carousel-caption">
-                            <h3>Chicago</h3>
-                            <p>Thank you, Chicago!</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="./assets/vendor/slideshow-img-3.jpg" alt="New York">
-                        <div class="carousel-caption">
-                            <h3>New York</h3>
-                            <p>We love the Big Apple!</p>
-                        </div>
+                        <img src="./assets/vendor/slideshow-img-1.jpg" alt="School Preview">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carousel-update" data-slide="prev">

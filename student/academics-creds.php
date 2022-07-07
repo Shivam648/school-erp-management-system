@@ -20,11 +20,12 @@
         if ($_SESSION["user_category"] == "student") {
             include("../includes/header.php");
 
-            $student_id = $_SESSION["user_id"];
-            $find_student = "SELECT * FROM students WHERE `student_id` = '$student_id' AND `active` = '1'";
+            $email = $_SESSION["user_email"];
+            $find_student = "SELECT * FROM students WHERE `email` = '$email' AND `active` = '1'";
             $response = mysqli_query($conn, $find_student) or die(mysqli_error($conn));
             $student = mysqli_fetch_array($response, MYSQLI_ASSOC);
             $class_id = $student["class_id"];
+            $student_id = $student["student_id"];
 
             // get standard using class id
             include("../info/standard-classID.php");

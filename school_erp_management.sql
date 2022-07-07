@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2022 at 05:55 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Jul 04, 2022 at 03:46 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -67,6 +67,9 @@ CREATE TABLE `classes` (
   `class_id` int(11) NOT NULL,
   `standard` varchar(255) NOT NULL,
   `subject_ids` varchar(255) NOT NULL,
+  `description` varchar(20) NOT NULL,
+  `total_amount` int(50) NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
   `active` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='subjects in each class';
 
@@ -74,9 +77,37 @@ CREATE TABLE `classes` (
 -- Dumping data for table `classes`
 --
 
-INSERT INTO `classes` (`class_id`, `standard`, `subject_ids`, `active`) VALUES
-(1, 'one', '[\"1\",\"4\",\"3\"]', 1),
-(2, 'two', '[\"2\"]', 1);
+INSERT INTO `classes` (`class_id`, `standard`, `subject_ids`, `description`, `total_amount`, `date_created`, `active`) VALUES
+(1, 'one', '[\"1\",\"4\",\"3\"]', 'course1', 4500, '2022-07-03 12:00:28', 1),
+(2, 'two', '[\"2\"]', 'new fee', 6000, '2022-07-03 12:00:28', 1),
+(3, 'three', '[\"1\"]', 'course3', 4000, '2022-07-03 13:55:21', 1),
+(4, 'four', '[\"2\"]', 'course4', 4000, '2022-07-03 13:56:31', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fees`
+--
+
+CREATE TABLE `fees` (
+  `id` int(30) NOT NULL,
+  `course_id` int(30) NOT NULL,
+  `description` varchar(200) NOT NULL,
+  `amount` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `fees`
+--
+
+INSERT INTO `fees` (`id`, `course_id`, `description`, `amount`) VALUES
+(1, 1, 'Tuition', 3000),
+(3, 1, 'sample', 1500),
+(19, 2, 'tution', 5000),
+(36, 4, 'tution', 2000),
+(37, 3, 'tution', 4000),
+(39, 2, 'bus', 1000),
+(40, 4, 'van', 2000);
 
 -- --------------------------------------------------------
 
@@ -128,6 +159,33 @@ INSERT INTO `miscellaneous` (`miscellaneous_id`, `name`, `email`, `password`, `c
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `id` int(30) NOT NULL,
+  `ef_id` int(30) NOT NULL,
+  `amount` float NOT NULL,
+  `remarks` text NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`id`, `ef_id`, `amount`, `remarks`, `date_created`) VALUES
+(9, 2, 200, 'new pay adones', '2022-06-28 18:48:57'),
+(10, 1, 400, 'tution fee', '2022-06-30 20:16:41'),
+(11, 3, 1000, 'dfghbht', '2022-06-30 20:47:07'),
+(12, 3, 100, 'new pay', '2022-07-01 18:10:45'),
+(13, 5, 1000, 'new pay', '2022-07-03 20:56:17'),
+(14, 8, 6000, 'whole pay', '2022-07-03 21:23:38'),
+(15, 6, 200, 'now pay', '2022-07-04 19:14:14');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `routes`
 --
 
@@ -174,6 +232,33 @@ CREATE TABLE `students` (
 INSERT INTO `students` (`student_id`, `name`, `email`, `password`, `class_id`, `phone`, `gender`, `dob`, `doj`, `address`, `active`) VALUES
 (1, 'happy chaudhary', 'happy.org@gmail.com', '3978d009748ef54ad6ef7bf851bd55491b1fe6bb', 1, '8002046457', 'male', '2022-07-01', '2022-07-03', 'ahiyapur, bihar', 1),
 (2, 'sudhanshu chaudhary', 'sudhanshu.org@gmail.com', '9251fe746968404db8d1223406586371959efe0f', 2, '8002046457', 'male', '2022-07-01', '2022-07-03', 'chanakyapuri, bihar', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_ef_list`
+--
+
+CREATE TABLE `student_ef_list` (
+  `id` int(30) NOT NULL,
+  `student_id` int(30) NOT NULL,
+  `ef_no` varchar(200) NOT NULL,
+  `course_id` int(30) NOT NULL,
+  `total_fee` float NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `month` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `student_ef_list`
+--
+
+INSERT INTO `student_ef_list` (`id`, `student_id`, `ef_no`, `course_id`, `total_fee`, `date_created`, `month`) VALUES
+(2, 1, '2020-65427823', 1, 4500, '2020-10-31 13:12:13', 'jan'),
+(5, 2, '2020-667586', 2, 6000, '2022-07-03 20:53:25', 'jan'),
+(6, 2, '2020-66756', 1, 4500, '2022-07-03 21:02:06', 'August'),
+(8, 1, '2020-87427824', 2, 6000, '2022-07-03 21:07:39', 'November'),
+(10, 1, '2020-6867356', 3, 4000, '2022-07-03 21:35:01', 'September');
 
 -- --------------------------------------------------------
 
@@ -292,10 +377,22 @@ ALTER TABLE `classes`
   ADD PRIMARY KEY (`class_id`);
 
 --
+-- Indexes for table `fees`
+--
+ALTER TABLE `fees`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `miscellaneous`
 --
 ALTER TABLE `miscellaneous`
   ADD PRIMARY KEY (`miscellaneous_id`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `routes`
@@ -308,6 +405,12 @@ ALTER TABLE `routes`
 --
 ALTER TABLE `students`
   ADD PRIMARY KEY (`student_id`);
+
+--
+-- Indexes for table `student_ef_list`
+--
+ALTER TABLE `student_ef_list`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `subjects`
@@ -347,13 +450,25 @@ ALTER TABLE `announcements`
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `fees`
+--
+ALTER TABLE `fees`
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `miscellaneous`
 --
 ALTER TABLE `miscellaneous`
   MODIFY `miscellaneous_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `routes`
@@ -366,6 +481,12 @@ ALTER TABLE `routes`
 --
 ALTER TABLE `students`
   MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `student_ef_list`
+--
+ALTER TABLE `student_ef_list`
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `subjects`
