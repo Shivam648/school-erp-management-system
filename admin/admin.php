@@ -71,10 +71,10 @@
                     <li><a href="./teachers.php?query=manage">Manage Teacher</a></li>
                     <li><a href="./announcements.php?query=add">Add Announcements</a></li>
                     <li><a href="./announcements.php?query=manage">Manage Announcements</a></li>
-                    <li><a href="./register-info.php?object=subject">Add Subject</a></li>
-                    <li><a href="./registered-datasets.php?object=subject">Manage Subject</a></li>
-                    <li><a href="./register-info.php?object=class">Add Class</a></li>
-                    <li><a href="./registered-datasets.php?object=class">Manage Class</a></li>
+                    <li><a href="./subjects.php?query=add">Add Subject</a></li>
+                    <li><a href="./subjects.php?query=manage">Manage Subject</a></li>
+                    <li><a href="./classes.php?query=add">Add Class</a></li>
+                    <li><a href="./classes.php?query=manage">Manage Class</a></li>
                 </ul><br>
             </div>
             <br>
@@ -123,7 +123,17 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="well">
-                            <h4>Registered Drivers</h4>
+                            <h4>Active Announcements</h4>
+                            <?php
+                            include("../info/announcements.php");
+                            $num_announcements = mysqli_num_rows($response);
+                            echo "<p>$num_announcements</p>"
+                            ?>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <h4>Active Drivers</h4>
                             <?php
                             include("./transport/apis/drivers.php");
                             $num_drivers = mysqli_num_rows($response);
@@ -138,16 +148,6 @@
                             include("../info/classes.php");
                             $num_classes = mysqli_num_rows($response);
                             echo "<p>$num_classes</p>"
-                            ?>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="well">
-                            <h4>Active Announcements</h4>
-                            <?php
-                            include("../info/announcements.php");
-                            $num_announcements = mysqli_num_rows($response);
-                            echo "<p>$num_announcements</p>"
                             ?>
                         </div>
                     </div>

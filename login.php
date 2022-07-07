@@ -27,7 +27,6 @@ include("./config.php");
                     <select class='form-control' name='category' required>
                         <option value='student' selected>student</option>
                         <option value='teacher'>teacher</option>
-                        <option value='driver'>driver</option>
                         <option value='accountant'>accountant</option>
                         <option value='admin'>admin</option>
                     </select>
