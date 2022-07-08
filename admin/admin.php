@@ -58,20 +58,24 @@
                         ";
                 } else {
                     echo "
-                            <ul class='nav nav-pills nav-stacked'>
-                                <li><a href='./admin.php?transport=true'>Transport Management</a></li>
-                                <li><a href='./students.php?query=add'>Add Student</a></li>
-                                <li><a href='./students.php?query=manage'>Manage Student</a></li>
-                                <li><a href='./teachers.php?query=add'>Add Teacher</a></li>
-                                <li><a href='./teachers.php?query=manage'>Manage Teacher</a></li>
-                                <li><a href='./announcements.php?query=add'>Add Announcements</a></li>
-                                <li><a href='./announcements.php?query=manage'>Manage Announcements</a></li>
-                                <li><a href='./subjects.php?query=add'>Add Subject</a></li>
-                                <li><a href='./subjects.php?query=manage'>Manage Subject</a></li>
-                                <li><a href='./classes.php?query=add'>Add Class</a></li>
-                                <li><a href='./classes.php?query=manage'>Manage Class</a></li>
-                                <li><a href='../logout.php'>Logout</a></li>
-                            </ul>
+                        <ul class='nav nav-pills nav-stacked'>
+                            <li><a href='./admin.php?transport=true'>Transport Management</a></li>
+                            <li><a href='./students.php?query=add'>Add Student</a></li>
+                            <li><a href='./students.php?query=manage'>Manage Student</a></li>
+                            <li><a href='./teachers.php?query=add'>Add Teacher</a></li>
+                            <li><a href='./teachers.php?query=manage'>Manage Teacher</a></li>
+                            <li><a href='./announcements.php?query=add'>Add Announcements</a></li>
+                            <li><a href='./announcements.php?query=manage'>Manage Announcements</a></li>
+                            <li><a href='./subjects.php?query=add'>Add Subject</a></li>
+                            <li><a href='./subjects.php?query=manage'>Manage Subject</a></li>
+                            <li><a href='./classes.php?query=add'>Add Class</a></li>
+                            <li><a href='./classes.php?query=manage'>Manage Class</a></li>
+                            <li><a href='./timetables.php?query=add'>Add Timetable</a></li>
+                            <li><a href='./timetables.php?query=manage'>Manage Timetable</a></li>
+                            <li><a href='./syllabuses.php?query=add'>Add Syllabus</a></li>
+                            <li><a href='./syllabuses.php?query=manage'>Manage Syllabus</a></li>
+                            <li><a href='../logout.php'>Logout</a></li>
+                        </ul>
                         ";
                 }
                 ?>
@@ -115,6 +119,8 @@
                                 <li><a href='./classes.php?query=manage'>Manage Class</a></li>
                                 <li><a href='./timetables.php?query=add'>Add Timetable</a></li>
                                 <li><a href='./timetables.php?query=manage'>Manage Timetable</a></li>
+                                <li><a href='./syllabuses.php?query=add'>Add Syllabus</a></li>
+                                <li><a href='./syllabuses.php?query=manage'>Manage Syllabus</a></li>
                                 <li><a href='../logout.php'>Logout</a></li>
                             </ul>
                         ";
