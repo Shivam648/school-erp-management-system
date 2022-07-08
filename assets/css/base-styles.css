@@ -114,3 +114,8 @@ html, body{
 ul{
     list-style-type: none;
 }
+
+.timetable, .syllabus{
+    width: 50vw;
+    height: 100vh;
+}

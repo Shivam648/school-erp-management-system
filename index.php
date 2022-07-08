@@ -72,6 +72,61 @@
         </div>
         <br>
 
+        <div class="jumbotron jumbotron-fluid mt-5">
+            <h2>Today's Transport Schedules</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque ex nisi accusamus debitis nam quisquam facere tempora asperiores tempore optio?</p>
+            <?php
+            $today = strtolower(date('l'));
+
+            $schedules_query = "SELECT * FROM vehicles_schedule WHERE day = '$today' ORDER BY departure";
+            $response = mysqli_query($conn, $schedules_query);
+            $schedules_details = mysqli_fetch_all($response, MYSQLI_ASSOC);
+
+            echo "
+                <table class='table table-hover'>
+                    <thead>
+                        <tr>
+                            <th>Vehicle No.</th>
+                            <th>Departure Time</th>
+                            <th>Arrival Time</th>
+                            <th>Route</th>
+                            <th>Driver</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            ";
+
+            foreach ($schedules_details as $attribute => $schedule_details) {
+                $driver_query = "SELECT * FROM miscellaneous WHERE miscellaneous_id = '{$schedule_details['driver_id']}' ";
+                $response = mysqli_query($conn, $driver_query) or die(mysqli_error($conn));
+                $driver_details = mysqli_fetch_array($response, MYSQLI_ASSOC);
+
+                $route_query = "SELECT * FROM routes WHERE route_id = '{$schedule_details['route_id']}' ";
+                $response = mysqli_query($conn, $route_query);
+                $route_details = mysqli_fetch_array($response, MYSQLI_ASSOC);
+
+                $vehicle_query = "SELECT * FROM vehicles WHERE vehicle_id = '{$schedule_details['vehicle_id']}' ";
+                $response = mysqli_query($conn, $vehicle_query);
+                $vehicle_details = mysqli_fetch_array($response, MYSQLI_ASSOC);
+
+                echo "
+                    <tr>
+                        <td>{$vehicle_details['vehicle_number']}</td>
+                        <td>{$schedule_details['departure']}</td>
+                        <td>{$schedule_details['arrival']}</td>
+                        <td>{$route_details['start']} to {$route_details['finish']}</td>
+                        <td>{$driver_details['name']}</td>
+                    </tr>
+                ";
+            }
+
+            echo "
+                        </tbody>
+                    </table>
+                ";
+            ?>
+        </div>
+
         <div class="service-container" id="our-services">
             <h1>Our Services</h1>
             <div class="services">

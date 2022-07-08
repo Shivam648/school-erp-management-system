@@ -113,6 +113,8 @@
                                 <li><a href='./subjects.php?query=manage'>Manage Subject</a></li>
                                 <li><a href='./classes.php?query=add'>Add Class</a></li>
                                 <li><a href='./classes.php?query=manage'>Manage Class</a></li>
+                                <li><a href='./timetables.php?query=add'>Add Timetable</a></li>
+                                <li><a href='./timetables.php?query=manage'>Manage Timetable</a></li>
                                 <li><a href='../logout.php'>Logout</a></li>
                             </ul>
                         ";
