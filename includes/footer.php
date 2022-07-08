@@ -10,7 +10,7 @@
             <div class="col-md-2 row-col">
                 <ul>
                     <h4>Syllabus</h4>
-                    <li><a href="#!">View by Standard</a></li>
+                    <li><a href="../syllabus.php">View by Standard</a></li>
                 </ul>
             </div>
             <div class="col-md-2 row-col">

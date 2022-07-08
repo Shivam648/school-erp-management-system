@@ -18,6 +18,12 @@
                         <a class="nav-link text-primary" href="#about-us">About Us</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link text-primary" href="../timetable.php">Timetable</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" href="../syllabus.php">Syllabus</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link text-primary" href="../login.php">Login</a>
                     </li>
                 </ul>
@@ -46,6 +52,12 @@
                     <li class="nav-item p-2">
                         <a class="nav-link" href="../profile.php">Profile</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" href="../timetable.php">Timetable</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" href="../syllabus.php">Syllabus</a>
+                    </li>
                     <li class="nav-item p-2">
                         <a class="nav-link" href="../logout.php">Logout</a>
                     </li>
@@ -64,6 +76,12 @@
                     </li>
                     <li class="nav-item p-2">
                         <a class="nav-link" href="../profile.php">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" href="../timetable.php">Timetable</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" href="../syllabus.php">Syllabus</a>
                     </li>
                     <li class="nav-item p-2">
                         <a class="nav-link" href="../logout.php">Logout</a>

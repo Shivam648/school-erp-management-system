@@ -9,7 +9,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Timetable | ERP Model</title>
+        <title>Syllabus | ERP Model</title>
         <link rel="stylesheet" href="./assets/css/base-styles.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -48,7 +48,7 @@
                         </div>
                         <br>
                         <div class='text-center'>
-                            <button type='submit' name='find_timetable' class='btn btn-outline-primary w-50'>Get Timetable</a>
+                            <button type='submit' name='find_syllabus' class='btn btn-outline-primary w-50'>Get Syllabus</a>
                         </div>
                     </div>
                 ";
@@ -58,7 +58,7 @@
                 $file = $_GET['file'];
                 echo "
                     <section class='text-center'>
-                        <embed class='timetable' src='./assets/vendor/timetable/$file' />
+                        <embed class='timetable' src='./assets/vendor/syllabus/$file' />
                     </section>
                 ";
             }
