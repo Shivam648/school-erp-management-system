@@ -23,7 +23,7 @@ if (isset($_POST["login"])) {
             if($_SESSION["user_category"] == "admin"){
                 header('Location: ./admin/admin.php');
             }else{
-                header('Location: index.php');
+                header('Location: ./index.php');
             }
         } else {
             echo "Password was incorrect, please try with a different password...";
@@ -54,7 +54,7 @@ if (isset($_POST["update_student"])) {
             $update_profile = "UPDATE students SET `name` = '$name', `gender` = '$gender', `phone` = '$phone', `dob` = '$dob', `address` = '$address', `password` = '$password' WHERE `email` = '$email'";
         }
         $response = mysqli_query($conn, $update_profile) or die(mysqli_error($conn));
-        header('Location: logout.php');
+        header('Location: ./logout.php');
     } else {
         echo "There was some problem finding your account, report here at admin.org@gmail.com...";
     }
@@ -80,7 +80,7 @@ if (isset($_POST["update_teacher"])) {
             $update_profile = "UPDATE teachers SET `name` = '$name', `gender` = '$gender', `phone` = '$phone', `address` = '$address', `password` = '$password' WHERE `email` = '$email'";
         }
         $response = mysqli_query($conn, $update_profile) or die(mysqli_error($conn));
-        header('Location: logout.php');
+        header('Location: ./logout.php');
     } else {
         echo "There was some problem finding your account, report here at admin@org.com...";
     }
