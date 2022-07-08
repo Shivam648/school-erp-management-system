@@ -99,7 +99,7 @@
                                 <th>Gender</th>
                                 <th>D.O.J</th>
                                 <th>Address</th>
-                                <th>Active</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -209,24 +209,30 @@
 
                 }else if($driver_details['gender'] == 'female'){
                     echo "
-                        <div class='form-group'>
-                            <label>Gender:</label>
-                            <select class='form-control' name='gender' required>
-                                <option value='male'>Male</option>
-                                <option selected value='female'>Female</option>
-                                <option value='other'>Other</option>
-                            </select>
+                            <div class='col'>
+                                <div class='form-group'>
+                                    <label>Gender:</label>
+                                    <select class='form-control' name='gender' required>
+                                        <option value='male'>Male</option>
+                                        <option selected value='female'>Female</option>
+                                        <option value='other'>Other</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     ";
                 }else{
                     echo "
-                        <div class='form-group'>
-                            <label>Gender:</label>
-                            <select class='form-control' name='gender' required>
-                                <option value='male'>Male</option>
-                                <option value='female'>Female</option>
-                                <option selected value='other'>Other</option>
-                            </select>
+                            <div class='col'>
+                                <div class='form-group'>
+                                    <label>Gender:</label>
+                                    <select class='form-control' name='gender' required>
+                                        <option value='male'>Male</option>
+                                        <option value='female'>Female</option>
+                                        <option selected value='other'>Other</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     ";
                 }

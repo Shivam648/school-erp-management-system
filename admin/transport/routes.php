@@ -65,7 +65,7 @@
                                 <th>Start</th>
                                 <th>Finish</th>
                                 <th>Fair</th>
-                                <th>Active</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

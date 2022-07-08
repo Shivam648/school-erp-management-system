@@ -115,8 +115,8 @@
 
             if ($query == "manage") {
                 $students_query = "SELECT 
-                    students.student_id, students.name, students.email, students.phone, students.gender, students.dob, students.address, classes.standard 
-                    FROM students JOIN classes ON students.class_id = classes.class_id WHERE students.active = 1 AND classes.active = 1
+                    students.student_id, students.name, students.email, students.phone, students.gender, students.dob, students.address, students.active, classes.standard 
+                    FROM students JOIN classes ON students.class_id = classes.class_id ORDER BY classes.class_id ASC
                 ";
                 $response = mysqli_query($conn, $students_query);
                 $students_details = mysqli_fetch_all($response, MYSQLI_ASSOC);
@@ -136,6 +136,7 @@
                                 <th>Gender</th>
                                 <th>D.O.B</th>
                                 <th>Address</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -152,6 +153,15 @@
                             <td>{$student_details['gender']}</td>
                             <td>{$student_details['dob']}</td>
                             <td>{$student_details['address']}</td>
+                    ";
+
+                    if($student_details['active'] == '1'){
+                        echo "<td>Active</td>";
+                    }else{
+                        echo "<td>Inactive</td>";
+                    }
+
+                    echo "
                             <td>
                                 <a href='./students.php?query=delete&student_id={$student_details['student_id']}' class='text-danger pr-2'>Delete</a>
                                 <a href='./students.php?query=update&student_id={$student_details['student_id']}' class='text-primary'>Update</a>
@@ -258,6 +268,28 @@
                                     </select>
                                 </div>
                             </div>
+                        </div>
+                    ";
+                }
+
+                if($student_details['active'] == '1'){
+                    echo "
+                        <div class='form-group'>
+                            <label>Status:</label>
+                            <select class='form-control' name='active' required>
+                                <option selected value='1'>Active</option>
+                                <option value='0'>Inactive</option>
+                            </select>
+                        </div>
+                    ";
+                }else{
+                    echo "
+                        <div class='form-group'>
+                            <label>Status:</label>
+                            <select class='form-control' name='active' required>
+                                <option value='1'>Active</option>
+                                <option selected value='0'>Inactive</option>
+                            </select>
                         </div>
                     ";
                 }

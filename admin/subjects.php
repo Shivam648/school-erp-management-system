@@ -21,7 +21,7 @@
         <?php
         if ($_SESSION["user_category"] == "admin") {
             $query = $_GET["query"];
-            
+
             if ($query == "add") {
                 echo "
                     <div class='card account custom-shadow mt-5 p-3'>
@@ -103,7 +103,7 @@
                                 <th>Code</th>
                                 <th>Credit</th>
                                 <th>Teacher</th>
-                                <th>Active</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -120,12 +120,12 @@
                             <td>{$subject_details['name']}</td>
                     ";
 
-                    if($subject_details['active'] == 1){
+                    if ($subject_details['active'] == 1) {
                         echo "<td>Active</td>";
-                    }else{
+                    } else {
                         echo "<td>Inactive</td>";
                     }
-                    
+
                     echo "
                             <td>
                                 <a href='./subjects.php?query=delete&subject_id={$subject_details['subject_id']}' class='text-danger pr-2'>Delete</a>
@@ -143,13 +143,13 @@
 
             if ($query == "update") {
                 $subject_id = $_GET["subject_id"];
-                $subject_query = "SELECT * FROM subjects WHERE subject_id = subject_id";
+                $subject_query = "SELECT * FROM subjects WHERE subject_id = $subject_id";
                 $response = mysqli_query($conn, $subject_query);
                 $subject_details = mysqli_fetch_array($response, MYSQLI_ASSOC);
 
                 echo "
                     <div class='card account custom-shadow mt-5 p-3'>
-                        <h3 class='text-center'>Add Subject</h3>
+                        <h3 class='text-center'>Update Subject</h3>
                         <hr>
                         <form class='card-body' method='POST' action='manage-subject.php?subject_id=$subject_id'>
                             <div class='form-group'>
@@ -178,7 +178,7 @@
                                 </div>
                 ";
 
-                if($subject_details['active'] == '1'){
+                if ($subject_details['active'] == '1') {
                     echo "
                         <div class='col'>
                             <div class='form-group'>
@@ -190,7 +190,7 @@
                             </div>
                         </div>
                     ";
-                }else{
+                } else {
                     echo "
                         <div class='col'>
                             <div class='form-group'>
@@ -211,12 +211,15 @@
                             <select class='form-control' name='teacher_id' required>
                 ";
 
-                include("../info/teachers.php");
-                foreach ($teachers as $key => $teacher) {
-                    if($subject_details["teacher_id"] == $teacher["teacher_id"]){
-                        echo "<option selected value={$teacher['teacher_id']}>{$teacher['name']}</option>";
-                    }else{
-                        echo "<option value={$teacher['teacher_id']}>{$teacher['name']}</option>";
+                $teachers_query = "SELECT teacher_id, name FROM teachers WHERE active = 1 ORDER BY teacher_id ASC";
+                $response = mysqli_query($conn, $teachers_query) or die(mysqli_error($conn));
+                $teachers_details = mysqli_fetch_all($response, MYSQLI_ASSOC);
+
+                foreach ($teachers_details as $key => $teacher_details) {
+                    if ($subject_details["teacher_id"] == $teacher_details["teacher_id"]) {
+                        echo "<option value={$teacher_details['teacher_id']} selected>{$teacher_details['name']}</option>";
+                    } else {
+                        echo "<option value={$teacher_details['teacher_id']}>{$teacher_details['name']}</option>";
                     }
                 }
 
@@ -232,7 +235,7 @@
                 ";
             }
 
-            if($query == "delete"){
+            if ($query == "delete") {
                 $subject_id = $_GET["subject_id"];
                 $student_query = "DELETE FROM subjects WHERE subject_id = $subject_id";
                 mysqli_query($conn, $student_query) or die(mysqli_errno($conn));

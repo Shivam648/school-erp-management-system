@@ -41,23 +41,23 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <?php
-                    if(isset($_GET["transport"]) && $_GET["transport"] == true){
-                        echo "
+                if (isset($_GET["transport"]) && $_GET["transport"] == true) {
+                    echo "
                             <ul class='nav nav-pills nav-stacked'>
                                 <li><a href='./admin.php'>Dashboard</a></li>
-                                <li><a href='#!'>Add Vehicle</a></li>
-                                <li><a href='#!'>Manage Vehicle</a></li>
-                                <li><a href='#!'>Add Driver</a></li>
-                                <li><a href='#!'>Manage Driver</a></li>
-                                <li><a href='#!'>Add Route</a></li>
-                                <li><a href='#!'>Manage Route</a></li>
-                                <li><a href='#!'>Add Schedule</a></li>
-                                <li><a href='#!'>Manage Schedule</a></li>
+                                <li><a href='./transport/drivers.php?query=add'>Add Driver</a></li>
+                                <li><a href='./transport/drivers.php?query=manage'>Manage Driver</a></li>
+                                <li><a href='./transport/vehicles.php?query=add'>Add Vehicle</a></li>
+                                <li><a href='./transport/vehicles.php?query=manage'>Manage Vehicle</a></li>
+                                <li><a href='./transport/routes.php?query=add'>Add Route</a></li>
+                                <li><a href='./transport/routes.php?query=manage'>Manage Route</a></li>
+                                <li><a href='./transport/schedules.php?query=add'>Add Schedule</a></li>
+                                <li><a href='./transport/schedules.php?query=manage'>Manage Schedule</a></li>
                                 <li><a href='../logout.php'>Logout</a></li>
                             </ul>
                         ";
-                    }else{
-                        echo "
+                } else {
+                    echo "
                             <ul class='nav nav-pills nav-stacked'>
                                 <li><a href='./admin.php?transport=true'>Transport Management</a></li>
                                 <li><a href='./students.php?query=add'>Add Student</a></li>
@@ -73,7 +73,7 @@
                                 <li><a href='../logout.php'>Logout</a></li>
                             </ul>
                         ";
-                    }
+                }
                 ?>
             </div>
         </div>
@@ -84,26 +84,23 @@
             <div class="col-sm-2 sidenav hidden-xs">
                 <h4>ERP Model.</h4>
                 <?php
-                    if(isset($_GET["transport"]) && $_GET["transport"] == true){
-                        echo "
+                if (isset($_GET["transport"]) && $_GET["transport"] == true) {
+                    echo "
                             <ul class='nav nav-pills nav-stacked'>
                                 <li><a href='./admin.php'>Dashboard</a></li>
                                 <li><a href='./transport/drivers.php?query=add'>Add Driver</a></li>
                                 <li><a href='./transport/drivers.php?query=manage'>Manage Driver</a></li>
-
                                 <li><a href='./transport/vehicles.php?query=add'>Add Vehicle</a></li>
                                 <li><a href='./transport/vehicles.php?query=manage'>Manage Vehicle</a></li>
-    
                                 <li><a href='./transport/routes.php?query=add'>Add Route</a></li>
                                 <li><a href='./transport/routes.php?query=manage'>Manage Route</a></li>
-
                                 <li><a href='./transport/schedules.php?query=add'>Add Schedule</a></li>
                                 <li><a href='./transport/schedules.php?query=manage'>Manage Schedule</a></li>
                                 <li><a href='../logout.php'>Logout</a></li>
                             </ul>
                         ";
-                    }else{
-                        echo "
+                } else {
+                    echo "
                             <ul class='nav nav-pills nav-stacked'>
                                 <li><a href='./admin.php?transport=true'>Transport Management</a></li>
                                 <li><a href='./students.php?query=add'>Add Student</a></li>
@@ -119,7 +116,7 @@
                                 <li><a href='../logout.php'>Logout</a></li>
                             </ul>
                         ";
-                    }
+                }
                 ?>
             </div>
             <br>
@@ -150,8 +147,9 @@
                         <div class="well">
                             <h4>Registered Students</h4>
                             <?php
-                            include("../info/students.php");
-                            $num_students = mysqli_num_rows($response);
+                            $count_students = "SELECT COUNT(*) AS NUM_STUDENTS FROM students";
+                            $response = mysqli_query($conn, $count_students) or die(mysqli_error($conn));
+                            $num_students = mysqli_fetch_array($response)["NUM_STUDENTS"];
                             echo "<p>$num_students</p>"
                             ?>
                         </div>
@@ -160,8 +158,9 @@
                         <div class="well">
                             <h4>Registered Teachers</h4>
                             <?php
-                            include("../info/teachers.php");
-                            $num_teachers = mysqli_num_rows($response);
+                            $count_teachers = "SELECT COUNT(*) AS NUM_TEACHERS FROM teachers";
+                            $response = mysqli_query($conn, $count_teachers) or die(mysqli_error($conn));
+                            $num_teachers = mysqli_fetch_array($response)["NUM_TEACHERS"];
                             echo "<p>$num_teachers</p>"
                             ?>
                         </div>
@@ -170,28 +169,31 @@
                         <div class="well">
                             <h4>Active Announcements</h4>
                             <?php
-                            include("../info/announcements.php");
-                            $num_announcements = mysqli_num_rows($response);
-                            echo "<p>$num_announcements</p>"
+                            $count_announcements = "SELECT COUNT(*) AS NUM_ANNOUNCEMENTS FROM announcements WHERE active = 1";
+                            $response = mysqli_query($conn, $count_announcements) or die(mysqli_error($conn));
+                            $num_active_announcements = mysqli_fetch_array($response)["NUM_ANNOUNCEMENTS"];
+                            echo "<p>$num_active_announcements</p>"
                             ?>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="well">
-                            <h4>Ongoing Subjects</h4>
+                            <h4>Active Subjects</h4>
                             <?php
-                            include("../info/subjects.php");
-                            $num_classes = mysqli_num_rows($response);
-                            echo "<p>$num_classes</p>"
+                            $count_subjects = "SELECT COUNT(*) AS NUM_SUBJECTS FROM subjects WHERE active = 1";
+                            $response = mysqli_query($conn, $count_subjects) or die(mysqli_error($conn));
+                            $num_subjects = mysqli_fetch_array($response)["NUM_SUBJECTS"];
+                            echo "<p>$num_subjects</p>"
                             ?>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="well">
-                            <h4>Ongoing Sessions</h4>
+                            <h4>Active Classes</h4>
                             <?php
-                            include("../info/classes.php");
-                            $num_classes = mysqli_num_rows($response);
+                            $count_classes = "SELECT COUNT(*) AS NUM_CLASSES FROM classes WHERE active = 1";
+                            $response = mysqli_query($conn, $count_classes) or die(mysqli_error($conn));
+                            $num_classes = mysqli_fetch_array($response)["NUM_CLASSES"];
                             echo "<p>$num_classes</p>"
                             ?>
                         </div>
@@ -200,16 +202,33 @@
                         <div class="well">
                             <h4>Active Drivers</h4>
                             <?php
-                            include("./transport/apis/drivers.php");
-                            $num_drivers = mysqli_num_rows($response);
+                            $count_drivers = "SELECT COUNT(*) AS NUM_DRIVERS FROM miscellaneous WHERE category = 'driver' AND active = 1";
+                            $response = mysqli_query($conn, $count_drivers) or die(mysqli_error($conn));
+                            $num_drivers = mysqli_fetch_array($response)["NUM_DRIVERS"];
                             echo "<p>$num_drivers</p>"
                             ?>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="well">
-                            <h4>Transport Schedules</h4>
-                            <p>2</p>
+                            <h4>Active Vehicles</h4>
+                            <?php
+                            $count_vehicles = "SELECT COUNT(*) AS NUM_VEHICLES FROM vehicles WHERE active = 1";
+                            $response = mysqli_query($conn, $count_vehicles) or die(mysqli_error($conn));
+                            $num_vehicles = mysqli_fetch_array($response)["NUM_VEHICLES"];
+                            echo "<p>$num_vehicles</p>"
+                            ?>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <h4>Active Transport Services</h4>
+                            <?php
+                            $count_schedules = "SELECT COUNT(*) AS NUM_SCHEDULES FROM vehicles_schedule WHERE active = 1";
+                            $response = mysqli_query($conn, $count_schedules) or die(mysqli_error($conn));
+                            $num_schedules = mysqli_fetch_array($response)["NUM_SCHEDULES"];
+                            echo "<p>$num_schedules</p>"
+                            ?>
                         </div>
                     </div>
                 </div>

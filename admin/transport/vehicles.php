@@ -59,7 +59,7 @@
                             <tr>
                                 <th>Type</th>
                                 <th>Vehicle No.</th>
-                                <th>Active</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

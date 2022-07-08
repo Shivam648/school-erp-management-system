@@ -25,7 +25,7 @@ if (isset($_POST["update_schedule"])) {
     $day = strtolower($_POST["day"]);
     $arrival = $_POST["arrival"];
     $departure = $_POST["departure"];
-    $status = $_POST["active"];
+    $active = $_POST["active"];
     $route_id = $_POST["route_id"];
     $driver_id = $_POST["driver_id"];
 

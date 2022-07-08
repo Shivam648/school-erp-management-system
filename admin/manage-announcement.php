@@ -13,7 +13,7 @@ if (isset($_POST["add_announcement"])) {
     } else {
         $add_announcement = "INSERT INTO announcements (title, descr, resource) VALUES ('$title','$descr','$resource') ";
         $response = mysqli_query($conn, $add_announcement) or die(mysqli_error($conn));
-        header('Location: admin.php');
+        header('Location: ./announcements.php?query=manage');
     }
 }
 

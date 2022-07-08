@@ -119,7 +119,7 @@
             }
 
             if ($query == "manage") {
-                $schedules_query = "SELECT * FROM vehicles_schedule";
+                $schedules_query = "SELECT * FROM vehicles_schedule ORDER BY day";
                 $response = mysqli_query($conn, $schedules_query);
                 $schedules_details = mysqli_fetch_all($response, MYSQLI_ASSOC);
 
@@ -137,7 +137,7 @@
                                 <th>Arrival Time</th>
                                 <th>Route</th>
                                 <th>Driver</th>
-                                <th>Active</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -167,7 +167,7 @@
                             <td>{$driver_details['name']}</td>
                     ";
 
-                    if ($vehicle_details['active'] == 1) {
+                    if ($schedule_details['active'] == 1) {
                         echo "<td>Active</td>";
                     } else {
                         echo "<td>Inactive</td>";

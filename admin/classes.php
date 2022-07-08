@@ -73,7 +73,7 @@
                                 <th>Standard</th>
                                 <th>Description</th>
                                 <th>Subject Codes</th>
-                                <th>Active</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -173,6 +173,31 @@
 
                 echo "
                             </div>
+                ";
+
+                if($class_details['active'] == '1'){
+                    echo "
+                        <div class='form-group'>
+                            <label>Status:</label>
+                            <select class='form-control' name='active' required>
+                                <option selected value='1'>Active</option>
+                                <option value='0'>Inactive</option>
+                            </select>
+                        </div>
+                    ";
+                }else{
+                    echo "
+                        <div class='form-group'>
+                            <label>Status:</label>
+                            <select class='form-control' name='active' required>
+                                <option value='1'>Active</option>
+                                <option selected value='0'>Inactive</option>
+                            </select>
+                        </div>
+                    ";
+                }
+
+                echo "
                             <br>
                             <div class='text-center'>
                                 <button type='submit' name='update_class' class='btn btn-outline-primary w-50'>Update Class</button>

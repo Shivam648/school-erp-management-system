@@ -97,9 +97,8 @@
 
             if ($query == "manage") {
                 $teachers_query = "SELECT 
-                    teacher_id, name, email, designation, phone, gender, doj, address 
-                    FROM teachers WHERE active = 1
-                    ORDER BY teacher_id ASC
+                    teacher_id, name, email, designation, phone, gender, doj, address, active
+                    FROM teachers ORDER BY teacher_id ASC
                 ";
                 $response = mysqli_query($conn, $teachers_query);
                 $teachers_details = mysqli_fetch_all($response, MYSQLI_ASSOC);
@@ -119,6 +118,7 @@
                                 <th>Gender</th>
                                 <th>D.O.J</th>
                                 <th>Address</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -135,6 +135,15 @@
                             <td>{$teacher_details['gender']}</td>
                             <td>{$teacher_details['doj']}</td>
                             <td>{$teacher_details['address']}</td>
+                    ";
+
+                    if($teacher_details['active'] == '1'){
+                        echo "<td>Active</td>";
+                    }else{
+                        echo "<td>Inactive</td>";
+                    }
+
+                    echo "
                             <td>
                                 <a href='./teachers.php?query=delete&teacher_id={$teacher_details['teacher_id']}' class='text-danger pr-2'>Delete</a>
                                 <a href='./teachers.php?query=update&teacher_id={$teacher_details['teacher_id']}' class='text-primary'>Update</a>
@@ -152,8 +161,8 @@
             if ($query == "update") {
                 $teacher_id = $_GET["teacher_id"];
                 $teacher_query = "SELECT 
-                    name, email, designation, phone, gender, doj, address
-                    FROM teachers WHERE teacher_id = $teacher_id AND active = 1
+                    name, email, designation, phone, gender, doj, address, active
+                    FROM teachers WHERE teacher_id = $teacher_id
                     LIMIT 1
                 ";
                 $response = mysqli_query($conn, $teacher_query);
@@ -224,6 +233,28 @@
                                     </select>
                                 </div>
                             </div>
+                        </div>
+                    ";
+                }
+
+                if($teacher_details['active'] == '1'){
+                    echo "
+                        <div class='form-group'>
+                            <label>Status:</label>
+                            <select class='form-control' name='active' required>
+                                <option selected value='1'>Active</option>
+                                <option value='0'>Inactive</option>
+                            </select>
+                        </div>
+                    ";
+                }else{
+                    echo "
+                        <div class='form-group'>
+                            <label>Status:</label>
+                            <select class='form-control' name='active' required>
+                                <option value='1'>Active</option>
+                                <option selected value='0'>Inactive</option>
+                            </select>
                         </div>
                     ";
                 }

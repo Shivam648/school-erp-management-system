@@ -31,6 +31,7 @@ if (isset($_POST["update_teacher"])) {
     $designation = strtolower($_POST["designation"]);
     $phone = $_POST["phone"];
     $doj = $_POST["doj"];
+    $active = $_POST["active"];
     $address = strtolower($_POST["address"]);
     $password = $_POST["password"];
 
@@ -41,14 +42,14 @@ if (isset($_POST["update_teacher"])) {
         if ($password == NULL) {
             $update_profile = "UPDATE 
                 teachers 
-                SET name = '$name', email = '$email', designation = '$designation', gender = '$gender', phone = '$phone', doj = '$doj', address = '$address' 
+                SET name = '$name', email = '$email', designation = '$designation', gender = '$gender', phone = '$phone', doj = '$doj', address = '$address', active = '$active'
                 WHERE teacher_id = '$teacher_id'
             ";
         } else {
             $password = sha1($password);
             $update_profile = "UPDATE 
                 teachers 
-                SET name = '$name', email = '$email', designation = '$designation', gender = '$gender', phone = '$phone', doj = '$doj', address = '$address', password = '$password' 
+                SET name = '$name', email = '$email', designation = '$designation', gender = '$gender', phone = '$phone', doj = '$doj', address = '$address', password = '$password', active = '$active' 
                 WHERE teacher_id = '$teacher_id'
             ";
         }
