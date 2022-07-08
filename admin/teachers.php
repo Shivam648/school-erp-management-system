@@ -240,7 +240,7 @@
 
                                 <div class='col'>
                                     <div class='form-group'>
-                                        <label>D.O.B:</label>
+                                        <label>D.O.J:</label>
                                         <input type='date' class='form-control' name='doj' value={$teacher_details['doj']}>
                                     </div>
                                 </div>

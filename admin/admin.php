@@ -11,7 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <style>
         .row.content {
-            height: 100vh
+            height: 80vh;
         }
 
         .sidenav {
@@ -40,20 +40,41 @@
                 <a class="navbar-brand" href="../index.php">ERP Model</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li><a href="./admin.php">Dashboard</a></li>
-                    <li><a href="./transport/schedules.php?query=manage">Transport</a></li>
-                    <li><a href="./register-info.php?object=student">Add Student</a></li>
-                    <li><a href="./registered-datasets.php?object=student">Manage Student</a></li>
-                    <li><a href="./register-info.php?object=teacher">Add Teacher</a></li>
-                    <li><a href="./registered-datasets.php?object=teacher">Manage Teacher</a></li>
-                    <li><a href="./register-info.php?object=subject">Add Subject</a></li>
-                    <li><a href="./registered-datasets.php?object=subject">Manage Subject</a></li>
-                    <li><a href="./register-info.php?object=class">Add Class</a></li>
-                    <li><a href="./registered-datasets.php?object=class">Manage Class</a></li>
-                    <li><a href="./register-info.php?object=announcement">Add Annoucements</a></li>
-                    <li><a href="./registered-datasets.php?object=announcement">Manage Annoucements</a></li>
-                </ul>
+                <?php
+                    if(isset($_GET["transport"]) && $_GET["transport"] == true){
+                        echo "
+                            <ul class='nav nav-pills nav-stacked'>
+                                <li><a href='./admin.php'>Dashboard</a></li>
+                                <li><a href='#!'>Add Vehicle</a></li>
+                                <li><a href='#!'>Manage Vehicle</a></li>
+                                <li><a href='#!'>Add Driver</a></li>
+                                <li><a href='#!'>Manage Driver</a></li>
+                                <li><a href='#!'>Add Route</a></li>
+                                <li><a href='#!'>Manage Route</a></li>
+                                <li><a href='#!'>Add Schedule</a></li>
+                                <li><a href='#!'>Manage Schedule</a></li>
+                                <li><a href='../logout.php'>Logout</a></li>
+                            </ul>
+                        ";
+                    }else{
+                        echo "
+                            <ul class='nav nav-pills nav-stacked'>
+                                <li><a href='./admin.php?transport=true'>Transport Management</a></li>
+                                <li><a href='./students.php?query=add'>Add Student</a></li>
+                                <li><a href='./students.php?query=manage'>Manage Student</a></li>
+                                <li><a href='./teachers.php?query=add'>Add Teacher</a></li>
+                                <li><a href='./teachers.php?query=manage'>Manage Teacher</a></li>
+                                <li><a href='./announcements.php?query=add'>Add Announcements</a></li>
+                                <li><a href='./announcements.php?query=manage'>Manage Announcements</a></li>
+                                <li><a href='./subjects.php?query=add'>Add Subject</a></li>
+                                <li><a href='./subjects.php?query=manage'>Manage Subject</a></li>
+                                <li><a href='./classes.php?query=add'>Add Class</a></li>
+                                <li><a href='./classes.php?query=manage'>Manage Class</a></li>
+                                <li><a href='../logout.php'>Logout</a></li>
+                            </ul>
+                        ";
+                    }
+                ?>
             </div>
         </div>
     </nav>
@@ -62,20 +83,44 @@
         <div class="row content">
             <div class="col-sm-2 sidenav hidden-xs">
                 <h4>ERP Model.</h4>
-                <ul class="nav nav-pills nav-stacked">
-                    <li><a href="./admin.php">Dashboard</a></li>
-                    <li><a href="./transport/schedules.php?query=manage">Transport</a></li>
-                    <li><a href="./students.php?query=add">Add Student</a></li>
-                    <li><a href="./students.php?query=manage">Manage Student</a></li>
-                    <li><a href="./teachers.php?query=add">Add Teacher</a></li>
-                    <li><a href="./teachers.php?query=manage">Manage Teacher</a></li>
-                    <li><a href="./announcements.php?query=add">Add Announcements</a></li>
-                    <li><a href="./announcements.php?query=manage">Manage Announcements</a></li>
-                    <li><a href="./subjects.php?query=add">Add Subject</a></li>
-                    <li><a href="./subjects.php?query=manage">Manage Subject</a></li>
-                    <li><a href="./classes.php?query=add">Add Class</a></li>
-                    <li><a href="./classes.php?query=manage">Manage Class</a></li>
-                </ul><br>
+                <?php
+                    if(isset($_GET["transport"]) && $_GET["transport"] == true){
+                        echo "
+                            <ul class='nav nav-pills nav-stacked'>
+                                <li><a href='./admin.php'>Dashboard</a></li>
+                                <li><a href='./transport/drivers.php?query=add'>Add Driver</a></li>
+                                <li><a href='./transport/drivers.php?query=manage'>Manage Driver</a></li>
+
+                                <li><a href='./transport/vehicles.php?query=add'>Add Vehicle</a></li>
+                                <li><a href='./transport/vehicles.php?query=manage'>Manage Vehicle</a></li>
+    
+                                <li><a href='./transport/routes.php?query=add'>Add Route</a></li>
+                                <li><a href='./transport/routes.php?query=manage'>Manage Route</a></li>
+
+                                <li><a href='./transport/schedules.php?query=add'>Add Schedule</a></li>
+                                <li><a href='./transport/schedules.php?query=manage'>Manage Schedule</a></li>
+                                <li><a href='../logout.php'>Logout</a></li>
+                            </ul>
+                        ";
+                    }else{
+                        echo "
+                            <ul class='nav nav-pills nav-stacked'>
+                                <li><a href='./admin.php?transport=true'>Transport Management</a></li>
+                                <li><a href='./students.php?query=add'>Add Student</a></li>
+                                <li><a href='./students.php?query=manage'>Manage Student</a></li>
+                                <li><a href='./teachers.php?query=add'>Add Teacher</a></li>
+                                <li><a href='./teachers.php?query=manage'>Manage Teacher</a></li>
+                                <li><a href='./announcements.php?query=add'>Add Announcements</a></li>
+                                <li><a href='./announcements.php?query=manage'>Manage Announcements</a></li>
+                                <li><a href='./subjects.php?query=add'>Add Subject</a></li>
+                                <li><a href='./subjects.php?query=manage'>Manage Subject</a></li>
+                                <li><a href='./classes.php?query=add'>Add Class</a></li>
+                                <li><a href='./classes.php?query=manage'>Manage Class</a></li>
+                                <li><a href='../logout.php'>Logout</a></li>
+                            </ul>
+                        ";
+                    }
+                ?>
             </div>
             <br>
 

@@ -42,13 +42,12 @@
                                 <label>Add Subjects:</label> <br>
                 ";
 
-                include("../info/subjects.php");
-                foreach ($subjects as $key => $value) {
-                    $subject_id = $value["subject_id"];
-                    $code = $value["code"];
-                    echo "
-                        <label class='checkbox-inline pr-2'><input type='checkbox' name='subject_ids[]' value=$subject_id>$code</label>
-                    ";
+                $find_subjects = "SELECT * FROM subjects WHERE active = 1";
+                $response = mysqli_query($conn, $find_subjects) or die(mysqli_errno($conn));
+                $subjects = mysqli_fetch_all($response, MYSQLI_ASSOC);
+
+                foreach ($subjects as $key => $subject) {
+                    echo "<label class='checkbox-inline pr-2'><input type='checkbox' name='subject_ids[]' value={$subject['subject_id']}>{$subject['code']}</label>";
                 }
 
                 echo "
@@ -81,11 +80,26 @@
                         <tbody id='dataTable'>
                 ";
 
-                include("../info/classes.php");
+
+                $find_classes = "SELECT * FROM classes";
+                $response = mysqli_query($conn, $find_classes) or die(mysqli_errno($conn));
+                $classes = mysqli_fetch_all($response, MYSQLI_ASSOC);
+
                 foreach ($classes as $key => $class_details) {
                     $subject_ids = json_decode($class_details["subject_ids"]);
 
-                    include("../info/codes-subjectIDs.php");
+                    $codes = array();
+                    for ($i = 0; $i < sizeof($subject_ids); $i++) {
+                        $subject_id = $subject_ids[$i];
+
+                        $find_subject = "SELECT * FROM subjects WHERE subject_id = '$subject_id'";
+                        $response = mysqli_query($conn, $find_subject) or die(mysqli_errno($conn));
+                        $subject = mysqli_fetch_array($response, MYSQLI_ASSOC);
+                        $code = $subject["code"];
+
+                        array_push($codes, $code);
+                    }
+
                     $codes = json_encode($codes);
 
                     echo "
@@ -119,7 +133,7 @@
 
             if ($query == "update") {
                 $class_id = $_GET["class_id"];
-                $class_query = "SELECT * FROM classes WHERE class_id = class_id";
+                $class_query = "SELECT * FROM classes WHERE class_id = '$class_id'";
                 $response = mysqli_query($conn, $class_query);
                 $class_details = mysqli_fetch_array($response, MYSQLI_ASSOC);
 
@@ -142,14 +156,17 @@
                                 <label>Add Subjects:</label> <br>
                 ";
 
-                include("../info/subjects.php");
+                $find_subjects = "SELECT * FROM subjects WHERE active = 1";
+                $response = mysqli_query($conn, $find_subjects) or die(mysqli_errno($conn));
+                $subjects = mysqli_fetch_all($response, MYSQLI_ASSOC);
+
                 foreach ($subjects as $key => $value) {
                     $subject_id = $value["subject_id"];
                     $code = $value["code"];
 
-                    if(in_array($subject_id, json_decode($class_details["subject_ids"]))){
+                    if (in_array($subject_id, json_decode($class_details["subject_ids"]))) {
                         echo "<label class='checkbox-inline pr-2'><input type='checkbox' name='subject_ids[]' checked value=$subject_id>$code</label>";
-                    }else{
+                    } else {
                         echo "<label class='checkbox-inline pr-2'><input type='checkbox' name='subject_ids[]' value=$subject_id>$code</label>";
                     }
                 }

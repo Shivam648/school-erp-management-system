@@ -1,266 +1,291 @@
-<?php include("../../config.php") ?>
-<!doctype html>
-<html lang="en">
+<?php include("../../config.php"); ?>
+<!DOCTYPE html>
+<html lang='en'>
 
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Manage Drivers | Admin</title>
-		<!-- Latest compiled and minified CSS & JS or JQuery -->
-		<link rel="stylesheet" href="../../assets/css/base-styles.css">
-    	<?php include("../../core-styles-scripts.html") ?>
-	</head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver | Admin</title>
+    <link rel="stylesheet" href="../../assets/css/base-styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
 <body>
+    <div class="container-fluid p-4">
+        <?php
+        if ($_SESSION["user_category"] == "admin") {
+            $query = $_GET["query"];
+            
+            if ($query == "add") {
+                echo "
+                    <div class='card account custom-shadow mt-4 p-3'>
+                        <h3 class='text-center'>Add Driver</h3>
+                        <hr>
+                        <form class='card-body' method='POST' action='./manage-driver.php'>
+                            <div class='form-group'>
+                                <label>Full Name:</label>
+                                <input type='text' class='form-control' name='name' required>
+                            </div>
 
-    <div class="container-fluid">
+                            <div class='form-group'>
+                                <label>Email:</label>
+                                <input type='email' class='form-control' name='email' required>
+                            </div>
+                ";
 
-		<?php
-			if($_SESSION["user_category"] == "admin"){
-				include('./t-header.php');
+                echo "
+                    <div class='form-group'>
+                        <label>Gender:</label>
+                        <select class='form-control' name='gender' required>
+                            <option value='male'>Male</option>
+                            <option value='female'>Female</option>
+                            <option value='other'>Other</option>
+                        </select>
+                    </div>
 
-				$query = $_GET["query"];
-				if($query == "add"){
-					echo "
-						<div class='card account custom-shadow mt-4 p-3'>
-							<h3 class='text-center'>Create Driver</h3>
-							<hr>
-							<form class='card-body' method='POST' action='./apis/add-driver.php'>
-								<div class='form-group'>
-									<label>Full Name:</label>
-									<input type='text' class='form-control' name='name' required>
-								</div>
+                    <div class='row'>
+                        <div class='col'>
+                            <div class='form-group'>
+                                <label>Phone:</label>
+                                <input type='number' class='form-control' name='phone' required>
+                            </div>
+                        </div>
 
-								<div class='form-group'>
-									<label>Email:</label>
-									<input type='email' class='form-control' name='email' required>
-								</div>
-					";
+                        <div class='col'>
+                            <div class='form-group'>
+                                <label>D.O.J:</label>
+                                <input type='date' class='form-control' name='doj'>
+                            </div>
+                        </div>
+                    </div>
 
-					echo "
-						<div class='form-group'>
-							<label>Gender:</label>
-							<select class='form-control' name='gender' required>
-								<option value='male'>Male</option>
-								<option value='female'>Female</option>
-								<option value='other'>Other</option>
-							</select>
-						</div>
+                            <div class='form-group'>
+                                <label>Address:</label>
+                                <textarea type='text' class='form-control' name='address' cols='6' rows='2' required></textarea>
+                            </div>
+                            <br>
+                            <div class='text-center'>
+                                <button type='submit' name='add_driver' class='btn btn-outline-primary w-50'>ADD</button>
+                            </div>
+                        </form>
+                    </div>
+                ";
+            }
 
-						<div class='row'>
-							<div class='col'>
-								<div class='form-group'>
-									<label>Phone:</label>
-									<input type='number' class='form-control' name='phone' required>
-								</div>
-							</div>
+            if ($query == "manage") {
+                $drivers_query = "SELECT 
+                    miscellaneous_id, name, email, phone, gender, doj, address, active FROM miscellaneous WHERE category = 'driver'
+                ";
+                $response = mysqli_query($conn, $drivers_query);
+                $drivers_details = mysqli_fetch_all($response, MYSQLI_ASSOC);
 
-							<div class='col'>
-								<div class='form-group'>
-									<label>D.O.J:</label>
-									<input type='date' class='form-control' name='doj'>
-								</div>
-							</div>
-						</div>
+                echo "
+                    <h2>Driver List</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero adipisci mollitia illum atque sequi distinctio optio minus natus nulla vel?</p>    
+                    <input class='form-control w-25 mt-4 mb-4' id='searchInput' type='text' placeholder='Filter by any attribute'> 
 
-								<div class='row'>
-									<div class='col'>
-										<div class='form-group'>
-											<label>Address:</label>
-											<textarea type='text' class='form-control' name='address' cols='6' rows='2' required></textarea>
-										</div>
-									</div>
-									<div class='col'>
-										<label>Password:</label>
-										<input type='password' class='form-control'name='password' required>
-									</div>
-								</div>
-								<br>
-								<div class='text-center'>
-									<button type='submit' name='add_driver' class='btn btn-outline-primary w-50'>ADD</button>
-								</div>
-							</form>
-						</div>
-					";
-				}
+                    <table class='table table-hover'>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Gender</th>
+                                <th>D.O.J</th>
+                                <th>Address</th>
+                                <th>Active</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id='dataTable'>
+                ";
 
-				if($query == "manage"){
-					echo "<h2 class='text-center'>List of registered drivers</h2>";
-					echo "
-                        <div class='table-responsive mt-3'>
-                            <table class='table table-striped'>
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Gender</th>
-                                        <th>Address</th>
-                                        <th>D.O.J</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                foreach ($drivers_details as $attribute => $driver_details) {
+                    echo "
+                        <tr>
+                            <td>{$driver_details['name']}</td>
+                            <td>{$driver_details['email']}</td>
+                            <td>{$driver_details['phone']}</td>
+                            <td>{$driver_details['gender']}</td>
+                            <td>{$driver_details['doj']}</td>
+                            <td>{$driver_details['address']}</td>
                     ";
 
-					// drivers
-					include("./apis/drivers.php");
-
-                    foreach ($drivers as $key => $value) {
-                        $driver_id = $value["miscellaneous_id"];
-                        $name = ucwords($value["name"]);
-                        $email = $value["email"];
-                        $phone = $value["phone"];
-                        $gender = ucwords($value["gender"]);
-                        $address = ucwords($value["address"]);
-                        $doj = $value["doj"];
-						$status = $value["active"] == 1 ? "Active" : "Inactive";
-
-                        // find vehicle ids using driver id : TODO Feature
-                        // include("./get-data/standard-classID.php");
-
-                        echo "
-                            	<tr>
-                                    <td>$name</td>
-                                    <td>$email</td>
-                                    <td>$phone</td>
-                                    <td>$gender</td>
-                                    <td>$address</td>
-                                    <td>$doj</td>
-                                    <td>$status</td>
-									<td>
-										<a href='./apis/delete-driver.php?driver_id=$driver_id' class='text-danger pr-2'>Delete</a>
-										<a href='drivers.php?query=update&driver_id=$driver_id' class='text-primary'>Update</a>
-									</td>
-                                </tr>
-                            ";
+                    if($driver_details['active'] == 1){
+                        echo "<td>Active</td>";
+                    }else{
+                        echo "<td>Inactive</td>";
                     }
 
-                    echo "      	</tbody>
-                                </table>
-                            </div>
+                    echo "
+                            <td>
+                                <a href='./drivers.php?query=delete&miscellaneous_id={$driver_details['miscellaneous_id']}' class='text-danger pr-2'>Delete</a>
+                                <a href='./drivers.php?query=update&miscellaneous_id={$driver_details['miscellaneous_id']}' class='text-primary'>Update</a>
+                            </td>
+                        </tr>
                     ";
-				}
+                }
 
-				if($query == "update"){
-					$driver_id = $_GET["driver_id"];
+                echo "
+                        </tbody>
+                    </table>
+                ";
+            }
 
-					// fetch driver details using driver id
-					include("./apis/driver.php");
+            if ($query == "update") {
+                $miscellaneous_id = $_GET["miscellaneous_id"];
+                $driver_query = "SELECT 
+                    name, email, phone, gender, doj, address, active
+                    FROM miscellaneous WHERE miscellaneous_id = $miscellaneous_id
+                    LIMIT 1
+                ";
+                $response = mysqli_query($conn, $driver_query);
+                $driver_details = mysqli_fetch_array($response, MYSQLI_ASSOC);
 
-					$driver_id = $driver["miscellaneous_id"];
-					$name = ucwords($driver["name"]);
-					$email = $driver["email"];
-					$phone = $driver["phone"];
-					$address = ucwords($driver["address"]);
-					$doj = $driver["doj"];
-				
-					$gender_dropdown = "<select class='form-control' name='gender' required>";
-					if ($driver["gender"] == "male") {
-						$gender_dropdown .= "<option value='male' selected>Male</option>";
-						$gender_dropdown .= "<option value='female'>Female</option>";
-						$gender_dropdown .= "<option value='other'>Other</option>";
-					} else if ($driver["gender"] == "female") {
-						$gender_dropdown .= "<option value='male'>Male</option>";
-						$gender_dropdown .= "<option value='female' selected>Female</option>";
-						$gender_dropdown .= "<option value='other'>Other</option>";
-					} else {
-						$gender_dropdown .= "<option value='male'>Male</option>";
-						$gender_dropdown .= "<option value='female'>Female</option>";
-						$gender_dropdown .= "<option value='other' selected>Other</option>";
-					}
-					$gender_dropdown .= "</select>";
+                echo "
+                    <div class='card account custom-shadow mt-5 p-2'>
+                    <h3 class='text-center'>Update Driver</h3>
+                    <hr>
+                
+                    <form class='card-body' method='POST' action='./manage-driver.php?miscellaneous_id=$miscellaneous_id'>
+                        <div class='form-group'>
+                            <label>Full Name:</label>
+                            <input type='text' class='form-control' name='name' value='{$driver_details['name']}' required>
+                        </div>
 
-					$status_dropdown = "<select class='form-control' name='status' required>";
-					if ($driver["active"] == "1") {
-						$status_dropdown .= "<option value='1' selected>Active</option>";
-						$status_dropdown .= "<option value='0'>Inactive</option>";
-					}else {
-						$status_dropdown .= "<option value='1'>Active</option>";
-						$status_dropdown .= "<option value='0' selected>Inactive</option>";
-					}
-					$status_dropdown .= "</select>";
+                        <div class='form-group'>
+                            <label>Email:</label>
+                            <input type='email' class='form-control' name='email' value='{$driver_details['email']}' required>
+                        </div>
+                        <div class='row'>
+                ";
 
-					echo "
-						<div class='card account custom-shadow mt-4 p-3'>
-							<h3 class='text-center'>Update Driver</h3>
-							<hr>
-							<form class='card-body' method='POST' action='apis/update-driver.php'>
-								<div class='form-group'>
-									<label>Full Name:</label>
-									<input type='text' class='form-control' name='name' value='$name' required>
-								</div>
+                if($driver_details['active'] == '1'){
+                    echo "
+                        <div class='col'>
+                            <div class='form-group'>
+                                <label>Status:</label>
+                                <select class='form-control' name='active' required>
+                                    <option selected value='1'>Active</option>
+                                    <option value='0'>Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                    ";
+                }else{
+                    echo "
+                        <div class='col'>
+                            <div class='form-group'>
+                                <label>Status:</label>
+                                <select class='form-control' name='active' required>
+                                    <option value='1'>Active</option>
+                                    <option selected value='0'>Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                    ";
+                }
 
-								<div class='form-group'>
-									<label>Email:</label>
-									<input type='email' class='form-control' name='email' value='$email' readonly required>
-								</div>
-					";
+                if($driver_details['gender'] == 'male'){
+                    echo "
+                            <div class='col'>
+                                <div class='form-group'>
+                                    <label>Gender:</label>
+                                    <select class='form-control' name='gender' required>
+                                        <option selected value='male'>Male</option>
+                                        <option value='female'>Female</option>
+                                        <option value='other'>Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    ";
 
-					echo "
-						<div class='row'>
-							<div class='col'>
-								<div class='form-group'>
-									<label>Gender:</label>
-									$gender_dropdown
-								</div>
-							</div>
+                }else if($driver_details['gender'] == 'female'){
+                    echo "
+                        <div class='form-group'>
+                            <label>Gender:</label>
+                            <select class='form-control' name='gender' required>
+                                <option value='male'>Male</option>
+                                <option selected value='female'>Female</option>
+                                <option value='other'>Other</option>
+                            </select>
+                        </div>
+                    ";
+                }else{
+                    echo "
+                        <div class='form-group'>
+                            <label>Gender:</label>
+                            <select class='form-control' name='gender' required>
+                                <option value='male'>Male</option>
+                                <option value='female'>Female</option>
+                                <option selected value='other'>Other</option>
+                            </select>
+                        </div>
+                    ";
+                }
 
-							<div class='col'>
-								<div class='form-group'>
-									<label>Status:</label>
-									$status_dropdown
-								</div>
-							</div>
-						</div>
 
-						<div class='row'>
-							<div class='col'>
-								<div class='form-group'>
-									<label>Phone:</label>
-									<input type='number' class='form-control' name='phone' value='$phone' required>
-								</div>
-							</div>
+                echo "
+                            <div class='row'>
+                                <div class='col'>
+                                    <div class='form-group'>
+                                        <label>Phone:</label>
+                                        <input type='number' class='form-control' name='phone' value={$driver_details['phone']} required>
+                                    </div>
+                                </div>
 
-							<div class='col'>
-								<div class='form-group'>
-									<label>D.O.J:</label>
-									<input type='date' class='form-control' value='$doj' name='doj'>
-								</div>
-							</div>
-						</div>
+                                <div class='col'>
+                                    <div class='form-group'>
+                                        <label>D.O.J:</label>
+                                        <input type='date' class='form-control' name='doj' value={$driver_details['doj']}>
+                                    </div>
+                                </div>
 
-								<div class='row'>
-									<div class='col'>
-										<div class='form-group'>
-											<label>Address:</label>
-											<textarea type='text' class='form-control' name='address' cols='6' rows='2' required>$address</textarea>
-										</div>
-									</div>
-									<div class='col'>
-										<label>New Password:</label>
-										<input type='password' class='form-control'name='password'>
-									</div>
-								</div>
-								<br>
-								<div class='text-center'>
-									<button type='submit' name='update_driver' class='btn btn-outline-primary w-50'>Update</button>
-								</div>
-							</form>
-						</div>
-					";
-				}
-			}else{
-				include("../../page-not-found.php");
-			}
-		?>
+                            </div>
+
+                            <div class='form-group'>
+                                <label>Address:</label>
+                                <textarea type='text' class='form-control' name='address' cols='6' rows='2' required>{$driver_details['address']}</textarea>
+                            </div>
+
+                            <br>
+                            <div class='text-center'>
+                                <button type='submit' name='update_driver' class='btn btn-outline-primary w-50'>Update Profile</button>
+                            </div>
+
+                        </form>
+                    </div>
+                ";
+            }
+
+            if($query == "delete"){
+                $miscellaneous_id = $_GET["miscellaneous_id"];
+                $driver_query = "DELETE FROM miscellaneous WHERE miscellaneous_id = $miscellaneous_id";
+                mysqli_query($conn, $driver_query) or die(mysqli_errno($conn));
+                header('Location: ./drivers.php?query=manage');
+            }
+        } else {
+            include("../page-not-found.php");
+        }
+        ?>
     </div>
 </body>
-<script src="transport.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#searchInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#dataTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+
 </html>
