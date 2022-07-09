@@ -18,12 +18,6 @@
                         <a class="nav-link text-primary" href="#about-us">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-primary" href="../timetable.php">Timetable</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-primary" href="../syllabus.php">Syllabus</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link text-primary" href="../login.php">Login</a>
                     </li>
                 </ul>
@@ -47,16 +41,7 @@
             echo '
                 <ul class="navbar-nav text-center">
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="../student/academics-creds.php">Academics</a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="nav-link" href="../profile.php">Profile</a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="nav-link text-primary" href="../timetable.php">Timetable</a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="nav-link text-primary" href="../syllabus.php">Syllabus</a>
+                        <a class="nav-link" href="../student/dashboard.php">Dashboard</a>
                     </li>
                     <li class="nav-item p-2">
                         <a class="nav-link" href="../logout.php">Logout</a>
@@ -76,12 +61,6 @@
                     </li>
                     <li class="nav-item p-2">
                         <a class="nav-link" href="../profile.php">Profile</a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="nav-link text-primary" href="../timetable.php">Timetable</a>
-                    </li>
-                    <li class="nav-item p-2">
-                        <a class="nav-link text-primary" href="../syllabus.php">Syllabus</a>
                     </li>
                     <li class="nav-item p-2">
                         <a class="nav-link" href="../logout.php">Logout</a>

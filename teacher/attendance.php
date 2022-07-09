@@ -1,4 +1,3 @@
-<!-- Interface for updating attendance (accessible only to teacher) -->
 <?php include("../config.php"); ?>
 <!DOCTYPE html>
 <html lang='en'>
