@@ -52,10 +52,10 @@
                     <li class="nav-item p-2">
                         <a class="nav-link" href="../profile.php">Profile</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item p-2">
                         <a class="nav-link text-primary" href="../timetable.php">Timetable</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item p-2">
                         <a class="nav-link text-primary" href="../syllabus.php">Syllabus</a>
                     </li>
                     <li class="nav-item p-2">
@@ -72,15 +72,15 @@
                         <a class="nav-link" href="../teacher/update-grade.php">Grade</a>
                     </li>
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="../teacher/update-attendance.php">Attendance</a>
+                        <a class="nav-link" href="../teacher/attendance.php">Attendance</a>
                     </li>
                     <li class="nav-item p-2">
                         <a class="nav-link" href="../profile.php">Profile</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item p-2">
                         <a class="nav-link text-primary" href="../timetable.php">Timetable</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item p-2">
                         <a class="nav-link text-primary" href="../syllabus.php">Syllabus</a>
                     </li>
                     <li class="nav-item p-2">

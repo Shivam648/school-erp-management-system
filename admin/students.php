@@ -179,7 +179,7 @@
             if ($query == "update") {
                 $student_id = $_GET["student_id"];
                 $student_query = "SELECT 
-                    students.name, students.email, students.password, students.phone, students.gender, students.dob, students.address, classes.class_id, classes.standard
+                    students.name, students.email, students.phone, students.gender, students.dob, students.address, classes.class_id, classes.standard
                     FROM students JOIN classes ON students.class_id = classes.class_id WHERE students.student_id = $student_id AND classes.active = 1   AND students.active = 1
                     LIMIT 1
                 ";

@@ -35,7 +35,7 @@ if (isset($_POST["login"])) {
 
 
 if (isset($_POST["update_student"])) {
-    $email = $_SESSION["user_email"];
+    $student_id = $_GET["student_id"];
     $name = strtolower($_POST["name"]);
     $gender = strtolower($_POST["gender"]);
     $phone = $_POST["phone"];
@@ -44,25 +44,31 @@ if (isset($_POST["update_student"])) {
     $password = $_POST["password"];
 
 
-    $find_student = "SELECT * FROM students WHERE `email` = '$email'";
+    $find_student = "SELECT * FROM students WHERE student_id = '$student_id' ";
     $response = mysqli_query($conn, $find_student) or die(mysqli_error($conn));
     if (mysqli_num_rows($response) == 1) {
         if ($password == NULL) {
-            $update_profile = "UPDATE students SET `name` = '$name', `gender` = '$gender', `phone` = '$phone', `dob` = '$dob', `address` = '$address' WHERE `email` = '$email'";
+            $update_profile = "UPDATE 
+                students 
+                SET name = '$name', gender = '$gender', phone = '$phone', dob = '$dob', address = '$address' 
+                WHERE student_id = '$student_id' ";
         } else {
             $password = sha1($password);
-            $update_profile = "UPDATE students SET `name` = '$name', `gender` = '$gender', `phone` = '$phone', `dob` = '$dob', `address` = '$address', `password` = '$password' WHERE `email` = '$email'";
+            $update_profile = "UPDATE 
+            students 
+            SET name = '$name', gender = '$gender', phone = '$phone', dob = '$dob', address = '$address', password = '$password' 
+            WHERE student_id = '$student_id' ";
         }
         $response = mysqli_query($conn, $update_profile) or die(mysqli_error($conn));
         header('Location: ./logout.php');
     } else {
-        echo "There was some problem finding your account, report here at admin.org@gmail.com...";
+        echo "There was some problem updating your account, report here at admin.org@gmail.com...";
     }
 }
 
 
 if (isset($_POST["update_teacher"])) {
-    $email = $_SESSION["user_email"];
+    $teacher_id = $_GET["teacher_id"];
     $name = strtolower($_POST["name"]);
     $gender = strtolower($_POST["gender"]);
     $phone = $_POST["phone"];
@@ -70,19 +76,27 @@ if (isset($_POST["update_teacher"])) {
     $password = $_POST["password"];
 
 
-    $find_teacher = "SELECT * FROM teachers WHERE `email` = '$email'";
+    $find_teacher = "SELECT * FROM teachers WHERE teacher_id = '$teacher_id'";
     $response = mysqli_query($conn, $find_teacher) or die(mysqli_error($conn));
     if (mysqli_num_rows($response) == 1) {
         if ($password == NULL) {
-            $update_profile = "UPDATE teachers SET `name` = '$name', `gender` = '$gender', `phone` = '$phone', `address` = '$address' WHERE `email` = '$email'";
+            $update_profile = "UPDATE 
+                teachers 
+                SET name = '$name', gender = '$gender', phone = '$phone', address = '$address' 
+                WHERE teacher_id = '$teacher_id'
+            ";
         } else {
             $password = sha1($password);
-            $update_profile = "UPDATE teachers SET `name` = '$name', `gender` = '$gender', `phone` = '$phone', `address` = '$address', `password` = '$password' WHERE `email` = '$email'";
+            $update_profile = "UPDATE 
+                teachers 
+                SET name = '$name', gender = '$gender', phone = '$phone', address = '$address', password = '$password' 
+                WHERE teacher_id = '$teacher_id'
+            ";
         }
         $response = mysqli_query($conn, $update_profile) or die(mysqli_error($conn));
         header('Location: ./logout.php');
     } else {
-        echo "There was some problem finding your account, report here at admin@org.com...";
+        echo "There was some problem updating your account, report here at admin.org@gmail.com...";
     }
 }
 ?>
