@@ -69,7 +69,7 @@
             echo '
                 <ul class="navbar-nav text-center">
                     <li class="nav-item p-2">
-                        <a class="nav-link" href="../teacher/update-grade.php">Grade</a>
+                        <a class="nav-link" href="../teacher/grade.php">Grade</a>
                     </li>
                     <li class="nav-item p-2">
                         <a class="nav-link" href="../teacher/attendance.php">Attendance</a>
