@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2022 at 06:35 PM
+-- Generation Time: Jul 09, 2022 at 09:29 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -60,6 +60,15 @@ CREATE TABLE `attendance` (
   `absent` int(11) NOT NULL,
   `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='attendance of students as per class and subjects';
+
+--
+-- Dumping data for table `attendance`
+--
+
+INSERT INTO `attendance` (`student_id`, `class_id`, `subject_id`, `present`, `absent`, `total`) VALUES
+(1, 1, 1, 3, 2, 5),
+(2, 1, 1, 2, 3, 5),
+(3, 1, 1, 3, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -124,6 +133,15 @@ CREATE TABLE `grades` (
   `end_term` int(11) NOT NULL,
   `other` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `grades`
+--
+
+INSERT INTO `grades` (`student_id`, `class_id`, `subject_id`, `mid_term_1`, `mid_term_2`, `end_term`, `other`) VALUES
+(1, 1, 1, 14, 15, 0, 0),
+(2, 1, 1, 16, 20, 0, 0),
+(3, 1, 1, 20, 24, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -231,7 +249,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`student_id`, `name`, `email`, `password`, `class_id`, `phone`, `gender`, `dob`, `created_at`, `address`, `active`) VALUES
-(1, 'amaya chaudhary', 'amaya.org@gmail.com', '570a8eee40de7053bc03b927095e4982e17683fe', 1, '8002046457', 'female', '2022-07-07', '2022-07-07', 'west bengal', 1),
+(1, 'amaya chaudhary', 'amaya.org@gmail.com', '570a8eee40de7053bc03b927095e4982e17683fe', 1, '8002046451', 'female', '2022-07-07', '2022-07-07', 'noida', 1),
 (2, 'priti chaudhary', 'priti.org@gmail.com', '9333b742e133f2bdf85e0e2726a7d82aaece80f8', 1, '8002046457', 'female', '2022-07-07', '2022-07-07', 'west bengal', 1),
 (3, 'shudhanshu chaudhary', 'shudhanshu.org@gmail.com', 'fc4fb9b307256bf883a888ec830d68b389f751e1', 1, '8002046457', 'male', '2022-07-07', '2022-07-07', 'bihar', 1),
 (4, 'happy chaudhary', 'happy.org@gmail.com', '3978d009748ef54ad6ef7bf851bd55491b1fe6bb', 2, '8002046457', 'male', '2022-07-07', '2022-07-07', 'bihar', 1),
@@ -343,7 +361,7 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`teacher_id`, `name`, `email`, `password`, `designation`, `phone`, `gender`, `doj`, `address`, `active`) VALUES
-(1, 'pratyay kuila', 'pratyay.org@gmail.com', '97026e649d3a629d10dee8cbb592a492d0de9862', 'hod', '8002046457', 'male', '2022-07-07', 'west bengal', 1),
+(1, 'pratyay kuila', 'pratyay.org@gmail.com', '97026e649d3a629d10dee8cbb592a492d0de9862', 'hod', '8002046411', 'male', '2022-07-07', 'west bengal', 1),
 (2, 'anand mishra', 'anand.org@gmail.com', 'b973f774bfeab53233b4f347be114e9ca7b2d00f', 'professor', '8002046457', 'male', '2022-07-07', 'uttar pradesh', 1),
 (3, 'sangram ray', 'sangram.org@gmail.com', '162d49ca8e94c2d87fe6d3c74fe4556f332b3cf1', 'professor', '8002046457', 'male', '2022-07-07', 'west bengal', 1),
 (4, 'gopa bhaumik', 'gopa.org@gmail.com', 'edf26b399dbd957091aadca3868b1031793a9cd4', 'incoming hod', '8002046457', 'female', '2022-07-07', 'delhi', 0),
@@ -414,8 +432,8 @@ CREATE TABLE `vehicles_schedule` (
 --
 
 INSERT INTO `vehicles_schedule` (`schedule_id`, `vehicle_id`, `day`, `arrival`, `departure`, `route_id`, `driver_id`, `active`) VALUES
-(1, 1, 'friday', '10:00:00', '09:30:00', 1, 5, 1),
-(2, 1, 'friday', '15:30:00', '15:00:00', 1, 5, 1),
+(1, 1, 'saturday', '10:00:00', '09:30:00', 1, 5, 1),
+(2, 1, 'saturday', '15:30:00', '15:00:00', 1, 5, 1),
 (3, 2, 'monday', '08:40:00', '08:30:00', 2, 3, 1),
 (4, 2, 'monday', '08:43:00', '07:41:00', 2, 3, 1);
 
