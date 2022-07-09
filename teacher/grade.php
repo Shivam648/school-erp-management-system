@@ -152,35 +152,28 @@
 
                     foreach ($students_details as $key => $student_details) {
                         $student_id = $student_details["student_id"];
-                        $student_grade = "SELECT 
-                            mid_term_1, mid_term_2, end_term, other
-                            FROM grades 
-                            WHERE class_id = $class_id AND subject_id = $subject_id AND student_id = $student_id
-                        ";
-                        $response = mysqli_query($conn, $student_grade) or die(mysqli_error($conn));
-                        $student_grade_details = mysqli_fetch_array($response, MYSQLI_ASSOC);
-
-                        if($student_grade_details != null){
-                            $mid_term_1_marks = $student_grade_details["mid_term_1"] == null ? 0 : $student_grade_details["mid_term_1"];
-                            $mid_term_2_marks = $student_grade_details["mid_term_2"] == null ? 0 : $student_grade_details["mid_term_2"];
-                            $end_term_marks = $student_grade_details["end_term"] == null ? 0 : $student_grade_details["end_term"];
-                            $other_marks = $student_grade_details["other"] == null ? 0 : $student_grade_details["other"];
-                        }else{
-                            $mid_term_1_marks = 0;
-                            $mid_term_2_marks = 0;
-                            $end_term_marks = 0;
-                            $other_marks = 0;
+                        $find_marks = "SELECT * FROM grades WHERE student_id = '$student_id' AND class_id = '$class_id' AND subject_id = '$subject_id'";
+                        $response = mysqli_query($conn, $find_marks) or die(mysqli_errno($conn));
+                        if (mysqli_num_rows($response) == 0) {
+                            $mid_term_1 = $mid_term_2 = $end_term = $other = 0;
+                        } else {
+                            $marks = mysqli_fetch_array($response, MYSQLI_ASSOC);
+                            $mid_term_1 = $marks["mid_term_1"];
+                            $mid_term_2 = $marks["mid_term_2"];
+                            $end_term = $marks["end_term"];
+                            $other = $marks["other"];
                         }
+
 
                         echo "
                             <tr>
                                 <td>{$student_details['name']}</td>
                                 <td>{$student_details['email']}</td>
                                 <td>{$student_details['phone']}</td>
-                                <td><input type='number' class='form-control' name='mid_term_1[$student_id]' min='0' max='25' value='$mid_term_1_marks'></td>
-                                <td><input type='number' class='form-control' name='mid_term_2[$student_id]' min='0' max='25' value='$mid_term_2_marks'></td>
-                                <td><input type='number' class='form-control' name='end_term[$student_id]' min='0' max='25' value='$end_term_marks'></td>
-                                <td><input type='number' class='form-control' name='other[$student_id]' min='0' max='25' value='$other_marks'></td>
+                                <td><input type='number' class='form-control' name='mid_term_1[$student_id]' min='0' max='25' value='$mid_term_1'></td>
+                                <td><input type='number' class='form-control' name='mid_term_2[$student_id]' min='0' max='25' value='$mid_term_2'></td>
+                                <td><input type='number' class='form-control' name='end_term[$student_id]' min='0' max='25' value='$end_term'></td>
+                                <td><input type='number' class='form-control' name='other[$student_id]' min='0' max='25' value='$other'></td>
                             </tr>
                         ";
                     }
