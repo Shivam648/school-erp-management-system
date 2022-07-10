@@ -46,8 +46,10 @@
             <div class="announcements">
                 <div class="text-center">
                     <p>ANNOUNCEMENTS</p>
-                </div>
+</div>
+                
                 <ul id="notice" class="text-center p-3">
+                <marquee direction="up" behavior="scroll-alternate" loop="">
                     <?php
                     $announcements_query = "SELECT * FROM announcements WHERE active = 1 ORDER BY announcement_id ASC";
                     $response = mysqli_query($conn, $announcements_query);
@@ -67,7 +69,9 @@
                         ";
                     }
                     ?>
+                    </marquee>
                 </ul>
+                
             </div>
         </div>
         <br>
