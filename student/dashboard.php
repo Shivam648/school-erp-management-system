@@ -24,6 +24,26 @@
                 height: auto;
             }
         }
+        .alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
     </style>
 </head>
 
@@ -66,8 +86,31 @@
                 </ul>
             </div>
             <br>
-
             <div class="col-sm-10">
+           <?php $i=0;
+            $email = $_SESSION["user_email"];
+           $fees = $conn->query("SELECT ef.*,s.name as sname,s.student_id FROM student_ef_list ef inner join students s on s.student_id = ef.student_id where email='{$email}'");
+           ?>
+            <div class="alert" id="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <strong>Alert!</strong> Dues pending for
+            <?php 
+           while($row=$fees->fetch_assoc()){  
+               $paid = $conn->query("SELECT sum(amount) as paid FROM payments where ef_id=".$row['id']);
+               $paid = $paid->num_rows > 0 ? $paid->fetch_array()['paid']:'';
+               $balance = $row['total_fee'] - $paid;
+               if($balance>0){
+                $i=$i+1;
+           ?>
+            <?php echo $row['month']; ?>,            
+            <?php } } ?>
+            </div>
+            <?php if(empty($i)){ ?>
+                <script>
+                   alert = document.getElementById("alert");
+                   alert.classList.add("hide");
+                </script>
+            <?php } ?>
                 <div class="well">
                     <h4>Dashboard</h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, laudantium. Hic suscipit modi, molestiae a veniam tenetur officiis nostrum. Doloribus praesentium dolorum culpa corporis qui quas magnam corrupti enim fugiat.</p>
@@ -170,5 +213,4 @@
     </div>
 
 </body>
-
 </html>

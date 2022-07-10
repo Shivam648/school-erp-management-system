@@ -11,6 +11,10 @@ if(isset($_GET['id'])){
 	<form id="manage-fees">
 		<div id="msg"></div>
 		<input type="hidden" name="id" value="<?php echo isset($id) ? $id : '' ?>">
+		<div class="form-group">
+		<label for="" class="control-label">month and year</label>
+        <input type="month" id="month" name="month" class="form-control">
+        </div>
 		 <div class="form-group">
             <label for="" class="control-label">Enrollment No./ E.F. No.</label>
             <input type="text" class="form-control" name="ef_no"  value="<?php echo isset($ef_no) ? $ef_no :'' ?>" required>
@@ -39,19 +43,6 @@ if(isset($_GET['id'])){
 				<?php endwhile; ?>
 			</select>
 		</div>
-		<div class="form-group">
-            <label for="" class="control-label">Month</label>
-            <select name="month" id="month" size='1' class="select2">
-        <?php
-        for ($i = 0; $i < 12; $i++) {
-        $time = strtotime(sprintf('%d months', $i));   
-        $label = date('F', $time);   
-        $value = date('n', $time);
-        echo "<option value='$label'>$label</option>";
-        }
-       ?>
-       </select>
-        </div>
 		 <div class="form-group">
             <label for="" class="control-label">Fee</label>
             <input type="text" class="form-control text-right" name="total_fee"  value="<?php echo isset($total_fee) ? number_format($total_fee) :'' ?>" required readonly>
