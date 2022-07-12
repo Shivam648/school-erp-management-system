@@ -24,30 +24,31 @@
 
         <?php include("./includes/header.php") ?>
 
-        <div class="wrapper mt-4 mb-5">
-            <div id="carousel-update" class="carousel slide" data-ride="carousel">
-                <ul class="carousel-indicators">
-                    <li data-target="#carousel-update" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-update" data-slide-to="1"></li>
-                    <li data-target="#carousel-update" data-slide-to="2"></li>
-                </ul>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="./assets/vendor/slideshow-img-1.jpg" alt="School Preview">
+        <div class="row">
+            <div class="wrapper col-12 col-sm-12 col-lg-8">
+                <div id="carousel-update" class="carousel slide" data-ride="carousel">
+                    <ul class="carousel-indicators">
+                        <li data-target="#carousel-update" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-update" data-slide-to="1"></li>
+                        <li data-target="#carousel-update" data-slide-to="2"></li>
+                    </ul>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="./assets/vendor/slideshow-img-1.jpg" alt="School Preview">
+                        </div>
                     </div>
+                    <a class="carousel-control-prev" href="#carousel-update" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#carousel-update" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
                 </div>
-                <a class="carousel-control-prev" href="#carousel-update" data-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </a>
-                <a class="carousel-control-next" href="#carousel-update" data-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </a>
             </div>
-            <div class="announcements">
+            <div class="announcements col-12 col-sm">
                 <div class="text-center">
                     <p>ANNOUNCEMENTS</p>
-</div>
-                
+                </div>     
                 <ul id="notice" class="text-center p-3">
                 <marquee direction="up" behavior="scroll-alternate" loop="">
                     <?php
@@ -70,8 +71,7 @@
                     }
                     ?>
                     </marquee>
-                </ul>
-                
+                </ul>   
             </div>
         </div>
         <br>
